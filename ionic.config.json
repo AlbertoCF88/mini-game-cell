@@ -1,0 +1,7 @@
+{
+  "name": "MiniGameCell",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,121 @@
+#pagina {
+    height: 100vh;
+  }
+  
+  h1 {
+    -webkit-text-stroke: 2px #033a14;
+    color              : #09a104;
+    font-family        : "Saiyan-Sans";
+    letter-spacing     : 4px;
+    text-align         : center;
+    text-shadow        : 0px 12px 10px rgb(64 64 64 / 91%);
+  }
+  
+  span img {
+    height    : 12vw;
+    position  : relative;
+    min-height: 27px;
+    filter    : drop-shadow(0 10px 5px rgba(0, 0, 0, 0.7));
+    animation : animacion 1.5s cubic-bezier(0.65, 0.05, 0.36, 1) infinite alternate forwards;
+  }
+  
+  @keyframes animacion {
+    0% {
+      transform: rotateY(180deg);
+    }
+  }
+  
+  .header-md::after {
+    content: none !important;
+  }
+  
+  hr {
+    height          : 3px;
+    background-color: #0a3305;
+    box-shadow      : -1px 2px 14px 1px #3e3b3b;
+    border          : 1px solid #36a10b;
+  }
+  
+  .banderas {
+    width: 40vh;
+  }
+  
+  .botoneCellFase {
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-size: auto;
+    background-position-y: -134px;
+    background-position-x: right;
+    background-color: #21252942;
+  
+  }
+  
+  .botoneCellFase:hover,
+  .botoneCellFase:active {
+    color           : #fff;
+    background-color: #212529;
+    border-color    : #212529;
+  }
+  
+  .ImgCellFase {
+    width : 100%;
+    height: 100%;
+  }
+  .alturaOver{
+    height: 60vh;
+    overflow: auto;
+  }
+  
+  .textoBtnCell {
+    color: var(--dragon);
+    font-size: 7vw;
+    display: flex;
+    height: 100px;
+    font-family: var(--fuenteDragon);
+  }
+  
+  .btn-outline-dark {
+    color       : #212529;
+    border-color: transparent !important;
+  }
+  
+  .posicion {
+    position: relative;
+  }
+  
+  /*bola*/
+  .bola {
+    position : absolute;
+    z-index  : 1;
+    width    : 17vh;
+    height   : auto;
+    opacity  : .3;
+    animation: bolaAnimar 5s linear infinite;
+  }
+  
+  @keyframes bolaAnimar {
+    0% {
+      transform: rotate(-80deg);
+      opacity  : 0;
+    }
+  
+    70% {
+      opacity: 1;
+    }
+  
+    100% {
+      transform: rotate(0deg);
+      bottom   : 100vh;
+      opacity  : 0;
+    }
+  }
+  
+  @media (min-width: 900px) { 
+    .textoBtnCell {
+      font-size: 4rem;
+    }
+   }
+

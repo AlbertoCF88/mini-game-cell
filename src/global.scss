@@ -1,0 +1,252 @@
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/******************************/
+:root {
+  --fuenteDragon: "Saiyan-Sans";
+  --dragon      : #ff7802;
+  --pantalla    : #1b1b1b;
+}
+
+@font-face {
+  font-family: "Saiyan-Sans";
+  src        : url("assets/fuentes/Saiyan-Sans.ttf") format("truetype");
+  font-weight: normal;
+  font-style : normal;
+}
+
+body {
+  -webkit-user-select: none;
+  -moz-user-select   : none;
+  -ms-user-select    : none;
+  user-select        : none;
+}
+
+img {
+  pointer-events: none;
+}
+
+@media (min-width: 576px) {
+
+  .container-sm,
+  .container {
+    max-width: none !important;
+  }
+
+  /*salto + \n en el objeto*/
+  .salto {
+    white-space: pre-line;
+  }
+}
+
+.dragon-texto {
+  color: var(--dragon);
+}
+
+.dragon-fondo {
+  background-color: var(--dragon);
+}
+
+.pantalla {
+  background-color: var(--pantalla);
+}
+
+.btnActivoCSS {
+  position : relative;
+  z-index  : 99;
+  height   : 8vh;
+  animation: btnActivoAnimar 2s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
+@keyframes btnActivoAnimar {
+  0% {
+    color              : transparent;
+    -webkit-text-stroke: 0px rgba(0, 0, 0, 0);
+    height             : 8vh;
+  }
+
+  100% {
+    color              : transparent;
+    -webkit-text-stroke: 0px rgba(0, 0, 0, 0);
+    height             : 100vh;
+  }
+}
+
+/*****************ESPERA**********************/
+#wait {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  padding        : 0px 28vw;
+  height         : 23vh;
+  width          : 100%;
+  position       : fixed;
+  bottom         : 0;
+}
+
+.textoWait {
+  color              : var(--dragon);
+  font-size          : 7vh;
+  -webkit-text-stroke: 0.2vh black;
+}
+
+/**FIN***************ESPERA**********************/
+/*-bocadillos------------------------------------bocadillos-----*/
+.bocadillo {
+  width                  : 33vw;
+  height                 : 23vw;
+  background-image       : url(assets/efectos/bocadillo2.png);
+  position               : absolute;
+  bottom                 : 10vw;
+  left                   : 43vw;
+  z-index                : 98;
+  background-image       : no-repeat;
+  background-image       : fixed;
+  background-image       : center;
+  -webkit-background-size: cover;
+  -moz-background-size   : cover;
+  -o-background-size     : cover;
+  background-size        : cover;
+  justify-content        : center;
+  display                : flex;
+  align-items            : center;
+  opacity                : 0;
+  animation              : animaBocadillo 1s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
+@keyframes animaBocadillo {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.parrafo {
+  color      : black;
+  position   : relative;
+  z-index    : 99;
+  width      : 21vw;
+  font-family: comic sans-serif;
+  font-weight: bold;
+  font-size  : 2.2vw;
+  text-align : center;
+  opacity    : 0;
+  animation  : animaBocadillo 1s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
+/*-FIN bocadillos------------------------------------FIN bocadillos-----*/
+
+.show {
+  display: block !important;
+}
+
+/*ionic--------actionSheetController------------------------------------*/
+.atras {
+  background-color: #2dd36f !important;
+}
+
+.action-sheet-wrapper.sc-ion-action-sheet-md {
+  max-width : 100% !important;
+  max-height: 40% !important;
+}
+
+.action-sheet-button-inner.sc-ion-action-sheet-md {
+  -ms-flex-pack  : start;
+  justify-content: flex-start;
+  font-size      : 3vw;
+  font-family    : "Saiyan-Sans";
+}
+
+.action-sheet-group.sc-ion-action-sheet-md {
+  background: rgba(252, 234, 186, 1);
+  background: -moz-linear-gradient(top,
+      rgba(252, 234, 186, 1) 0%,
+      rgba(252, 234, 186, 1) 12%,
+      rgba(255, 207, 87, 1) 45%,
+      rgba(250, 183, 0, 1) 70%,
+      rgba(251, 223, 147, 1) 99%,
+      rgba(251, 223, 147, 1) 100%);
+  background: -webkit-gradient(left top,
+      left bottom,
+      color-stop(0%, rgba(252, 234, 186, 1)),
+      color-stop(12%, rgba(252, 234, 186, 1)),
+      color-stop(45%, rgba(255, 207, 87, 1)),
+      color-stop(70%, rgba(250, 183, 0, 1)),
+      color-stop(99%, rgba(251, 223, 147, 1)),
+      color-stop(100%, rgba(251, 223, 147, 1)));
+  background: -webkit-linear-gradient(top,
+      rgba(252, 234, 186, 1) 0%,
+      rgba(252, 234, 186, 1) 12%,
+      rgba(255, 207, 87, 1) 45%,
+      rgba(250, 183, 0, 1) 70%,
+      rgba(251, 223, 147, 1) 99%,
+      rgba(251, 223, 147, 1) 100%);
+  background: -o-linear-gradient(top,
+      rgba(252, 234, 186, 1) 0%,
+      rgba(252, 234, 186, 1) 12%,
+      rgba(255, 207, 87, 1) 45%,
+      rgba(250, 183, 0, 1) 70%,
+      rgba(251, 223, 147, 1) 99%,
+      rgba(251, 223, 147, 1) 100%);
+  background: -ms-linear-gradient(top,
+      rgba(252, 234, 186, 1) 0%,
+      rgba(252, 234, 186, 1) 12%,
+      rgba(255, 207, 87, 1) 45%,
+      rgba(250, 183, 0, 1) 70%,
+      rgba(251, 223, 147, 1) 99%,
+      rgba(251, 223, 147, 1) 100%);
+  background: linear-gradient(to bottom,
+      rgba(252, 234, 186, 1) 0%,
+      rgba(252, 234, 186, 1) 12%,
+      rgba(255, 207, 87, 1) 45%,
+      rgba(250, 183, 0, 1) 70%,
+      rgba(251, 223, 147, 1) 99%,
+      rgba(251, 223, 147, 1) 100%);
+  filter            : progid:DXImageTransform.Microsoft.gradient(startColorstr='#fceaba', endColorstr='#fbdf93', GradientType=0);
+  -webkit-box-shadow: inset 0px 0px 81px 8px rgb(145 119 42);
+}
+
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+  cursor             : pointer;
+  border             : 1px 0px 1px 0px black solid;
+  color              : var(--dragon);
+  -webkit-text-stroke: 1px navy;
+}
+
+/*---FIN ----ionic--------actionSheetController------------------------------------*/
+
+//ionic AlertController
+.back-alert {
+  .alert-wrapper {
+    background-color: var(--pantalla);
+  }
+
+  .alert-title {
+    color: white;
+  }
+
+  .alert-sub-title {
+    color: floralwhite;
+  }
+}
+
+//ionic AlertController

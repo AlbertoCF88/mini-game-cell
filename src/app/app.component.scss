@@ -1,0 +1,20 @@
+
+//para obligar al usuario a girar el movil
+@media only screen and (orientation:portrait){
+  #mensajeMovilRotar{
+      position: relative;
+      z-index: 999999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: var(--pantalla);
+  }
+}
+
+
+@media only screen and (orientation:landscape){
+  #mensajeMovilRotar{
+    display: none;
+  }
+}

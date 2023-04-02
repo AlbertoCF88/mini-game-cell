@@ -1,0 +1,43 @@
+<div id="pagina" class="dragon-fondo">
+
+  <div class="container" style="z-index: 99; position: relative">
+    <h1 class="mt-0"> THE <span><img src="assets/fondo/LETRA.png" alt="CELL"></span> GAMES </h1>
+    <hr />
+  </div>
+
+  <div class="alturaOver" style="z-index: 99; position: relative">
+
+    <!-- <a class="btn btn-outline-dark" [routerLink]="['/rules']">
+      <img src="assets/bandera/reino-unido.svg"
+        class="rounded float-start banderas"
+        alt="...">
+    </a>
+    <a class="btn btn-outline-dark" [routerLink]="['/rules']">
+      <img src="assets/bandera/espana.svg"
+        class="rounded float-end banderas"
+        alt="...">
+    </a> -->
+
+    <a class="btn btn-outline-dark botoneCellFase mb-4"
+      style="background-image: url(../../assets/botones/botones_router/fase1.png)"
+      [routerLink]="['/rules']">
+      <span class="textoBtnCell">Empezar juego</span>
+    </a>
+    <a class="btn btn-outline-dark botoneCellFase mb-4"
+      style="background-image: url(../../assets/botones/botones_router/fase2.png)">
+      <span class="textoBtnCell">Ir a fase 2</span>
+    </a>
+    <a class="btn btn-outline-dark botoneCellFase mb-4"
+      style="background-image: url(../../assets/botones/botones_router/fase3.png)">
+      <span class="textoBtnCell">Ir a fase 3</span>
+    </a>
+  </div>
+
+  <div id="bolas">
+    <img  *ngFor="let bola of listaBolas; index as i" [id]="bola.id" [src]="'assets/bolas/' + (i+1) + '.png'"
+     alt="bola de dragon" class="bola" >
+  </div>
+
+
+
+</div>
