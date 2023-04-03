@@ -1,0 +1,16 @@
+#vidas {
+  position: relative;
+  height  : 16vh;
+  z-index : 9999999;
+
+  .vs {
+    color              : #fff94c;
+    font-family        : 'Saiyan-Sans';
+    font-size          : 22vh;
+    padding-top        : 0px;
+    margin-top         : -7vh;
+    height             : -13vh;
+    padding            : -42px;
+    -webkit-text-stroke: 1vh #e50100;
+  }
+}

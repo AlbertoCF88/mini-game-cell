@@ -1,0 +1,15 @@
+<div id="marcoEnergia" class="d-flex justify-content-between">
+
+  <div id="EnergiaGohan" class="btn-group " role="group">
+    <div *ngFor="let carga of listEnergiaGohan" class="formaEnergia"
+      [ngClass]="gohan.acumularCargaGohan ? 'energia':'energiaVacio' ">
+    </div>
+  </div>
+
+  <div id="EnergiaCEll" class="btn-group" role="group">
+    <div *ngFor="let carga of  listEnergiaCell" class="formaEnergia"
+      [ngClass]="cell.acumularCargaCell ? 'energia':'energiaVacio' ">
+    </div>
+  </div>
+
+</div>

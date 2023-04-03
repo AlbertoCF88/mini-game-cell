@@ -5,7 +5,7 @@ export default class Gohan {
     //representacion de la vida en la vista
     private _vidaBarraGohan: number
     //energia maxima
-    private _cumularCargaGohan: number
+    private _acumularCargaGohan: number
 
     //activar acciones en vista, ocultar o mostrar animacion
     private _gohanBase: boolean
@@ -25,7 +25,7 @@ export default class Gohan {
     constructor(
         vidaGohan: number,
         vidaBarraGohan: number,
-        cumularCargaGohan: number,
+        acumularCargaGohan: number,
         gohanBase: boolean = false,
         rayaGohan: boolean = false,
         golpeGohan: boolean = false,
@@ -40,7 +40,7 @@ export default class Gohan {
     ) {
         this._vidaGohan = vidaGohan
         this._vidaBarraGohan = vidaBarraGohan
-        this._cumularCargaGohan = cumularCargaGohan
+        this._acumularCargaGohan = acumularCargaGohan
         this._gohanBase = gohanBase
         this._rayaGohan = rayaGohan
         this._golpeGohan = golpeGohan
@@ -54,7 +54,7 @@ export default class Gohan {
         this._heridaKame = heridaKame
     }
 
-    
+
     //getters and setters
     public get vidaGohan(): number {
         return this._vidaGohan;
@@ -72,12 +72,12 @@ export default class Gohan {
         this._vidaBarraGohan = vidaBarraGohan;
     }
 
-    public get cumularCargaGohan(): number {
-        return this._cumularCargaGohan;
+    public get acumularCargaGohan(): number {
+        return this._acumularCargaGohan;
     }
 
-    public set cumularCargaGohan(cumularCargaGohan: number) {
-        this._cumularCargaGohan = cumularCargaGohan;
+    public set acumularCargaGohan(acumularCargaGohan: number) {
+        this._acumularCargaGohan = acumularCargaGohan;
     }
 
     public get gohanBase(): boolean {

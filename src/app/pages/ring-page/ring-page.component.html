@@ -1,78 +1,13 @@
 <div class="p-0 container pantalla" style="height: 100vh;">
-  <!-- consola.winGif==false -->
-  <div  id="vidas" class="d-flex justify-content-between">
-    <app-life [gohan]="gohan" [cell]="cell"></app-life>
-  </div>
 
-  <!-- <div *ngIf="consola2.winGif==false" id="marcoEnergia" class="d-flex justify-content-between">
-    <div id="EnergiaGohan" class="btn-group " role="group" aria-label="Basic mixed styles example">
-      <div class="formaEnergia"
-        [ngClass]="{'energia': consola2.acumularCargaGohan>=1,'energiaVacio': consola2.acumularCargaGohan==0}"></div>
-      <div class="formaEnergia"
-        [ngClass]="{'energia': consola2.acumularCargaGohan>=2,'energiaVacio': consola2.acumularCargaGohan<2}"></div>
-      <div class="formaEnergia"
-        [ngClass]="{'energia': consola2.acumularCargaGohan>=3,'energiaVacio': consola2.acumularCargaGohan<3}"></div>
-      <div class="formaEnergia"
-        [ngClass]="{'energia': consola2.acumularCargaGohan==4,'energiaVacio': consola2.acumularCargaGohan<4}"></div>
-    </div>
-    <div id="EnergiaCEll" class="btn-group" role="group" aria-label="Basic mixed styles example">
-      <div class="formaEnergia"
-        [ngClass]="{'energia': consola2.acumularCargaCell>=1,'energiaVacio': consola2.acumularCargaCell==0}"></div>
-      <div class="formaEnergia"
-        [ngClass]="{'energia': consola2.acumularCargaCell>=2,'energiaVacio': consola2.acumularCargaCell<2}"></div>
-      <div class="formaEnergia"
-        [ngClass]="{'energia': consola2.acumularCargaCell>=3,'energiaVacio': consola2.acumularCargaCell<3}"></div>
-      <div class="formaEnergia"
-        [ngClass]="{'energia': consola2.acumularCargaCell==4,'energiaVacio': consola2.acumularCargaCell<4}"></div>
-    </div>
-  </div>
+  <app-life [gohan]="gohan" [cell]="cell"></app-life>
+  <app-energy [gohan]="gohan" [cell]="cell"></app-energy>
 
   <div id="juego/pantalla">
-    <img *ngIf="consola2.winGif==false" src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
+    <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
 
-    <app-presentacion-f2 *ngIf="consola2.presentacion"></app-presentacion-f2>
+    <app-joystick></app-joystick>
 
-    <app-fase-dos *ngIf="!consola2.presentacion"></app-fase-dos>
-
-    <div class="marcoBoton marcoConrarGolpe" *ngIf="consola2.cadena1">
-      <button class="boton botonContador" (click)="consola2.contarGolpe()">
-        <img src="assets/botones/golpe.svg" alt="" class="icono">
-      </button>
-    </div>
-    <div class="marcoBoton cadena2" *ngIf="consola2.cadena2">
-      <button class="boton botonContador" (click)="consola2.contarGolpe()">
-        <img src="assets/botones/golpe.svg" alt="" class="icono">
-      </button>
-    </div>
-    <div class="marcoBoton cadena3" *ngIf="consola2.cadena3">
-      <button class="boton botonContador" (click)="consola2.contarGolpe()">
-        <img src="assets/botones/golpe.svg" alt="" class="icono">
-      </button>
-    </div>
-    <div class="marcoBoton cadena4" *ngIf="consola2.cadena4">
-      <button class="boton botonContador" (click)="consola2.contarGolpe()">
-        <img src="assets/botones/golpe.svg" alt="" class="icono">
-      </button>
-    </div>
   </div>
 
-  <div *ngIf="consola2.pulsar" class="marcoPulsar">
-    <button id="puño" class="botonPulsar" (click)="consola2.contarkame()">
-      <span class="btnChoqueKame">PULSA!</span>
-    </button>
-  </div>
-
-  <img *ngIf="consola2.winGif" class="winGif" src="assets/fase1/f2/c-18.gif" alt="gif">
-  <div class="marcoBoton" *ngIf="consola2.winGif">
-    <button class="botonCell" (click)="siguientePagina()">
-      <a [ngClass]="{'btnActivoCSS':btnActivo}">Ir a Fase 3</a>
-    </button>
-  </div>
-
-  <div *ngIf="consola2.lose" class="cajaPerder">
-    <h1 class="pierdes">Tú pierdes</h1>
-    <button class="botonPulsar" (click)="consola2.reintentar()">
-      <span class="btnChoqueKame">¿Reintentar?</span>
-    </button>
-  </div> -->
 </div>
