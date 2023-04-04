@@ -1,7 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import Gohan from "../models/Gohan";
-import Cell from '../models/Cell'
+
+import Gohan from '../../models/Gohan';
+import Cell from '../../models/Cell'
 
 @Injectable({
   providedIn: 'root'

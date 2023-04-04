@@ -3,7 +3,10 @@ import { RulesPageComponent } from './pages/rules-page/rules-page.component';
 import { HomeLevelSelectPageComponent } from './pages/home-level-select-page/home-level-select-page.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { RingPageComponent } from './pages/ring-page/ring-page.component';
+import { Ring1PageComponent } from './pages/rings/ring1/ring1-page/ring1-page.component';
+import { RingsModule } from './pages/rings/rings.module';
+
+
 
 const routes: Routes = [
   {
@@ -14,7 +17,7 @@ const routes: Routes = [
     path: 'rules', component: RulesPageComponent
   },
   {
-    path: 'ring', component: RingPageComponent
+    path: 'fase1', component: Ring1PageComponent
   },
   // {
   //   path: 'rules', component: RulesPageComponent, canActivate: [GuardFase2Guard]
@@ -44,7 +47,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RingsModule
   ],
   exports: [RouterModule]
 })

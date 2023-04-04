@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import Cell from '../../../models/Cell';
+
 import Gohan from '../../../models/Gohan';
+import Cell from '../../../models/Cell';
 
 @Component({
   selector: 'app-life',
@@ -9,8 +10,8 @@ import Gohan from '../../../models/Gohan';
 })
 export class LifeComponent implements OnInit {
 
-  @Input() gohan!: Gohan
-  @Input() cell!: Cell
+  @Input() gohan!: Gohan;
+  @Input() cell!: Cell;
 
   ngOnInit(): void {
   }

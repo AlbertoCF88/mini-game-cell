@@ -35,7 +35,7 @@ export class RulesPageComponent implements OnInit {
     this.btnActivo = true;
     if (this.btnActivo) {
       setTimeout(() => {
-        this.ruta.navigate(['/ring']);
+        this.ruta.navigate(['/fase1']);
       }, 2100);
     }
   }
@@ -67,7 +67,7 @@ export class RulesPageComponent implements OnInit {
     const LONGITUD = texto.length;
     const TEXTO = texto;
     const MAQUINA = maquina.nativeElement;
-    
+
     if(icono){
       this.ren.removeClass(ELEMENTO, 'd-none');
     }
