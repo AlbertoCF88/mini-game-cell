@@ -5,6 +5,7 @@ export default class Gohan {
     //representacion de la vida en la vista
     private _vidaBarraGohan: number
     //energia maxima
+    private _maximaEnergiaGohan: number
     private _acumularCargaGohan: number
 
     //activar acciones en vista, ocultar o mostrar animacion
@@ -25,6 +26,7 @@ export default class Gohan {
     constructor(
         vidaGohan: number,
         vidaBarraGohan: number,
+        maximaEnergiaGohan:number,
         acumularCargaGohan: number,
         gohanBase: boolean = false,
         rayaGohan: boolean = false,
@@ -40,6 +42,7 @@ export default class Gohan {
     ) {
         this._vidaGohan = vidaGohan
         this._vidaBarraGohan = vidaBarraGohan
+        this._maximaEnergiaGohan = maximaEnergiaGohan
         this._acumularCargaGohan = acumularCargaGohan
         this._gohanBase = gohanBase
         this._rayaGohan = rayaGohan
@@ -72,11 +75,23 @@ export default class Gohan {
         this._vidaBarraGohan = vidaBarraGohan;
     }
 
+    public get maximaEnergiaGohan(): number {
+        return this._maximaEnergiaGohan
+    }
+
+    public set maximaEnergiaGohan(value: number) {
+        this._maximaEnergiaGohan = value
+    }
+
     public get acumularCargaGohan(): number {
         return this._acumularCargaGohan;
     }
 
     public set acumularCargaGohan(acumularCargaGohan: number) {
+         //no puede ser nunca mayor a su maximo energia
+         if (acumularCargaGohan > this.maximaEnergiaGohan) {
+            this._acumularCargaGohan = this._maximaEnergiaGohan;
+        }
         this._acumularCargaGohan = acumularCargaGohan;
     }
 

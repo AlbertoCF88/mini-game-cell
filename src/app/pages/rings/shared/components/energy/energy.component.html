@@ -1,15 +1,20 @@
 <div id="marcoEnergia" class="d-flex justify-content-between">
 
   <div id="EnergiaGohan" class="btn-group " role="group">
-    <div *ngFor="let carga of listEnergiaGohan" class="formaEnergia"
-      [ngClass]="gohan.acumularCargaGohan ? 'energia':'energiaVacio' ">
+    <div class="d-flex justify-content-center align-items-center">
+      <div *ngFor="let carga of listEnergiaGohan" class="formaEnergia"
+        [ngClass]="gohan.acumularCargaGohan ? 'energia':'energiaVacio' ">
+      </div>
+      <span  *ngIf="gohan.maximaEnergiaGohan === 3" class="max">Max.</span>
     </div>
   </div>
 
   <div id="EnergiaCEll" class="btn-group" role="group">
-    <div *ngFor="let carga of  listEnergiaCell" class="formaEnergia"
-      [ngClass]="cell.acumularCargaCell ? 'energia':'energiaVacio' ">
+    <div class="d-flex justify-content-center align-items-center">
+      <div *ngFor="let carga of  listEnergiaCell" class="formaEnergia"
+        [ngClass]="cell.acumularCargaCell ? 'energia':'energiaVacio' ">
+      </div>
+      <span *ngIf="cell.maximaEnergiaCell === 3" class="max">Max.</span>
     </div>
-  </div>
 
-</div>
+  </div>

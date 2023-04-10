@@ -5,6 +5,8 @@ export default class Cell {
     //representacion de la vida en la vista
     private _vidaBarraCell: number
     //energia maxima
+    private _maximaEnergiaCell: number
+    //acumulaciones de energia
     private _acumularCargaCell: number
     //para mover el kame de cell
     private _poderCell: number
@@ -26,6 +28,7 @@ export default class Cell {
     constructor(
         vidaCell: number,
         vidaBarraCell: number,
+        maximaEnergiaCell: number,
         acumularCargaCell: number,
         poderCell: number = 40,
         baseCell: boolean = false,
@@ -41,6 +44,7 @@ export default class Cell {
     ) {
         this._vidaCell = vidaCell
         this._vidaBarraCell = vidaBarraCell
+        this._maximaEnergiaCell = maximaEnergiaCell
         this._acumularCargaCell = acumularCargaCell
         this._poderCell = poderCell
         this._baseCell = baseCell
@@ -74,11 +78,23 @@ export default class Cell {
         this._vidaBarraCell = vidaBarraCell;
     }
 
+    public get maximaEnergiaCell(): number {
+        return this._maximaEnergiaCell
+    }
+
+    public set maximaEnergiaCell(value: number) {
+        this._maximaEnergiaCell = value
+    }
+
     public get acumularCargaCell(): number {
         return this._acumularCargaCell;
     }
 
     public set acumularCargaCell(acumularCargaCell: number) {
+        //no puede ser nunca mayor a su maximo energia
+        if (acumularCargaCell > this.maximaEnergiaCell) {
+            this._acumularCargaCell = this._maximaEnergiaCell;
+        }
         this._acumularCargaCell = acumularCargaCell;
     }
 
@@ -170,5 +186,5 @@ export default class Cell {
         this._kameContraCell = kameContraCell;
     }
 
-    
+
 }

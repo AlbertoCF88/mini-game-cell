@@ -1,0 +1,275 @@
+#marcoPersonajes {
+    margin  : auto;
+    position: relative;
+    width   : 100vw;
+    height  : 2vw;
+  
+  }
+  
+  .raya {
+    z-index  : 89;
+    position : relative;
+    width    : 17vw;
+    height   : auto;
+    bottom   : 28vw;
+    left     : 14vw;
+    opacity  : 0;
+    animation: raya 1s
+      /*duracion*/
+      cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s
+      /*retraso*/
+      forwards;
+  }
+  
+  @keyframes raya {
+  
+    /*inicio*/
+    0% {
+      opacity: 0;
+    }
+  
+    10% {
+      opacity: 1;
+    }
+  
+    20% {
+      opacity: 0;
+    }
+  
+    30% {
+      opacity: 1;
+    }
+  
+    40% {
+      opacity: 0;
+    }
+  
+    99% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .gohanCapa {
+    z-index  : 90;
+    position : relative;
+    width    : 17vw;
+    height   : auto;
+    bottom   : 28vw;
+    right    : 4vw;
+    opacity  : 0;
+    animation: gohan 2s
+      /*duracion*/
+      cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s
+      /*retraso*/
+      forwards;
+  }
+  
+  @keyframes gohan {
+  
+    /*inicio*/
+    0% {
+      opacity: 0;
+    }
+  
+    99% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /*   ----*/
+  .gohanCapa1 {
+    z-index  : 91;
+    position : relative;
+    width    : 27vw;
+    height   : auto;
+    bottom   : 28vw;
+    right    : 31vw;
+    opacity  : 0;
+    animation: gohan2 2s
+      /*duracion*/
+      cubic-bezier(0.18, 0.89, 0.32, 1.28) 4s
+      /*retraso*/
+      forwards;
+  }
+  
+  @keyframes gohan2 {
+  
+    /*inicio*/
+    0% {
+      opacity: 0;
+    }
+  
+    99% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /*   ----*/
+  .gohanBase {
+    z-index  : 92;
+    position : relative;
+    width    : 23vw;
+    height   : auto;
+    bottom   : 28vw;
+    right    : 55vw;
+    opacity  : 0;
+    animation: gohan3 2s
+      /*duracion*/
+      cubic-bezier(0.18, 0.89, 0.32, 1.28) 6s
+      /*retraso*/
+      forwards;
+  }
+  
+  @keyframes gohan3 {
+  
+    /*inicio*/
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /*fin animacion gohan*/
+  
+  /*cell   */
+  .cellSalto {
+    z-index  : 93;
+    position : absolute;
+    width    : 21vw;
+    height   : auto;
+    bottom   : 9vw;
+    right    : 6vw;
+    opacity  : 0;
+    animation: cell1 2s
+      /*duracion*/
+      cubic-bezier(0.18, 0.89, 0.32, 1.28) 6s
+      /*retraso*/
+      forwards;
+  }
+  
+  @keyframes cell1 {
+  
+    /*inicio*/
+    0% {
+      opacity: 0;
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  
+    99% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+      bottom : 3vw;
+    }
+  }
+  
+  /*-----*/
+  .cellCarga {
+    z-index  : 94;
+    position : absolute;
+    width    : 29vw;
+    height   : auto;
+    bottom   : 3vw;
+    right    : 5vw;
+    opacity  : 0;
+    animation: cell2 3s
+      /*duracion*/
+      cubic-bezier(0.18, 0.89, 0.32, 1.28) 8s
+      /*retraso*/
+      backwards;
+  }
+  
+  @keyframes cell2 {
+  
+    /*inicio*/
+    0% {
+      opacity: 0;
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  
+    99% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /*--------*/
+  .cellBase {
+    z-index  : 94;
+    position : absolute;
+    width    : 21vw;
+    height   : auto;
+    bottom   : 3vw;
+    right    : 7vw;
+    opacity  : 0;
+    animation: cell3 3s
+      /*duracion*/
+      cubic-bezier(0.18, 0.89, 0.32, 1.28) 11s
+      /*retraso*/
+      forwards;
+  }
+  
+  @keyframes cell3 {
+  
+    /*inicio*/
+    0% {
+      opacity: 0;
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .borrar {
+    opacity  : 1;
+    animation: borrarAnimar 1s
+      /*duracion*/
+      cubic-bezier(0.18, 0.89, 0.32, 1.28)
+      /*retraso*/
+      forwards;
+  }
+  
+  @keyframes borrarAnimar {
+  
+    /*inicio*/
+    0% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /*----------------------FIN ANIMACION-------------------------------------------*/

@@ -11,13 +11,15 @@ export class Fase1Service {
   // GOHAN
   // vida 100
   // vidaBarraGohan 1
+  //maxima energia 3
   // acumularCargaGoha 3
-  gohan = new Gohan(100, 1, 3);
+  gohan = new Gohan(100, 1, 3, 3);
   //Cell
   // vida 200
-  // vidaBarraGohan 1
-  // acumularCargaGoha 3
-  cell = new Cell(200, 1, 3)
+  // vidaBarraCell 1
+  //maxima energia 3
+  // acumularCargaCell 3
+  cell = new Cell(200, 1, 3, 3)
 
   //Condiciones fase1
   contador: number = 0;
