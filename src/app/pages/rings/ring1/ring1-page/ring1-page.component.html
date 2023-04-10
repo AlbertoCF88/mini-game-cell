@@ -1,13 +1,23 @@
 <div class="p-0 container pantalla" style="height: 100vh;">
-    <!-- barra vida y energia -->
+  <!-- barra vida y energia -->
+  <div [ngClass]="{'opacity-0' : ocultarPresentacion}">
     <app-life [gohan]="gohan" [cell]="cell"></app-life>
     <app-energy [gohan]="gohan" [cell]="cell"></app-energy>
+  </div>
 
   <div id="juego-pantalla">
     <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
 
-    <app-introduction-f1></app-introduction-f1>
-     <app-joystick></app-joystick>
+    <!-- presentacion -->
+    <div *ngIf="ocultarPresentacion">
+      <app-introduction-f1 (finPresentacion)="ocultarPresentacion = $event">
+      </app-introduction-f1>
+    </div>
+
+    <!--botonera -->
+   <div *ngIf="ocultarBotones"> 
+    <app-joystick *ngIf="!ocultarPresentacion"></app-joystick>
+  </div>
 
   </div>
 

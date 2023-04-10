@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-introduction-f1',
@@ -6,18 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./introduction-f1.component.scss'],
 })
 export class IntroductionF1Component implements OnInit {
+  @Output() finPresentacion: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   //esto sirve solo para que cuando termine la animacion no cambie bruscamente
   ocultar: boolean = false;
   borrar: boolean = false;
   constructor() { }
 
   ngOnInit() {
-    window.setTimeout(() => {
+   setTimeout(() => {
       this.ocultar = true;
     }, 11000);
 
-    window.setTimeout(() => {
+    setTimeout(() => {
       this.borrar = true;
+      this.finPresentacion.emit(false)
     }, 11900);
+
   }
 }

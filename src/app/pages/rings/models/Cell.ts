@@ -78,7 +78,7 @@ export default class Cell {
         this._vidaBarraCell = vidaBarraCell;
     }
 
-    public get maximaEnergiaCell(): number {
+    public get  l(): number {
         return this._maximaEnergiaCell
     }
 

@@ -5,7 +5,7 @@
       <div *ngFor="let carga of listEnergiaGohan" class="formaEnergia"
         [ngClass]="gohan.acumularCargaGohan ? 'energia':'energiaVacio' ">
       </div>
-      <span  *ngIf="gohan.maximaEnergiaGohan === 3" class="max">Max.</span>
+      <span  *ngIf="gohan.maximaEnergiaGohan === 3" class="max ps-2">Max.</span>
     </div>
   </div>
 
@@ -14,7 +14,7 @@
       <div *ngFor="let carga of  listEnergiaCell" class="formaEnergia"
         [ngClass]="cell.acumularCargaCell ? 'energia':'energiaVacio' ">
       </div>
-      <span *ngIf="cell.maximaEnergiaCell === 3" class="max">Max.</span>
+      <span *ngIf="cell.maximaEnergiaCell === 3" class="max ps-2">Max.</span>
     </div>
 
   </div>
