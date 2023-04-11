@@ -1,15 +1,22 @@
+import { JoystickShowService } from './../../services/joystick-show.service';
 import { Component, OnInit } from '@angular/core';
-import { Fase1Service } from '../../../ring1/services/fase1.service';
+
 
 @Component({
   selector: 'app-joystick',
   templateUrl: './joystick.component.html',
   styleUrls: ['./joystick.component.scss'],
 })
-export class JoystickComponent  implements OnInit {
+export class JoystickComponent implements OnInit {
 
-  constructor(private fase1: Fase1Service) { }
+  ocultarBotones: boolean = this.JShow.ocultarBotones;
+  ocultarBtnPulsar: boolean = this.JShow.ocultarBtnPulsar;
 
-  ngOnInit() {}
+  ocultarTexto: boolean =this.JShow.ocultarTexto;
+  texto: string =this.JShow.texto;
+
+  constructor(private JShow: JoystickShowService) { }
+
+  ngOnInit() { }
 
 }

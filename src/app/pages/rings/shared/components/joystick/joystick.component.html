@@ -1,34 +1,40 @@
 <div id="marcoBotonera">
+
   <!-- texto  -->
-  <div id="wait">
+  <div id="wait" *ngIf="ocultarTexto">
     <!--tiempo de espera -->
-    <span class="textoWait">texto</span>
+    <span class="textoWait">{{texto}}</span>
   </div>
+
   <!-- boton choque kames -->
-  <div class="marcoPulsar">
+  <div *ngIf="ocultarBtnPulsar" class="marcoPulsar">
     <button id="puño" class="boton">
       <span class="btnChoqueKame">PULSA!</span>
     </button>
   </div>
+
   <!-- botonera -->
-  <!-- botonera izquierda -->
-  <div id="caja1">
-    <button id="puño" class="boton">
-      <i><img src="assets/botones/golpe.svg" alt="icono puño" class="icono"></i>
-    </button>
+  <ng-container *ngIf="!ocultarBotones">
+    <!-- botonera izquierda -->
+    <div id="caja1">
+      <button id="puño" class="boton">
+        <i><img src="assets/botones/golpe.svg" alt="icono puño" class="icono"></i>
+      </button>
 
-    <button id="defensa" class="boton">
-      <i><img src="assets/botones/defensa.svg" alt="icono defensa" class="icono"></i>
-    </button>
-  </div>
-  <!-- botonera derecha -->
-  <div id="caja2">
-    <button id="carga" class="boton">
-      <i><img src="assets/botones/cargaDB.svg" alt="icono carga" class="icono"></i>
-    </button>
+      <button id="defensa" class="boton">
+        <i><img src="assets/botones/defensa.svg" alt="icono defensa" class="icono"></i>
+      </button>
+    </div>
+    <!-- botonera derecha -->
+    <div id="caja2">
+      <button id="carga" class="boton">
+        <i><img src="assets/botones/cargaDB.svg" alt="icono carga" class="icono"></i>
+      </button>
 
-    <button id="ki" class="boton">
-      <i><img src="assets/botones/kame.svg" alt="icono ki" class="icono" style="border-radius: 50%;"></i>
-    </button>
-  </div>
+      <button id="ki" class="boton">
+        <i><img src="assets/botones/kame.svg" alt="icono ki" class="icono" style="border-radius: 50%;"></i>
+      </button>
+    </div>
+  </ng-container>
+
 </div>

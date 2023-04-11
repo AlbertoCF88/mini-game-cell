@@ -6,8 +6,8 @@ export default class Cell {
     private _vidaBarraCell: number
     //energia maxima
     private _maximaEnergiaCell: number
-    //acumulaciones de energia
     private _acumularCargaCell: number
+
     //para mover el kame de cell
     private _poderCell: number
 
@@ -78,7 +78,7 @@ export default class Cell {
         this._vidaBarraCell = vidaBarraCell;
     }
 
-    public get  l(): number {
+    public get  maximaEnergiaCell(): number {
         return this._maximaEnergiaCell
     }
 

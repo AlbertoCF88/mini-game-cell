@@ -15,14 +15,13 @@ export class Ring1PageComponent implements OnInit {
   cell!: Cell;
 
   ocultarPresentacion: boolean = true;
-  ocultarBotones: boolean = false;
+
 
   constructor(private fase1: Fase1Service) { }
 
   ngOnInit() {
     this.gohan = this.fase1.gohan;
     this.cell = this.fase1.cell;
-    this.ocultarBotones = this.fase1.ocultarBotones;
   }
 
 

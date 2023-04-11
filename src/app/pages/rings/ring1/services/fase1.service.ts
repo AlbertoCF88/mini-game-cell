@@ -1,3 +1,4 @@
+import { JoystickShowService } from './../../shared/services/joystick-show.service';
 
 import { Injectable } from '@angular/core';
 
@@ -22,29 +23,28 @@ export class Fase1Service {
   cell = new Cell(200, 1, 3, 3)
 
   //Condiciones fase1
+  //contardo sirve parar decirle a jugar que sea paciente
   contador: number = 0;
-  texto: string = '';
-  espera: boolean = true;
+  //contadorGolpeBoton sirve para no abusar de usar el mismo boton
+  contadorGolpeBoton: number = 0;
+  //choqueKame activar animacion impacto kame
+  choqueKame: boolean = false;
+  // btnContarChoque valor iniciar de los dos kames
+  btnContarChoque: number = 26;
+  //ganar o perder
   win: boolean = false;
   lose: boolean = false;
   winGif: boolean = false;
-  contadorGolpeBoton: number = 0;
 
-  choqueKame: boolean = false;
-  pulsar: boolean = false;
-  btnContarChoque: number = 26;
+  constructor(private JShow: JoystickShowService) { }
 
-
-
-  ocultarBotones: boolean = false;
-  constructor() { }
   contar() {
     //contador de apretar el mismo boton
     this.contador = this.contador + 1;
     if (this.contador >= 2) {
-      this.texto = 'Espera!';
+      this.JShow.texto = 'Espera!';
       window.setTimeout(() => {
-        this.texto = '';
+        this.JShow.texto = '';
       }, 2000);
     }
   }
@@ -62,123 +62,122 @@ export class Fase1Service {
     //vida en la vista
     this.gohan.vidaBarraGohan = (this.gohan.vidaGohan * 1) / 100;
   }
-  // choqueKames() {
-  //   this.btnContarChoque = this.btnContarChoque + 0.3;
-  //   this.poderCell = this.poderCell - 0.3;
-  //   const KameCell = document.getElementById('KameCell');
-  //   const KameGohan = document.getElementById('KameGohan');
-  //   KameGohan.style.opacity = '1';
-  //   KameCell.style.opacity = '1';
-  //   KameGohan.style.left = this.btnContarChoque + 'vw';
-  //   KameCell.style.width = this.poderCell + '%';
+  choqueKames() {
+    this.btnContarChoque = this.btnContarChoque + 0.3;
+    this.cell.poderCell = this.cell.poderCell - 0.3;
+    const KameCell = document.getElementById('KameCell');
+    const KameGohan = document.getElementById('KameGohan');
+    KameGohan!.style.opacity = '1';
+    KameCell!.style.opacity = '1';
+    KameGohan!.style.left = this.btnContarChoque + 'vw';
+    KameCell!.style.width = this.cell.poderCell + '%';
 
-  //   if (this.btnContarChoque >= 41 && this.vidaCell >= 60) {
-  //     KameGohan.classList.add('kameWin');
-  //     KameCell.classList.add('kameCellPierde');
-  //     this.pulsar = false;
+    if (this.btnContarChoque >= 41 && this.cell.vidaCell >= 60) {
+      KameGohan!.classList.add('kameWin');
+      KameCell!.classList.add('kameCellPierde');
+      this.JShow.ocultarBtnPulsar = false;
 
-  //     window.setTimeout(() => {
-  //       this.kameContraCell = true;
-  //       this.heridoCell = true;
-  //       this.choqueKame = false;
-  //       this.ganaGohan = false;
-  //       this.ganaGohan = true;
-  //       this.kameContraCell = true;
-  //       this.texto = 'Gohan sale victorioso';
-  //       this.vidaCell = this.vidaCell - 50;
-  //       this.barraCEll();
-  //     }, 2000);
-  //     window.setTimeout(() => {
-  //       this.resetarAnimaciones();
-  //     }, 4000);
-  //     return;
-  //   } else if (this.btnContarChoque >= 47 && this.vidaCell < 60) {
-  //     //menos vida mas dificil ganar a cell
-  //     KameGohan.classList.add('kameWin');
-  //     KameCell.classList.add('kameCellPierde');
-  //     this.pulsar = false;
-  //     this.texto = 'Gohan sale victorioso';
-  //     window.setTimeout(() => {
-  //       this.kameContraCell = true;
-  //       this.heridoCell = true;
-  //       this.choqueKame = false;
-  //       this.ganaGohan = false;
-  //       this.ganaGohan = true;
-  //       this.kameContraCell = true;
-  //       this.vidaCell = this.vidaCell - 50;
-  //       this.barraCEll();
-  //     }, 2000);
-  //     window.setTimeout(() => {
-  //       this.resetarAnimaciones();
-  //     }, 4000);
-  //     return;
-  //   }
-  // }
+      setTimeout(() => {
+        this.cell.kameContraCell = true;
+        this.cell.heridoCell = true;
+        this.choqueKame = false;
+        this.gohan.ganaGohan = true;
+        this.cell.kameContraCell = true;
+        this.JShow.texto = 'Gohan sale victorioso';
+        this.cell.vidaCell = this.cell.vidaCell - 50;
+        this.barraCEll();
+      }, 2000);
+      setTimeout(() => {
+        this.resetarAnimaciones();
+      }, 4000);
+      return;
+    } else if (this.btnContarChoque >= 47 && this.cell.vidaCell < 60) {
+      //menos vida mas dificil ganar a cell
+      KameGohan!.classList.add('kameWin');
+      KameCell!.classList.add('kameCellPierde');
+      this.JShow.ocultarBtnPulsar = false;
+      this.JShow.texto = 'Gohan sale victorioso';
+
+      setTimeout(() => {
+        this.cell.kameContraCell = true;
+        this.cell.heridoCell = true;
+        this.choqueKame = false;
+        this.gohan.ganaGohan = true;
+        this.cell.kameContraCell = true;
+        this.cell.vidaCell = this.cell.vidaCell - 50;
+        this.barraCEll();
+      }, 2000);
+      window.setTimeout(() => {
+        this.resetarAnimaciones();
+      }, 4000);
+      return;
+    }
+  }
   accionGolpe(golpe: string) {
     this.contar();
-    if (this.espera == false) {
+    if (this.JShow.ocultarTexto == false) {
       this.gohan.rayaGohan = true;
       this.descansoPjs(false);
-      this.espera = true;
+      this.JShow.ocultarTexto = true;
       this.accionCell(golpe);
       setTimeout(() => {
-        this.ocultarBotones = true;
+        this.JShow.ocultarBotones = true;
       }, 100);
     }
   }
-  // accionDefensa(defensa: string) {
-  //   this.contar();
-  //   if (this.espera == false) {
-  //     this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
-  //     this.base = false;
-  //     this.espera = true;
-  //     this.defensaGohan = true;
-  //     this.accionCell(defensa);
-  //     window.setTimeout(() => {
-  //       this.ocultarBotones = true;
-  //     }, 100);
-  //   }
-  // }
-  // accionCarga(carga: string) {
-  //   this.contar();
-  //   if (this.espera == false) {
-  //     this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
-  //     this.base = false;
-  //     this.espera = true;
-  //     this.cargaGohan = true;
-  //     this.acumularCargaGohan = this.acumularCargaGohan + 1;
-  //     if (this.acumularCargaGohan == 4) {
-  //       this.acumularCargaGohan = this.acumularCargaGohan - 1;
-  //     }
-  //     this.accionCell(carga);
-  //     window.setTimeout(() => {
-  //       this.ocultarBotones = true;
-  //     }, 100);
-  //   }
-  // }
-  // accionKi(ki: string) {
-  //   this.contar();
-  //   if (this.espera == false) {
-  //     this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
-  //     this.base = false;
-  //     this.espera = true;
-  //     this.accionCell(ki);
-  //     window.setTimeout(() => {
-  //       this.ocultarBotones = true;
-  //     }, 100);
-  //   }
-  // }
+  accionDefensa(defensa: string) {
+    this.contar();
+    if (this.JShow.ocultarTexto == false) {
+      this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
+      this.descansoPjs(false);
+      this.JShow.ocultarTexto = true;
+      this.gohan.defensaGohan = true;
+      this.accionCell(defensa);
+      window.setTimeout(() => {
+        this.JShow.ocultarBotones = true;
+      }, 100);
+    }
+  }
+  accionCarga(carga: string) {
+    this.contar();
+    if (this.JShow.ocultarTexto == false) {
+      this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
+      this.descansoPjs(false);
+      this.JShow.ocultarTexto = true;
+      this.gohan.cargaGohan = true;
+      this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan + 1;
+      if (this.gohan.acumularCargaGohan == 4) {
+        this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 1;
+      }
+      this.accionCell(carga);
+      setTimeout(() => {
+        this.JShow.ocultarBotones = true;
+      }, 100);
+    }
+  }
+  accionKi(ki: string) {
+    this.contar();
+    if (this.JShow.ocultarTexto == false) {
+      this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
+      this.descansoPjs(false);
+      this.JShow.ocultarTexto = true;
+      this.accionCell(ki);
+      setTimeout(() => {
+        this.JShow.ocultarBotones = true;
+      }, 100);
+    }
+  }
 
   // *CEll*************************CEll*********************CEll*** */
   accionCell(_e: string) {
+    let random = Math.floor(Math.random() * (10 - 0) + 0);
     switch (_e) {
       case 'golpe':
-        let aleatorioDefensa = Math.floor(Math.random() * (10 - 0) + 0);
 
         if (this.contadorGolpeBoton < 0) {
           this.contadorGolpeBoton = 0;
         }
-        if (aleatorioDefensa >= 7) {
+        if (random >= 7) {
           //daño directo
           this.cell.vidaCell = this.cell.vidaCell - 10;
           this.barraCEll();
@@ -187,245 +186,245 @@ export class Fase1Service {
           this.gohan.golpeGohan = true;
           this.descansoPjs(false);
           this.cell.heridoCell = true;
-          this.texto = 'Cell recibe daño';
+          this.JShow.texto = 'Cell recibe daño';
           window.setTimeout(() => {
             this.resetarAnimaciones();
           }, 2000);
-        } else if (aleatorioDefensa >= 4 && aleatorioDefensa <= 6) {
+        } else if (random >= 4 && random <= 6) {
           //esquiva cell
           this.contadorGolpeBoton = this.contadorGolpeBoton + 1;
-          this.baseCell = false;
-          this.golpeGohan = true;
-          this.esquivaCell = true;
-          this.texto = 'Cell esquiva el ataque';
+          this.cell.baseCell = false;
+          this.gohan.golpeGohan = true;
+          this.cell.esquivaCell = true;
+          this.JShow.texto = 'Cell esquiva el ataque';
           window.setTimeout(() => {
             this.resetarAnimaciones();
           }, 2000);
         } else if (
-          aleatorioDefensa >= 0 &&
-          aleatorioDefensa <= 3 &&
+          random >= 0 &&
+          random <= 3 &&
           this.contadorGolpeBoton >= 2 &&
-          this.acumularCargaCell >= 1
+          this.cell.acumularCargaCell >= 1
         ) {
           //Taiyoken
           this.contadorGolpeBoton = 0;
-          this.destelloCell = true;
-          this.acumularCargaCell = this.acumularCargaCell - 1;
-          this.texto = 'Cell utiliza Taiyoken!';
-          this.vidaGohan = this.vidaGohan - 5;
+          this.cell.destelloCell = true;
+          this.cell.acumularCargaCell = this.cell.acumularCargaCell - 1;
+          this.JShow.texto = 'Cell utiliza Taiyoken!';
+          this.gohan.vidaGohan = this.gohan.vidaGohan - 5;
           this.barraGohan();
-          this.acumularCargaGohan = this.acumularCargaGohan - 1;
-          if (this.acumularCargaGohan < 0) {
-            this.acumularCargaGohan = 0;
+          this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 1;
+          if (this.gohan.acumularCargaGohan < 0) {
+            this.gohan.acumularCargaGohan = 0;
           }
           this.barraGohan();
-          window.setTimeout(() => {
+          setTimeout(() => {
             this.resetarAnimaciones();
           }, 2500);
         } else {
           //contra de cell
           this.contadorGolpeBoton = this.contadorGolpeBoton + 1;
-          this.baseCell = false;
-          this.golpeGohan = true;
-          this.esquivaCell = true;
-          this.contraCell = true;
-          this.texto = 'Cell contraataca!';
-          window.setTimeout(() => {
-            this.vidaGohan = this.vidaGohan - 10;
+          this.cell.baseCell = false;
+          this.gohan.golpeGohan = true;
+          this.cell.esquivaCell = true;
+          this.cell.contraCell = true;
+          this.JShow.texto = 'Cell contraataca!';
+          setTimeout(() => {
+            this.gohan.vidaGohan = this.gohan.vidaGohan - 10;
             this.barraGohan();
           }, 1000);
-          window.setTimeout(() => {
+          setTimeout(() => {
             this.resetarAnimaciones();
           }, 2000);
         }
 
         break;
       case 'defensa':
-        let aleatorio2 = Math.floor(Math.random() * (10 - 0) + 0);
-        if (aleatorio2 >= 9) {
-          this.baseCell = true;
-          this.texto = 'Cell no hace nada';
-          window.setTimeout(() => {
+
+        if (random >= 9) {
+          this.cell.baseCell = true;
+          this.JShow.texto = 'Cell no hace nada';
+          setTimeout(() => {
             this.resetarAnimaciones();
           }, 2000);
         }
-        if (aleatorio2 >= 6 && aleatorio2 <= 8) {
-          if (aleatorio2 == 7 || aleatorio2 == 8) {
-            this.golpeCell = true;
-            this.texto = 'Cell ataca';
-            this.vidaGohan = this.vidaGohan - 2;
+        if (random >= 6 && random <= 8) {
+          if (random == 7 || random == 8) {
+            this.cell.golpeCell = true;
+            this.JShow.texto = 'Cell ataca';
+            this.gohan.vidaGohan = this.gohan.vidaGohan - 2;
             this.barraGohan();
-            window.setTimeout(() => {
+            setTimeout(() => {
               this.resetarAnimaciones();
             }, 2000);
           } else {
-            this.golpeCell = true;
-            this.contraGohan = true;
-            window.setTimeout(() => {
-              this.defensaGohan = false;
-              this.golpeCell = false;
-              this.texto = 'Gohan Contraataca!';
-              this.vidaCell = this.vidaCell - 20;
+            this.cell.golpeCell = true;
+            this.gohan.contraGohan = true;
+            setTimeout(() => {
+              this.gohan.defensaGohan = false;
+              this.cell.golpeCell = false;
+              this.JShow.texto = 'Gohan Contraataca!';
+              this.cell.vidaCell = this.cell.vidaCell - 20;
               this.barraCEll();
             }, 2000);
-            window.setTimeout(() => {
+            setTimeout(() => {
               this.resetarAnimaciones();
             }, 4000);
           }
         }
 
-        if (aleatorio2 >= 2 && aleatorio2 <= 5) {
-          if (this.acumularCargaCell == 3) {
-            this.kameCell = true;
-            this.acumularCargaCell = 0;
-            this.texto = 'Cell utiliza Kamehameha';
-            window.setTimeout(() => {
-              this.vidaGohan = this.vidaGohan - 12;
+        if (random >= 2 && random <= 5) {
+          if (this.cell.acumularCargaCell == 3) {
+            this.cell.kameCell = true;
+            this.cell.acumularCargaCell = 0;
+            this.JShow.texto = 'Cell utiliza Kamehameha';
+            setTimeout(() => {
+              this.gohan.vidaGohan = this.gohan.vidaGohan - 12;
               this.barraGohan();
             }, 2000);
-            window.setTimeout(() => {
+            setTimeout(() => {
               this.resetarAnimaciones();
             }, 6000);
           } else {
-            this.cargaCell = true;
-            this.acumularCargaCell = this.acumularCargaCell + 1;
-            window.setTimeout(() => {
+            this.cell.cargaCell = true;
+            this.cell.acumularCargaCell = this.cell.acumularCargaCell + 1;
+            setTimeout(() => {
               this.resetarAnimaciones();
             }, 2100);
           }
         }
-        if (aleatorio2 >= 0 && aleatorio2 <= 1) {
-          if (this.acumularCargaCell == 0) {
-            this.cansadoCell = true;
-            this.texto = 'Cell parece cansado';
-            window.setTimeout(() => {
+        if (random >= 0 && random <= 1) {
+          if (this.cell.acumularCargaCell == 0) {
+            this.cell.cansadoCell = true;
+            this.JShow.texto = 'Cell parece cansado';
+            setTimeout(() => {
               this.resetarAnimaciones();
             }, 2100);
-          } else if (this.acumularCargaCell == 1) {
-            this.cargaCell = true;
-            window.setTimeout(() => {
-              this.acumularCargaCell = this.acumularCargaCell + 1;
+          } else if (this.cell.acumularCargaCell == 1) {
+            this.cell.cargaCell = true;
+            setTimeout(() => {
+              this.cell.acumularCargaCell = this.cell.acumularCargaCell + 1;
               this.resetarAnimaciones();
             }, 2100);
-          } else if (this.acumularCargaCell == 2) {
-            this.cargaCell = true;
-            window.setTimeout(() => {
-              this.acumularCargaCell = this.acumularCargaCell + 1;
+          } else if (this.cell.acumularCargaCell == 2) {
+            this.cell.cargaCell = true;
+            setTimeout(() => {
+              this.cell.acumularCargaCell = this.cell.acumularCargaCell + 1;
               this.resetarAnimaciones();
             }, 2100);
-          } else if (this.acumularCargaCell == 3) {
-            this.kameCell = true;
-            window.setTimeout(() => {
-              this.texto = 'Cell utiliza kamehameha';
-              this.vidaGohan = this.vidaGohan - 12;
+          } else if (this.cell.acumularCargaCell == 3) {
+            this.cell.kameCell = true;
+            setTimeout(() => {
+              this.JShow.texto = 'Cell utiliza kamehameha';
+              this.gohan.vidaGohan = this.gohan.vidaGohan - 12;
               this.barraGohan();
             }, 2000);
-            window.setTimeout(() => {
+            setTimeout(() => {
               this.resetarAnimaciones();
             }, 6000);
-            this.acumularCargaCell = 0;
+            this.cell.acumularCargaCell = 0;
           }
         }
 
         break;
       case 'carga':
-        if (this.acumularCargaCell <= 2) {
-          this.cargaCell = true;
-          this.acumularCargaCell = this.acumularCargaCell + 1;
-          window.setTimeout(() => {
+        if (this.cell.acumularCargaCell <= 2) {
+          this.cell.cargaCell = true;
+          this.cell.acumularCargaCell = this.cell.acumularCargaCell + 1;
+          setTimeout(() => {
             this.resetarAnimaciones();
           }, 2100);
         } else {
           //Cell utiliza kame
-          this.kameCell = true;
-          this.heridaGohan = true;
-          this.acumularCargaCell = 0;
-          this.texto = 'Gohan recibe un duro ataque!';
-          window.setTimeout(() => {
-            this.vidaGohan = this.vidaGohan - 24;
+          this.cell.kameCell = true;
+          this.gohan.heridaGohan = true;
+          this.cell.acumularCargaCell = 0;
+          this.JShow.texto = 'Gohan recibe un duro ataque!';
+          setTimeout(() => {
+            this.gohan.vidaGohan = this.gohan.vidaGohan - 24;
             this.barraGohan();
           }, 2000);
-          window.setTimeout(() => {
+          setTimeout(() => {
             this.resetarAnimaciones();
           }, 5900);
         }
         break;
       case 'ki':
-        if (this.acumularCargaGohan == 3 && this.acumularCargaCell == 3) {
+        if (this.gohan.acumularCargaGohan == 3 && this.cell.acumularCargaCell == 3) {
           this.choqueKame = true;
-          window.setTimeout(() => {
+          setTimeout(() => {
             const KameGohan = document.getElementById('KameGohan');
             const KameCell = document.getElementById('KameCell');
-            KameGohan.style.opacity = '1';
-            KameCell.style.opacity = '1';
-            KameCell.style.width = 40 + '%';
-            this.pulsar = true;
+            KameGohan!.style.opacity = '1';
+            KameCell!.style.opacity = '1';
+            KameCell!.style.width = 40 + '%';
+            this.JShow.ocultarBtnPulsar = true;
           }, 3000);
 
-          window.setTimeout(() => {
+          setTimeout(() => {
             if (
-              (this.btnContarChoque < 41 && this.vidaCell >= 60) ||
-              (this.btnContarChoque < 47 && this.vidaCell < 60)
+              (this.btnContarChoque < 41 && this.cell.vidaCell >= 60) ||
+              (this.btnContarChoque < 47 && this.cell.vidaCell < 60)
             ) {
-              this.pulsar = false;
+              this.JShow.ocultarBtnPulsar = false;
               const KameGohan = document.getElementById('KameGohan');
               const KameCell = document.getElementById('KameCell');
               const gohanPosturaKame = document.getElementById('gohanKame');
-              KameGohan.style.opacity = '0';
-              KameCell.style.width = 64 + '%';
-              window.setTimeout(() => {
-                gohanPosturaKame.style.width = '0vw';
+              KameGohan!.style.opacity = '0';
+              KameCell!.style.width = 64 + '%';
+              setTimeout(() => {
+                gohanPosturaKame!.style.width = '0vw';
               }, 2000);
-              this.texto = 'Cell sale victorioso';
-              this.heridaGohan = true;
-              this.vidaGohan = this.vidaGohan - 50;
+              this.JShow.texto = 'Cell sale victorioso';
+              this.gohan.heridaGohan = true;
+              this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
               this.barraGohan();
-              window.setTimeout(() => {
+              setTimeout(() => {
                 this.resetarAnimaciones();
               }, 4000);
             }
           }, 13200);
-          this.acumularCargaCell = 0;
-          this.acumularCargaGohan = 0;
+          this.cell.acumularCargaCell = 0;
+          this.gohan.acumularCargaGohan = 0;
           break;
-        } else if (this.acumularCargaGohan == 3) {
-          this.baseCell = true;
-          this.kameGohan = true;
-          this.acumularCargaGohan = 0;
-          window.setTimeout(() => {
-            this.baseCell = false;
-            this.heridoCell = true;
-            this.kameContraCell = true;
-            this.texto = 'Cell recibe daño';
-            this.vidaCell = this.vidaCell - 30;
+        } else if (this.gohan.acumularCargaGohan == 3) {
+          this.cell.baseCell = true;
+          this.gohan.kameGohan = true;
+          this.gohan.acumularCargaGohan = 0;
+          setTimeout(() => {
+            this.cell.baseCell = false;
+            this.cell.heridoCell = true;
+            this.cell.kameContraCell = true;
+            this.JShow.texto = 'Cell recibe daño';
+            this.cell.vidaCell = this.cell.vidaCell - 30;
             this.barraCEll();
           }, 4100);
-          window.setTimeout(() => {
+          setTimeout(() => {
             this.resetarAnimaciones();
           }, 6000);
           break;
-        } else if (this.acumularCargaCell == 3) {
-          this.kameCell = true;
-          this.texto = 'Gohan parece cansado';
-          this.cansadoGohan = true;
-          this.acumularCargaCell = 0;
-          this.heridaGohan = true;
-          window.setTimeout(() => {
-            this.texto = 'Gohan recibe un duro ataque!';
-            this.cansadoGohan = false;
-            this.vidaGohan = this.vidaGohan - 30;
+        } else if (this.cell.acumularCargaCell == 3) {
+          this.cell.kameCell = true;
+          this.JShow.texto = 'Gohan parece cansado';
+          this.gohan.cansadoGohan = true;
+          this.cell.acumularCargaCell = 0;
+          this.gohan.heridaGohan = true;
+          setTimeout(() => {
+            this.JShow.texto = 'Gohan recibe un duro ataque!';
+            this.gohan.cansadoGohan = false;
+            this.gohan.vidaGohan = this.gohan.vidaGohan - 30;
             this.barraGohan();
           }, 2000);
-          window.setTimeout(() => {
+          setTimeout(() => {
             this.resetarAnimaciones();
           }, 5500);
           break;
         } else {
-          this.texto = 'Gohan parece cansado';
-          this.cansadoGohan = true;
-          this.cargaCell = true;
-          this.acumularCargaCell = this.acumularCargaCell + 1;
-          window.setTimeout(() => {
+          this.JShow.texto = 'Gohan parece cansado';
+          this.gohan.cansadoGohan = true;
+          this.cell.cargaCell = true;
+          this.cell.acumularCargaCell = this.cell.acumularCargaCell + 1;
+          setTimeout(() => {
             this.resetarAnimaciones();
           }, 2100);
           break;
@@ -435,15 +434,15 @@ export class Fase1Service {
   }
 
   resetarAnimaciones() {
-    this.ocultarBotones = false;
+    this.JShow.ocultarBotones = false;
     this.contador = 0;
-    this.texto = '';
+    this.JShow.texto = '';
     this.descansoPjs(true);
-    this.espera = false;
+    this.JShow.ocultarTexto = false;
     this.choqueKame = false;
     this.cell.poderCell = 40;
     this.btnContarChoque = 26;
-    this.pulsar = false;
+    this.JShow.ocultarBtnPulsar = false;
     /**Gohan */
     this.gohan.gohanBase = false;
     this.gohan.golpeGohan = false;
@@ -456,54 +455,52 @@ export class Fase1Service {
     this.gohan.heridaGohan = false;
     this.gohan.cansadoGohan = false;
     this.gohan.heridaKame = false;
-    this.ganaGohan = false;
+    this.gohan.ganaGohan = false;
     /**Cell */
-    this.baseCell = false;
-    this.esquivaCell = false;
-    this.heridoCell = false;
-    this.golpeCell = false;
-    this.cargaCell = false;
-    this.cansadoCell = false;
-    this.destelloCell = false;
-    this.kameCell = false;
-    this.kameContraCell = false;
-    this.contraCell = false; //puño
-    // this.defensaCell no tiene
-    this.fase2();
+    this.cell.baseCell = false;
+    this.cell.esquivaCell = false;
+    this.cell.heridoCell = false;
+    this.cell.golpeCell = false;
+    this.cell.cargaCell = false;
+    this.cell.cansadoCell = false;
+    this.cell.destelloCell = false;
+    this.cell.kameCell = false;
+    this.cell.kameContraCell = false;
+    this.cell.contraCell = false;
+    //comprobacion ganador
+    this.ganador();
   }
 
+  ganador() {
+    if (this.cell.vidaBarraCell <= 0) {
+      //gana gohan
+      this.descansoPjs(true);
+      this.win = true;
+      setTimeout(() => {
+        this.winGif = !this.winGif;
+      }, 6500);
+    } else if (this.gohan.vidaBarraGohan <= 0) {
+      //Gana cell
+      this.JShow.ocultarBotones = true;
+      this.descansoPjs(false);
+      this.lose = true;
+      this.cell.cargaCell = true;
+      this.JShow.ocultarBotones = true;
+      return;
+    }
+  }
 
-
-  // fase2() {
-  //   if (this.vidaBarraCell <= 0) {
-  //     //gana gohan
-  //     this.base = false;
-  //     this.gohanBase = true;
-  //     this.win = true;
-  //     window.setTimeout(() => {
-  //       this.winGif = !this.winGif;
-  //     }, 6500);
-  //   } else if (this.vidaBarraGohan <= 0) {
-  //     //Gana cell
-  //     this.ocultarBotones = true;
-  //     this.base = false;
-  //     this.lose = true;
-  //     this.cargaCell = true;
-  //     this.espera = true;
-  //     return;
-  //   }
-  // }
-  // reintentar() {
-  //   this.lose = !this.lose;
-  //   this.cargaCell = !this.cargaCell;
-  //   this.base = true;
-  //   this.vidaCell = 200;
-  //   this.vidaGohan = 100;
-  //   this.barraGohan();
-  //   this.barraCEll();
-  //   this.acumularCargaGohan = 3;
-  //   this.acumularCargaCell = 3;
-  //   this.resetarAnimaciones();
-  // }
+  reintentar() {
+    this.lose = !this.lose;
+    this.cell.cargaCell = !this.cell.cargaCell;
+    this.descansoPjs(true);
+    this.cell.vidaCell = 200;
+    this.gohan.vidaGohan = 100;
+    this.barraGohan();
+    this.barraCEll();
+    this.gohan.acumularCargaGohan = 3;
+    this.cell.acumularCargaCell = 3;
+    this.resetarAnimaciones();
+  }
 } //final
 
