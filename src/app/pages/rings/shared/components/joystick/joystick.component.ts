@@ -1,3 +1,4 @@
+import { Fase1Service } from '../../../ring1/services/fase1.service';
 import { JoystickShowService } from './../../services/joystick-show.service';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -16,42 +17,45 @@ export class JoystickComponent implements OnInit {
   ocultarTexto: boolean = this.jShow.ocultarTexto;
   texto: string = this.jShow.texto;
 
-  constructor(private jShow: JoystickShowService) { }
+  constructor(private jShow: JoystickShowService,
+     private fase1: Fase1Service) { }
 
   ngOnInit() { }
 
   choqueKames(){
     switch (this.fase) {
       case 1:
-        // this.fase1.choqueKames();
+        this.fase1.choqueKames();
         break;
     }
   }
   accionGolpe(accion:string){
+    console.log("golep", accion)
+    console.log("fase" , this.fase)
     switch (this.fase) {
       case 1:
-        // this.fase1.accionGolpe(accion);
+        this.fase1.accionGolpe(accion);
         break;
     }
   }
   accionDefensa(accion:string){
     switch (this.fase) {
       case 1:
-        // this.fase1.accionDefensa(accion);
+        this.fase1.accionDefensa(accion);
         break;
     }
   }
   accionCarga(accion:string){
     switch (this.fase) {
       case 1:
-        // this.fase1. accionCarga(accion);
+        this.fase1. accionCarga(accion);
         break;
     }
   }
   accionKi(accion:string){
     switch (this.fase) {
       case 1:
-        // this.fase1.accionKi(accion);
+        this.fase1.accionKi(accion);
         break;
     }
   }

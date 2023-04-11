@@ -9,16 +9,21 @@
     <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
 
     <!-- presentacion -->
-    <div *ngIf="ocultarPresentacion">
+    <ng-container *ngIf="ocultarPresentacion">
       <app-introduction-f1 (finPresentacion)="ocultarPresentacion = $event">
       </app-introduction-f1>
-    </div>
+    </ng-container>
 
     <!-- imagenes en pantalla -->
-    <app-game-f1-img></app-game-f1-img>
-    
+    <!-- *ngIf="!ocultarPresentacion" -->
+    <ng-container >
+      <app-game-f1-img></app-game-f1-img>
+    </ng-container>
     <!--botonera -->
-    <app-joystick *ngIf="!ocultarPresentacion"></app-joystick>
+    <!-- *ngIf="!ocultarPresentacion" -->
+    <ng-container >
+      <app-joystick [fase]="1"></app-joystick>
+    </ng-container>
 
   </div>
 

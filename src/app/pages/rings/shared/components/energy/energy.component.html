@@ -2,11 +2,13 @@
 
   <div id="EnergiaGohan" class="btn-group " role="group">
     <div class="d-flex justify-content-center align-items-center">
-      <div *ngFor="let carga of listEnergiaGohan" class="formaEnergia"
-        [ngClass]="gohan.acumularCargaGohan ? 'energia':'energiaVacio' ">
+
+      <div *ngFor="let carga of listEnergiaGohan; let i = index" class="formaEnergia"
+        [ngClass]="i < gohan.acumularCargaGohan ? 'energia':'energiaVacio' ">
       </div>
 
-      <span *ngIf="gohan.maximaEnergiaGohan === 3" class="max ps-2">Max.</span>
+      <span
+        [ngClass]="gohan.maximaEnergiaGohan && gohan.acumularCargaGohan === 3 ? 'max ps-2' :'maxVacio ps-2' ">Max.</span>
 
     </div>
   </div>
@@ -14,10 +16,11 @@
   <div id="EnergiaCEll" class="btn-group" role="group">
     <div class="d-flex justify-content-center align-items-center">
 
-      <span *ngIf="cell.maximaEnergiaCell === 3" class="max pe-2">Max.</span>
+      <span
+        [ngClass]="cell.maximaEnergiaCell && cell.acumularCargaCell === 3 ? 'max ps-2' :'maxVacio ps-2' ">Max.</span>
 
-      <div *ngFor="let carga of  listEnergiaCell" class="formaEnergia"
-        [ngClass]="cell.acumularCargaCell ? 'energia':'energiaVacio' ">
+      <div *ngFor="let carga of  listEnergiaCell; let i = index" class="formaEnergia"
+        [ngClass]="i < cell.acumularCargaCell ? 'energia':'energiaVacio' ">
       </div>
     </div>
 

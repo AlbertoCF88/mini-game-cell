@@ -10,7 +10,7 @@ export class JoystickShowService {
   ocultarBotones: boolean = false;
   ocultarBtnPulsar: boolean = false;
 
-  ocultarTexto: boolean = true;
+  ocultarTexto: boolean = false;
   texto: string = '';
   
 
