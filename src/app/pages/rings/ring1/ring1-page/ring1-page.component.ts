@@ -1,3 +1,4 @@
+import { JoystickShowService } from './../../shared/services/joystick-show.service';
 import { Component, OnInit } from '@angular/core';
 
 import Gohan from '../../models/Gohan';

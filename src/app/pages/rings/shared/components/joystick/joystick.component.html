@@ -8,7 +8,7 @@
 
   <!-- boton choque kames -->
   <div *ngIf="ocultarBtnPulsar" class="marcoPulsar">
-    <button id="puño" class="boton">
+    <button id="puño" class="boton" (click)="choqueKames()">
       <span class="btnChoqueKame">PULSA!</span>
     </button>
   </div>
@@ -17,21 +17,21 @@
   <ng-container *ngIf="!ocultarBotones">
     <!-- botonera izquierda -->
     <div id="caja1">
-      <button id="puño" class="boton">
+      <button id="puño" class="boton"  (click)="accionGolpe('golpe')">
         <i><img src="assets/botones/golpe.svg" alt="icono puño" class="icono"></i>
       </button>
 
-      <button id="defensa" class="boton">
+      <button id="defensa" class="boton" (click)="accionDefensa('defensa')">
         <i><img src="assets/botones/defensa.svg" alt="icono defensa" class="icono"></i>
       </button>
     </div>
     <!-- botonera derecha -->
     <div id="caja2">
-      <button id="carga" class="boton">
+      <button id="carga" class="boton"  (click)="accionCarga('carga')">
         <i><img src="assets/botones/cargaDB.svg" alt="icono carga" class="icono"></i>
       </button>
 
-      <button id="ki" class="boton">
+      <button id="ki" class="boton" (click)="accionKi('ki')">
         <i><img src="assets/botones/kame.svg" alt="icono ki" class="icono" style="border-radius: 50%;"></i>
       </button>
     </div>

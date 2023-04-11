@@ -1,0 +1,939 @@
+#marcoPersonajes {
+    margin  : auto;
+    position: relative;
+    width   : 100vw;
+    height  : 2vw;
+}
+
+@keyframes animarHerido {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    25% {
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    26% {
+        filter: none;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/*gohan**************************************************/
+.gohanBase {
+    position : relative;
+    width    : 23vw;
+    bottom   : 26vw;
+    left     : 6vw;
+    animation: gohan3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes gohan3 {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.raya {
+    z-index  : 89;
+    position : relative;
+    width    : 17vw;
+    height   : auto;
+    bottom   : 28vw;
+    left     : 14vw;
+    opacity  : 0;
+    animation: raya 0.8s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes raya {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.gohanCansado {
+    position : absolute;
+    width    : 17vw;
+    bottom   : 3vw;
+    left     : 11vw;
+    animation: gohan3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        backwards;
+}
+
+.accionPuño {
+    z-index  : 95;
+    position : absolute;
+    width    : 11vw;
+    height   : auto;
+    bottom   : 6vw;
+    right    : 20vw;
+    opacity  : 0;
+    animation: gohan3 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+.contraGohan {
+    z-index  : 96;
+    position : absolute;
+    width    : 11vw;
+    height   : auto;
+    bottom   : 20vw;
+    right    : 74vw;
+    opacity  : 0;
+    transform: rotate(19deg);
+    animation: contra 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s forwards;
+}
+
+@keyframes contra {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.efectoGolpe {
+    z-index  : 94;
+    position : absolute;
+    width    : 24vw;
+    height   : auto;
+    bottom   : 10vh;
+    left     : 64vw;
+    opacity  : 0;
+    animation: frameImpacto 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.5s forwards;
+}
+
+@keyframes frameImpacto {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+        width  : 24vw;
+        left   : 64vw;
+        filter : brightness(3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        left  : 55vw;
+        bottom: 2vh;
+        width : 40vw;
+
+    }
+}
+
+.efectoContra {
+    z-index  : 95;
+    position : absolute;
+    width    : 16vw;
+    height   : auto;
+    bottom   : 29vh;
+    left     : 16vw;
+    opacity  : 0;
+    animation: efectoDefensaAnimar 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s forwards;
+}
+
+.defensa {
+    z-index  : 93;
+    position : absolute;
+    width    : 13vw;
+    bottom   : 4vh;
+    right    : 75vw;
+    opacity  : 0;
+    animation: gohan3 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+.efectoDefensa {
+    z-index  : 94;
+    position : absolute;
+    width    : 32vw;
+    height   : auto;
+    bottom   : 3.3vh;
+    right    : 65vw;
+    opacity  : 0;
+    animation: efectoDefensaAnimar 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+@keyframes efectoDefensaAnimar {
+
+    /*inicio*/
+    0% {
+        filter: brightness(6);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {}
+}
+
+.carga {
+    z-index  : 95;
+    position : absolute;
+    width    : 20vw;
+    height   : auto;
+    bottom   : 3.3vw;
+    right    : 71vw;
+    opacity  : 0;
+    animation: cargaAnimar 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes cargaAnimar {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.efectoCargaGohan {
+    z-index  : 95;
+    position : absolute;
+    width    : 18vw;
+    height   : auto;
+    bottom   : 3.6vw;
+    right    : 72.8vw;
+    opacity  : 0;
+    animation: efectoki 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
+}
+
+@keyframes efectoki {
+    0% {
+        opacity: 0;
+        filter : brightness(3);
+    }
+
+    20% {
+        filter: brightness(1);
+    }
+
+    30% {
+        filter: brightness(6);
+    }
+
+    40% {
+        filter: brightness(1);
+    }
+
+    50% {
+        opacity: 1;
+        filter : brightness(3);
+    }
+
+    60% {
+        filter: brightness(1);
+    }
+
+    70% {
+        filter: brightness(6);
+    }
+
+    80% {
+        filter: brightness(3);
+    }
+
+    90% {
+        filter: brightness(1);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.gohanHerida {
+    position : absolute;
+    width    : 17vw;
+    bottom   : 5vw;
+    left     : 6vw;
+    opacity  : 0;
+    animation: animarHerido 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s backwards;
+}
+
+.gohanRecive {
+    z-index  : 95;
+    position : absolute;
+    width    : 11vw;
+    height   : auto;
+    bottom   : 6vw;
+    right    : 20vw;
+    opacity  : 0;
+    animation: animarHerido 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+.gohanKame {
+    position : absolute;
+    width    : 19vw;
+    bottom   : 1vw;
+    left     : 9vw;
+    transform: rotate(342deg);
+    animation: gohan3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoKameGohan {
+    position : absolute;
+    width    : 13vw;
+    bottom   : 9.5vw;
+    left     : 17vw;
+    opacity  : 0;
+    animation: gohan3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s backwards;
+}
+
+.lanzarKameGohan {
+    position : absolute;
+    width    : 16vw;
+    bottom   : 9vw;
+    left     : 26vw;
+    opacity  : 0;
+    animation: lanzarBola 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2.8s backwards;
+}
+
+@keyframes lanzarBola {
+    0% {
+        opacity: 0;
+        left   : 26vw;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        left   : 66vw;
+    }
+}
+
+.kameGohanImpacto {
+    position : absolute;
+    width    : 12vw;
+    bottom   : 3vw;
+    right    : 7vw;
+    opacity  : 0;
+    animation: fuegoCell 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) backwards;
+}
+
+.choqueGohan {
+    position: absolute;
+    width   : 16vw;
+    bottom  : 8vw;
+    left    : 26vw;
+    opacity : 0;
+
+}
+
+.kameWin {
+    /*solo en servicio*/
+    animation: AnikameWin 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes AnikameWin {
+
+    /*inicio*/
+    0% {}
+
+    100% {
+        left: 65vw;
+    }
+}
+
+.kameCellPierde {
+    /*solo en servicio*/
+    animation: cellPierde 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes cellPierde {
+
+    /*inicio*/
+    0% {}
+
+    100% {
+        width: 0%;
+    }
+}
+
+.lose {
+    position : absolute;
+    width    : 36vw;
+    bottom   : 2vw;
+    left     : -1vw;
+    transform: rotate(345deg);
+    opacity  : 0;
+    animation: cell3 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+/**CEll**************************CEl*******************************CEl****/
+/**CEll************************CEl***********************************CEl**/
+/**CEll**********************CEl***********************************CEl****/
+.cellBase {
+    position : absolute;
+    width    : 21vw;
+    bottom   : 3vw;
+    right    : 7vw;
+    animation: cell3 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes cell3 {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.rayaCell {
+    z-index  : 89;
+    position : absolute;
+    width    : 20vw;
+    height   : auto;
+    bottom   : 4vw;
+    left     : 74vw;
+    opacity  : 0;
+    animation: raya 0.8s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.cotraataqueCell {
+    z-index  : 95;
+    position : absolute;
+    width    : 21vw;
+    height   : auto;
+    bottom   : 14vw;
+    right    : 16vw;
+    opacity  : 0;
+    transform: scaleX(-1);
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoContraCell {
+    z-index  : 95;
+    position : absolute;
+    width    : 16vw;
+    height   : auto;
+    bottom   : 13vh;
+    left     : 65vw;
+    opacity  : 0;
+    animation: efectoDefensaAnimar 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s forwards;
+}
+
+.cellHerida {
+    position : absolute;
+    width    : 26vw;
+    bottom   : 2vw;
+    right    : 8vw;
+    animation: animarHerido 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.CellHeridoContra {
+    z-index  : 95;
+    position : absolute;
+    width    : 25vw;
+    height   : auto;
+    bottom   : 13vw;
+    right    : 68vw;
+    opacity  : 0;
+    transform: rotate(2deg);
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s
+        /*retraso*/
+        forwards;
+}
+
+.cellGolpe {
+    z-index  : 95;
+    position : absolute;
+    width    : 21vw;
+    height   : auto;
+    bottom   : 11vw;
+    right    : 66vw;
+    opacity  : 0;
+    transform: rotate(25deg);
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoGolpeCell {
+    z-index  : 94;
+    position : absolute;
+    width    : 21vw;
+    height   : auto;
+    bottom   : 11vh;
+    right    : 73vw;
+    opacity  : 0;
+    animation: efectoGolpeCellAnimar 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes efectoGolpeCellAnimar {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+        filter : brightness(0);
+    }
+
+    100% {
+        opacity: 1;
+        filter : brightness(10);
+    }
+}
+
+.cellCarga {
+    position : absolute;
+    width    : 29vw;
+    bottom   : 5vh;
+    right    : 4vw;
+    opacity  : 0;
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoKiCell {
+    position : absolute;
+    width    : 23vw;
+    bottom   : 5vh;
+    right    : 7.5vw;
+    animation: efectoki 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes efectoki {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+        filter : brightness(3);
+    }
+
+    20% {
+        filter: brightness(1);
+    }
+
+    30% {
+        filter: brightness(6);
+    }
+
+    40% {
+        filter: brightness(1);
+    }
+
+    50% {
+        opacity: 1;
+        filter : brightness(3);
+    }
+
+    60% {
+        filter: brightness(1);
+    }
+
+    70% {
+        filter: brightness(6);
+    }
+
+    80% {
+        filter: brightness(3);
+    }
+
+    90% {
+        filter: brightness(1);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.cellCansado {
+    position : absolute;
+    width    : 17vw;
+    bottom   : 6vh;
+    right    : 9.8vw;
+    opacity  : 0;
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.cellKame {
+    position : absolute;
+    width    : 26vw;
+    bottom   : 4vh;
+    right    : 2.8vw;
+    opacity  : 1;
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.cellDestello {
+    position : absolute;
+    width    : 22vw;
+    bottom   : 5vh;
+    right    : 6.8vw;
+    opacity  : 0;
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoDestello {
+    width    : 0vw;
+    height   : 101vh;
+    position : absolute;
+    top      : -100vh;
+    left     : 100vw;
+    opacity  : 0;
+    z-index  : 98;
+    animation: animaDestello 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes animaDestello {
+
+    /*inicio*/
+    0% {
+        left      : 100vw;
+        width     : 0vw;
+        opacity   : 0;
+        background: rgba(218, 212, 32, 0.027);
+        background: -moz-radial-gradient(circle, rgba(218, 213, 32, 0) 10%, rgba(0, 0, 0, 0) 43%);
+        background: -webkit-radial-gradient(circle, rgba(218, 213, 32, 0) 10%, rgba(250, 254, 0, 0) 43%);
+        background: radial-gradient(circle, rgba(218, 213, 32, 0) 10%, rgba(250, 254, 0, 0) 43%);
+        filter    : progid:DXImageTransform.Microsoft.gradient(startColorstr="#dad520", endColorstr="#f8fe00", GradientType=1);
+    }
+
+    100% {
+        left      : 0vw;
+        width     : 247vw;
+        opacity   : 1;
+        background: rgb(218, 213, 32);
+        background: -moz-radial-gradient(circle, rgba(218, 213, 32, 0) 10%, rgba(248, 254, 0, 1) 43%);
+        background: -webkit-radial-gradient(circle, rgba(218, 213, 32, 0) 10%, rgba(248, 254, 0, 1) 43%);
+        background: radial-gradient(circle, rgba(218, 213, 32, 0) 10%, rgba(248, 254, 0, 1) 43%);
+        filter    : progid:DXImageTransform.Microsoft.gradient(startColorstr="#dad520", endColorstr="#f8fe00", GradientType=1);
+    }
+}
+
+.efectokameCell {
+    position : absolute;
+    width    : 4%;
+    bottom   : 19vh;
+    right    : 18.8vw;
+    height   : 100%;
+    opacity  : 1;
+    animation: animaKi 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+.efectokameCell2 {
+    position : absolute;
+    z-index  : 99;
+    width    : 4%;
+    bottom   : 13vh;
+    right    : 20.8vw;
+    height   : 748%;
+    opacity  : 0;
+    transform: rotate(360deg);
+    animation: animaKiKame 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 1.5s backwards;
+}
+
+@keyframes animaKi {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+        width  : 4%;
+        bottom : 19vh;
+        right  : 18.8vw;
+        height : 100%;
+    }
+
+    80% {
+        opacity: 1;
+        width  : 17%;
+        bottom : 13vh;
+        right  : 16.8vw;
+        height : 718%;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes animaKiKame {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        width  : 65%;
+        bottom : 13vh;
+        right  : 20.8vw;
+        height : 748%;
+
+    }
+}
+
+.kameCellImpacto {
+    z-index  : 99;
+    position : absolute;
+    width    : 20vw;
+    height   : auto;
+    bottom   : 3.6vw;
+    right    : 72.8vw;
+    opacity  : 0;
+    animation: fuegoCell 6s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s backwards;
+}
+
+@keyframes fuegoCell {
+    0% {
+        transform: rotate(0deg);
+        width    : 20vw;
+        opacity  : 0;
+        filter   : brightness(3);
+    }
+
+    20% {
+        filter: brightness(1);
+    }
+
+    30% {
+        filter: brightness(6);
+    }
+
+    40% {
+        filter: brightness(1);
+    }
+
+    50% {
+        opacity: 1;
+        filter : brightness(3);
+    }
+
+    60% {
+        filter: brightness(1);
+    }
+
+    70% {
+        filter: brightness(6);
+    }
+
+    80% {
+        filter: brightness(3);
+    }
+
+    90% {
+        filter: brightness(1);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        width    : 30vw;
+        opacity  : 1;
+    }
+}
+
+.efectokameDefensaGohanCell {
+    opacity  : 0;
+    position : absolute;
+    z-index  : 99;
+    width    : 18vw;
+    bottom   : 12vh;
+    right    : 72vw;
+    animation: bolaCell 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 3s backwards;
+}
+
+@keyframes bolaCell {
+
+    /*inicio*/
+    0% {
+        opacity  : 0;
+        transform: rotate(0deg);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        width    : 20vw;
+        opacity  : 0;
+        transform: rotate(360deg);
+    }
+}
+
+.choqueCell {
+    position: absolute;
+    z-index : 99;
+    width   : 4%;
+    bottom  : 13vh;
+    right   : 20.8vw;
+    height  : 748%;
+    opacity : 0;
+}
+
+/*********************************WIN/********************************/
+.cellPierde {
+    position : absolute;
+    width    : 18vw;
+    bottom   : 2vw;
+    right    : 7vw;
+    opacity  : 0;
+    animation: cell3 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+/*bocadillo en el global*/
