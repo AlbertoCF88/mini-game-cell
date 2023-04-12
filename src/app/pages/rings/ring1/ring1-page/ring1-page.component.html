@@ -16,13 +16,14 @@
 
     <!-- imagenes en pantalla -->
     <!-- *ngIf="!ocultarPresentacion" -->
-    <ng-container >
+    <ng-container>
       <app-game-f1-img></app-game-f1-img>
     </ng-container>
     <!--botonera -->
     <!-- *ngIf="!ocultarPresentacion" -->
-    <ng-container >
-      <app-joystick [fase]="1"></app-joystick>
+    <ng-container>
+      <app-joystick [servicio]="servicioF1">
+      </app-joystick>
     </ng-container>
 
   </div>

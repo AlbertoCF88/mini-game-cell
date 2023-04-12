@@ -1,20 +1,20 @@
 <div id="marcoBotonera">
 
-  <!-- texto  -->
-  <div id="wait" *ngIf="ocultarTexto">
+  <!-- texto  *ngIf="ocultarTexto"-->
+  <div id="wait" > 
     <!--tiempo de espera -->
-    <span class="textoWait">{{texto}}</span>
+    <span class="textoWait">{{joy.texto}}</span>
   </div>
 
   <!-- boton choque kames -->
-  <div *ngIf="ocultarBtnPulsar" class="marcoPulsar">
+  <div *ngIf="joy.ocultarBtnPulsar" class="marcoPulsar">
     <button id="puño" class="boton" (click)="choqueKames()">
       <span class="btnChoqueKame">PULSA!</span>
     </button>
   </div>
 
   <!-- botonera -->
-  <ng-container *ngIf="!ocultarBotones">
+  <ng-container *ngIf="!joy.ocultarBotones">
     <!-- botonera izquierda -->
     <div id="caja1">
       <button id="puño" class="boton"  (click)="accionGolpe('golpe')">

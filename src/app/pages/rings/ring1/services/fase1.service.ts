@@ -1,9 +1,8 @@
-import { JoystickShowService } from './../../shared/services/joystick-show.service';
-
 import { Injectable } from '@angular/core';
-
+import { BehaviorSubject } from 'rxjs';
 import Gohan from '../../models/Gohan';
 import Cell from '../../models/Cell'
+import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 
 @Injectable({
   providedIn: 'root'
@@ -36,17 +35,25 @@ export class Fase1Service {
   lose: boolean = false;
   winGif: boolean = false;
 
-  constructor(private JShow: JoystickShowService) {
+  //manejar joystick con la misma instancia para todos los hijos del mismo padre
+  joystick: Joystick = {
+    ocultarBotones: false,
+    ocultarBtnPulsar: false,
+    ocultarTexto: false,
+    texto: '',
+  }
+
+  constructor() {
     this.descansoPjs(true);
-   }
+  }
 
   contar() {
     //contador de apretar el mismo boton
     this.contador = this.contador + 1;
     if (this.contador >= 2) {
-      this.JShow.texto = 'Espera!';
-      window.setTimeout(() => {
-        this.JShow.texto = '';
+      this.joystick.texto = "Espera!"
+      setTimeout(() => {
+        this.joystick.texto = '';
       }, 2000);
     }
   }
@@ -77,7 +84,7 @@ export class Fase1Service {
     if (this.btnContarChoque >= 41 && this.cell.vidaCell >= 60) {
       KameGohan!.classList.add('kameWin');
       KameCell!.classList.add('kameCellPierde');
-      this.JShow.ocultarBtnPulsar = false;
+      this.joystick.ocultarBtnPulsar = false;
 
       setTimeout(() => {
         this.cell.kameContraCell = true;
@@ -85,7 +92,8 @@ export class Fase1Service {
         this.choqueKame = false;
         this.gohan.ganaGohan = true;
         this.cell.kameContraCell = true;
-        this.JShow.texto = 'Gohan sale victorioso';
+
+        this.joystick.texto = 'Gohan sale victorioso';
         this.cell.vidaCell = this.cell.vidaCell - 50;
         this.barraCEll();
       }, 2000);
@@ -97,9 +105,8 @@ export class Fase1Service {
       //menos vida mas dificil ganar a cell
       KameGohan!.classList.add('kameWin');
       KameCell!.classList.add('kameCellPierde');
-      this.JShow.ocultarBtnPulsar = false;
-      this.JShow.texto = 'Gohan sale victorioso';
-
+      this.joystick.ocultarBtnPulsar = false;
+      this.joystick.texto = 'Gohan sale victorioso';
       setTimeout(() => {
         this.cell.kameContraCell = true;
         this.cell.heridoCell = true;
@@ -116,37 +123,36 @@ export class Fase1Service {
     }
   }
   accionGolpe(golpe: string) {
-    console.log("servicio")
     this.contar();
-    if (this.JShow.ocultarTexto == false) {
+    if (this.joystick.ocultarTexto == false) {
       this.gohan.rayaGohan = true;
       this.descansoPjs(false);
-      this.JShow.ocultarTexto = true;
+      this.joystick.ocultarTexto = true;
       this.accionCell(golpe);
       setTimeout(() => {
-        this.JShow.ocultarBotones = true;
+        this.joystick.ocultarBotones = true;
       }, 100);
     }
   }
   accionDefensa(defensa: string) {
     this.contar();
-    if (this.JShow.ocultarTexto == false) {
+    if (this.joystick.ocultarTexto == false) {
       this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
       this.descansoPjs(false);
-      this.JShow.ocultarTexto = true;
+      this.joystick.ocultarTexto = true;
       this.gohan.defensaGohan = true;
       this.accionCell(defensa);
-      window.setTimeout(() => {
-        this.JShow.ocultarBotones = true;
+      setTimeout(() => {
+        this.joystick.ocultarBotones = true;
       }, 100);
     }
   }
   accionCarga(carga: string) {
     this.contar();
-    if (this.JShow.ocultarTexto == false) {
+    if (this.joystick.ocultarTexto == false) {
       this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
       this.descansoPjs(false);
-      this.JShow.ocultarTexto = true;
+      this.joystick.ocultarTexto = true;
       this.gohan.cargaGohan = true;
       this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan + 1;
       if (this.gohan.acumularCargaGohan == 4) {
@@ -154,19 +160,19 @@ export class Fase1Service {
       }
       this.accionCell(carga);
       setTimeout(() => {
-        this.JShow.ocultarBotones = true;
+        this.joystick.ocultarBotones = true;
       }, 100);
     }
   }
   accionKi(ki: string) {
     this.contar();
-    if (this.JShow.ocultarTexto == false) {
+    if (this.joystick.ocultarTexto == false) {
       this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
       this.descansoPjs(false);
-      this.JShow.ocultarTexto = true;
+      this.joystick.ocultarTexto = true;
       this.accionCell(ki);
       setTimeout(() => {
-        this.JShow.ocultarBotones = true;
+        this.joystick.ocultarBotones = true;
       }, 100);
     }
   }
@@ -174,16 +180,12 @@ export class Fase1Service {
   // *CEll*************************CEll*********************CEll*** */
   accionCell(accion: string) {
     let random = Math.floor(Math.random() * (10 - 0) + 0);
-    random =7
-    console.log("accion cell")
     switch (accion) {
       case 'golpe':
         if (this.contadorGolpeBoton <= 0) {
           this.contadorGolpeBoton = 0;
-          console.log("accion cell 1id", accion + " ramdom " + random)
         }
         if (random >= 7) {
-          console.log("daño directo")
           //daño directo
           this.cell.vidaCell = this.cell.vidaCell - 10;
           this.barraCEll();
@@ -192,9 +194,8 @@ export class Fase1Service {
           this.gohan.golpeGohan = true;
           this.descansoPjs(false);
           this.cell.heridoCell = true;
-          this.JShow.texto = 'Cell recibe daño';
+          this.joystick.texto = 'Cell recibe daño';
           setTimeout(() => {
-            console.log("resetear")
             this.resetarAnimaciones();
           }, 2000);
         } else if (random >= 4 && random <= 6) {
@@ -203,7 +204,7 @@ export class Fase1Service {
           this.cell.baseCell = false;
           this.gohan.golpeGohan = true;
           this.cell.esquivaCell = true;
-          this.JShow.texto = 'Cell esquiva el ataque';
+          this.joystick.texto = 'Cell esquiva el ataque';
           setTimeout(() => {
             this.resetarAnimaciones();
           }, 2000);
@@ -217,7 +218,7 @@ export class Fase1Service {
           this.contadorGolpeBoton = 0;
           this.cell.destelloCell = true;
           this.cell.acumularCargaCell = this.cell.acumularCargaCell - 1;
-          this.JShow.texto = 'Cell utiliza Taiyoken!';
+          this.joystick.texto = 'Cell utiliza Taiyoken!';
           this.gohan.vidaGohan = this.gohan.vidaGohan - 5;
           this.barraGohan();
           this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 1;
@@ -235,7 +236,7 @@ export class Fase1Service {
           this.gohan.golpeGohan = true;
           this.cell.esquivaCell = true;
           this.cell.contraCell = true;
-          this.JShow.texto = 'Cell contraataca!';
+          this.joystick.texto = 'Cell contraataca!';
           setTimeout(() => {
             this.gohan.vidaGohan = this.gohan.vidaGohan - 10;
             this.barraGohan();
@@ -250,7 +251,7 @@ export class Fase1Service {
 
         if (random >= 9) {
           this.cell.baseCell = true;
-          this.JShow.texto = 'Cell no hace nada';
+          this.joystick.texto = 'Cell no hace nada';
           setTimeout(() => {
             this.resetarAnimaciones();
           }, 2000);
@@ -258,7 +259,7 @@ export class Fase1Service {
         if (random >= 6 && random <= 8) {
           if (random == 7 || random == 8) {
             this.cell.golpeCell = true;
-            this.JShow.texto = 'Cell ataca';
+            this.joystick.texto = 'Cell ataca';
             this.gohan.vidaGohan = this.gohan.vidaGohan - 2;
             this.barraGohan();
             setTimeout(() => {
@@ -270,7 +271,7 @@ export class Fase1Service {
             setTimeout(() => {
               this.gohan.defensaGohan = false;
               this.cell.golpeCell = false;
-              this.JShow.texto = 'Gohan Contraataca!';
+              this.joystick.texto = 'Gohan Contraataca!';
               this.cell.vidaCell = this.cell.vidaCell - 20;
               this.barraCEll();
             }, 2000);
@@ -284,7 +285,7 @@ export class Fase1Service {
           if (this.cell.acumularCargaCell == 3) {
             this.cell.kameCell = true;
             this.cell.acumularCargaCell = 0;
-            this.JShow.texto = 'Cell utiliza Kamehameha';
+            this.joystick.texto = 'Cell utiliza Kamehameha';
             setTimeout(() => {
               this.gohan.vidaGohan = this.gohan.vidaGohan - 12;
               this.barraGohan();
@@ -303,7 +304,7 @@ export class Fase1Service {
         if (random >= 0 && random <= 1) {
           if (this.cell.acumularCargaCell == 0) {
             this.cell.cansadoCell = true;
-            this.JShow.texto = 'Cell parece cansado';
+            this.joystick.texto = 'Cell parece cansado';
             setTimeout(() => {
               this.resetarAnimaciones();
             }, 2100);
@@ -322,7 +323,7 @@ export class Fase1Service {
           } else if (this.cell.acumularCargaCell == 3) {
             this.cell.kameCell = true;
             setTimeout(() => {
-              this.JShow.texto = 'Cell utiliza kamehameha';
+              this.joystick.texto = 'Cell utiliza kamehameha';
               this.gohan.vidaGohan = this.gohan.vidaGohan - 12;
               this.barraGohan();
             }, 2000);
@@ -346,7 +347,7 @@ export class Fase1Service {
           this.cell.kameCell = true;
           this.gohan.heridaGohan = true;
           this.cell.acumularCargaCell = 0;
-          this.JShow.texto = 'Gohan recibe un duro ataque!';
+          this.joystick.texto = 'Gohan recibe un duro ataque!';
           setTimeout(() => {
             this.gohan.vidaGohan = this.gohan.vidaGohan - 24;
             this.barraGohan();
@@ -365,7 +366,7 @@ export class Fase1Service {
             KameGohan!.style.opacity = '1';
             KameCell!.style.opacity = '1';
             KameCell!.style.width = 40 + '%';
-            this.JShow.ocultarBtnPulsar = true;
+            this.joystick.ocultarBtnPulsar = true;
           }, 3000);
 
           setTimeout(() => {
@@ -373,7 +374,7 @@ export class Fase1Service {
               (this.btnContarChoque < 41 && this.cell.vidaCell >= 60) ||
               (this.btnContarChoque < 47 && this.cell.vidaCell < 60)
             ) {
-              this.JShow.ocultarBtnPulsar = false;
+              this.joystick.ocultarBtnPulsar = false;
               const KameGohan = document.getElementById('KameGohan');
               const KameCell = document.getElementById('KameCell');
               const gohanPosturaKame = document.getElementById('gohanKame');
@@ -382,7 +383,7 @@ export class Fase1Service {
               setTimeout(() => {
                 gohanPosturaKame!.style.width = '0vw';
               }, 2000);
-              this.JShow.texto = 'Cell sale victorioso';
+              this.joystick.texto = 'Cell sale victorioso';
               this.gohan.heridaGohan = true;
               this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
               this.barraGohan();
@@ -402,7 +403,7 @@ export class Fase1Service {
             this.cell.baseCell = false;
             this.cell.heridoCell = true;
             this.cell.kameContraCell = true;
-            this.JShow.texto = 'Cell recibe daño';
+            this.joystick.texto = 'Cell recibe daño';
             this.cell.vidaCell = this.cell.vidaCell - 30;
             this.barraCEll();
           }, 4100);
@@ -412,12 +413,12 @@ export class Fase1Service {
           break;
         } else if (this.cell.acumularCargaCell == 3) {
           this.cell.kameCell = true;
-          this.JShow.texto = 'Gohan parece cansado';
+          this.joystick.texto = 'Gohan parece cansado';
           this.gohan.cansadoGohan = true;
           this.cell.acumularCargaCell = 0;
           this.gohan.heridaGohan = true;
           setTimeout(() => {
-            this.JShow.texto = 'Gohan recibe un duro ataque!';
+            this.joystick.texto = 'Gohan recibe un duro ataque!';
             this.gohan.cansadoGohan = false;
             this.gohan.vidaGohan = this.gohan.vidaGohan - 30;
             this.barraGohan();
@@ -427,7 +428,7 @@ export class Fase1Service {
           }, 5500);
           break;
         } else {
-          this.JShow.texto = 'Gohan parece cansado';
+          this.joystick.texto = 'Gohan parece cansado';
           this.gohan.cansadoGohan = true;
           this.cell.cargaCell = true;
           this.cell.acumularCargaCell = this.cell.acumularCargaCell + 1;
@@ -441,15 +442,15 @@ export class Fase1Service {
   }
 
   resetarAnimaciones() {
-    this.JShow.ocultarBotones = false;
+    this.joystick.ocultarBotones = false;
     this.contador = 0;
-    this.JShow.texto = '';
+    this.joystick.texto = '';
     this.descansoPjs(true);
-    this.JShow.ocultarTexto = false;
+    this.joystick.ocultarTexto = false;
     this.choqueKame = false;
     this.cell.poderCell = 40;
     this.btnContarChoque = 26;
-    this.JShow.ocultarBtnPulsar = false;
+    this.joystick.ocultarBtnPulsar = false;
     /**Gohan */
     this.gohan.golpeGohan = false;
     this.gohan.rayaGohan = false;
@@ -474,7 +475,6 @@ export class Fase1Service {
     this.cell.contraCell = false;
     //comprobacion ganador
     this.ganador();
-    console.log("comprobaciones", "gohanvida "+ this.gohan.vidaGohan + " maxima " + this.gohan.maximaEnergiaGohan + " aumu " + this.gohan.acumularCargaGohan )
   }
 
   ganador() {
@@ -487,11 +487,10 @@ export class Fase1Service {
       }, 6500);
     } else if (this.gohan.vidaBarraGohan <= 0) {
       //Gana cell
-      this.JShow.ocultarBotones = true;
+      this.joystick.ocultarBotones = true;
       this.descansoPjs(false);
       this.lose = true;
       this.cell.cargaCell = true;
-      this.JShow.ocultarBotones = true;
       return;
     }
   }

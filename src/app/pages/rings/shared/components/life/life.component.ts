@@ -9,14 +9,11 @@ import Cell from '../../../models/Cell';
   styleUrls: ['./life.component.scss'],
 })
 export class LifeComponent implements OnInit {
-
+  //como las varibles que le pasa el padre son de tipo model, le pasa la referencia del objeto y no es una copia
   @Input() gohan!: Gohan;
   @Input() cell!: Cell;
 
   ngOnInit(): void {
   }
-
-
-
 
 }

@@ -8,7 +8,7 @@ import Gohan from '../../../models/Gohan';
   styleUrls: ['./energy.component.scss']
 })
 export class EnergyComponent implements OnInit {
-
+  //como las varibles que le pasa el padre son de tipo model, le pasa la referencia del objeto y no es una copia
   @Input() gohan!: Gohan
   @Input() cell!: Cell
 

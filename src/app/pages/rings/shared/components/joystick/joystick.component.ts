@@ -1,6 +1,6 @@
-import { Fase1Service } from '../../../ring1/services/fase1.service';
-import { JoystickShowService } from './../../services/joystick-show.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Joystick } from './Interface/Joystick';
+import { Fase1Service } from './../../../ring1/services/fase1.service';
+import { Component, Input, OnInit, SkipSelf } from '@angular/core';
 
 
 @Component({
@@ -9,54 +9,35 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./joystick.component.scss'],
 })
 export class JoystickComponent implements OnInit {
-  @Input() fase!: number;
 
-  ocultarBotones: boolean = this.jShow.ocultarBotones;
-  ocultarBtnPulsar: boolean = this.jShow.ocultarBtnPulsar;
+  joy!: Joystick;
 
-  ocultarTexto: boolean = this.jShow.ocultarTexto;
-  texto: string = this.jShow.texto;
+  @Input() servicio!: Fase1Service;
 
-  constructor(private jShow: JoystickShowService,
-     private fase1: Fase1Service) { }
+  constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.joy = this.servicio.joystick;
+  }
 
-  choqueKames(){
-    switch (this.fase) {
-      case 1:
-        this.fase1.choqueKames();
-        break;
-    }
+  choqueKames() {
+    this.servicio.choqueKames();
   }
-  accionGolpe(accion:string){
-    console.log("golep", accion)
-    console.log("fase" , this.fase)
-    switch (this.fase) {
-      case 1:
-        this.fase1.accionGolpe(accion);
-        break;
-    }
+
+  accionGolpe(accion: string) {
+    this.servicio.accionGolpe(accion);
   }
-  accionDefensa(accion:string){
-    switch (this.fase) {
-      case 1:
-        this.fase1.accionDefensa(accion);
-        break;
-    }
+
+  accionDefensa(accion: string) {
+    this.servicio.accionDefensa(accion);
   }
-  accionCarga(accion:string){
-    switch (this.fase) {
-      case 1:
-        this.fase1. accionCarga(accion);
-        break;
-    }
+
+  accionCarga(accion: string) {
+    this.servicio.accionCarga(accion);
   }
-  accionKi(accion:string){
-    switch (this.fase) {
-      case 1:
-        this.fase1.accionKi(accion);
-        break;
-    }
+
+  accionKi(accion: string) {
+    this.servicio.accionKi(accion);
   }
+
 }
