@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import Gohan from '../../models/Gohan';
 import Cell from '../../models/Cell'
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
@@ -22,8 +21,6 @@ export class Fase1Service {
   cell = new Cell(200, 1, 3, 3)
 
   //Condiciones fase1
-  //contardo sirve parar decirle a jugar que sea paciente
-  contador: number = 0;
   //contadorGolpeBoton sirve para no abusar de usar el mismo boton
   contadorGolpeBoton: number = 0;
   //choqueKame activar animacion impacto kame
@@ -45,17 +42,6 @@ export class Fase1Service {
 
   constructor() {
     this.descansoPjs(true);
-  }
-
-  contar() {
-    //contador de apretar el mismo boton
-    this.contador = this.contador + 1;
-    if (this.contador >= 2) {
-      this.joystick.texto = "Espera!"
-      setTimeout(() => {
-        this.joystick.texto = '';
-      }, 2000);
-    }
   }
 
   descansoPjs(descanso: boolean) {
@@ -122,8 +108,8 @@ export class Fase1Service {
       return;
     }
   }
+
   accionGolpe(golpe: string) {
-    this.contar();
     if (this.joystick.ocultarTexto == false) {
       this.gohan.rayaGohan = true;
       this.descansoPjs(false);
@@ -134,8 +120,8 @@ export class Fase1Service {
       }, 100);
     }
   }
+
   accionDefensa(defensa: string) {
-    this.contar();
     if (this.joystick.ocultarTexto == false) {
       this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
       this.descansoPjs(false);
@@ -148,7 +134,6 @@ export class Fase1Service {
     }
   }
   accionCarga(carga: string) {
-    this.contar();
     if (this.joystick.ocultarTexto == false) {
       this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
       this.descansoPjs(false);
@@ -165,7 +150,6 @@ export class Fase1Service {
     }
   }
   accionKi(ki: string) {
-    this.contar();
     if (this.joystick.ocultarTexto == false) {
       this.contadorGolpeBoton = this.contadorGolpeBoton - 1;
       this.descansoPjs(false);
@@ -443,7 +427,6 @@ export class Fase1Service {
 
   resetarAnimaciones() {
     this.joystick.ocultarBotones = false;
-    this.contador = 0;
     this.joystick.texto = '';
     this.descansoPjs(true);
     this.joystick.ocultarTexto = false;
@@ -452,6 +435,7 @@ export class Fase1Service {
     this.btnContarChoque = 26;
     this.joystick.ocultarBtnPulsar = false;
     /**Gohan */
+    // this.gohan =new Gohan(100, 1, 3, 3);
     this.gohan.golpeGohan = false;
     this.gohan.rayaGohan = false;
     this.gohan.rayaGohan = false;
@@ -464,6 +448,7 @@ export class Fase1Service {
     this.gohan.heridaKame = false;
     this.gohan.ganaGohan = false;
     /**Cell */
+    // cell = new Cell(200, 1, 3, 3)
     this.cell.esquivaCell = false;
     this.cell.heridoCell = false;
     this.cell.golpeCell = false;

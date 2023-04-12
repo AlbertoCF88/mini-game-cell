@@ -64,27 +64,42 @@ img {
   background-color: var(--pantalla);
 }
 
-.btnActivoCSS {
-  position : relative;
-  z-index  : 99;
-  height   : 8vh;
-  animation: btnActivoAnimar 2s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+.show {
+  display: block !important;
+}
+//botones amarillos genericos
+.boton {
+  margin            : 1vw;
+  border-radius     : 100%;
+  display           : flex;
+  justify-content   : center;
+  align-items       : center;
+  text-align        : center;
+  box-sizing        : border-box;
+  background        : rgba(252, 234, 186, 1);
+  background        : -moz-linear-gradient(top, rgba(252, 234, 186, 1) 0%, rgba(252, 234, 186, 1) 12%, rgba(255, 207, 87, 1) 45%, rgba(250, 183, 0, 1) 70%, rgba(251, 223, 147, 1) 99%, rgba(251, 223, 147, 1) 100%);
+  background        : -webkit-gradient(left top, left bottom, color-stop(0%, rgba(252, 234, 186, 1)), color-stop(12%, rgba(252, 234, 186, 1)), color-stop(45%, rgba(255, 207, 87, 1)), color-stop(70%, rgba(250, 183, 0, 1)), color-stop(99%, rgba(251, 223, 147, 1)), color-stop(100%, rgba(251, 223, 147, 1)));
+  background        : -webkit-linear-gradient(top, rgba(252, 234, 186, 1) 0%, rgba(252, 234, 186, 1) 12%, rgba(255, 207, 87, 1) 45%, rgba(250, 183, 0, 1) 70%, rgba(251, 223, 147, 1) 99%, rgba(251, 223, 147, 1) 100%);
+  background        : -o-linear-gradient(top, rgba(252, 234, 186, 1) 0%, rgba(252, 234, 186, 1) 12%, rgba(255, 207, 87, 1) 45%, rgba(250, 183, 0, 1) 70%, rgba(251, 223, 147, 1) 99%, rgba(251, 223, 147, 1) 100%);
+  background        : -ms-linear-gradient(top, rgba(252, 234, 186, 1) 0%, rgba(252, 234, 186, 1) 12%, rgba(255, 207, 87, 1) 45%, rgba(250, 183, 0, 1) 70%, rgba(251, 223, 147, 1) 99%, rgba(251, 223, 147, 1) 100%);
+  background        : linear-gradient(to bottom, rgba(252, 234, 186, 1) 0%, rgba(252, 234, 186, 1) 12%, rgba(255, 207, 87, 1) 45%, rgba(250, 183, 0, 1) 70%, rgba(251, 223, 147, 1) 99%, rgba(251, 223, 147, 1) 100%);
+  filter            : progid:DXImageTransform.Microsoft.gradient(startColorstr='#fceaba', endColorstr='#fbdf93', GradientType=0);
+  -webkit-box-shadow: inset 0px 0px 81px 8px rgba(145, 119, 42, 1);
+  -moz-box-shadow   : inset 0px 0px 81px 8px rgba(145, 119, 42, 1);
+  box-shadow        : inset 0px 0px 81px 8px rgba(145, 119, 42, 1);
+  box-shadow        : 0px 8px 0px #3e4201;
+  position          : relative;
+  z-index           : 1;
+  top               : 0px;
+  transition        : all ease 0.1s;
 }
 
-@keyframes btnActivoAnimar {
-  0% {
-    color              : transparent;
-    -webkit-text-stroke: 0px rgba(0, 0, 0, 0);
-    height             : 8vh;
-  }
-
-  100% {
-    color              : transparent;
-    -webkit-text-stroke: 0px rgba(0, 0, 0, 0);
-    height             : 100vh;
-  }
+.boton:active {
+  box-shadow: 0 3px 0 #3e4201;
+  top       : 5px;
 }
 
+//fin botones amarillos
 /*-bocadillos------------------------------------bocadillos-----*/
 .bocadillo {
   width                  : 33vw;
@@ -132,10 +147,6 @@ img {
 }
 
 /*-FIN bocadillos------------------------------------FIN bocadillos-----*/
-
-.show {
-  display: block !important;
-}
 
 /*ionic--------actionSheetController------------------------------------*/
 .atras {

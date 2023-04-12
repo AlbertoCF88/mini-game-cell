@@ -1,35 +1,33 @@
 <div class="p-0 container pantalla
-d-flex justify-content-center align-content-center" 
-style="height: 100vh;">    
+d-flex justify-content-center align-content-center" style="height: 100vh;">
 
-      <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
-      <div class="d-flex align-items-center">
-        <img  class="cell0" src="assets/inicio/cell0.png" alt="cell hablando">
-        <img *ngIf="!mostrar" class="cell1" src="assets/inicio/cell1.png" alt="cell hablando">
-        <img  *ngIf="mostrar" class="cell2"src="assets/inicio/cell2.png" alt="cell hablando">  
-          <div class="bocadilloFondo align-items-center overflow-auto" [ngClass]="{'ocultarBocadilo':btnActivo}">
-            <p #maquinas class="texto salto"> </p>
-            
-            <span #golpe class="icono d-none" ><img src="assets/botones/golpe.svg" alt="ico-golpe" style="width: 5vh;"></span>
-            <p #maquinaGolpe class="texto salto"> </p>
+  <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
+  <div class="d-flex align-items-center">
+    <img class="cell0" src="assets/inicio/cell0.png" alt="cell hablando">
+    <img *ngIf="!mostrar" class="cell1" src="assets/inicio/cell1.png" alt="cell hablando">
+    <img *ngIf="mostrar" class="cell2" src="assets/inicio/cell2.png" alt="cell hablando">
+    <div class="bocadilloFondo align-items-center overflow-auto" [ngClass]="{'ocultarBocadilo':btnActivo}">
+      <p #maquinas class="texto salto"> </p>
 
-            <span #defensa class="icono d-none"><img src="assets/botones/defensa.svg" alt="ico-defensa" style="width: 5vh;"></span>
-            <p #maquinaDefensa class="texto salto">  </p>
+      <span #golpe class="icono d-none"><img src="assets/botones/golpe.svg" alt="ico-golpe" style="width: 5vh;"></span>
+      <p #maquinaGolpe class="texto salto"> </p>
 
-            <span #carga class="icono d-none"><img src="assets/botones/cargaDB.svg" alt="ico-carga" style="width: 5vh;"></span>
-            <p #maquinaCarga class="texto salto">  </p>
+      <span #defensa class="icono d-none"><img src="assets/botones/defensa.svg" alt="ico-defensa"
+          style="width: 5vh;"></span>
+      <p #maquinaDefensa class="texto salto"> </p>
 
-            <span #ki class="icono d-none"><img src="assets/botones/kame.svg" alt="ico-ki" style="width: 5vh;"></span>
-            <p #maquinaKi class="texto salto">  </p>
+      <span #carga class="icono d-none"><img src="assets/botones/cargaDB.svg" alt="ico-carga"
+          style="width: 5vh;"></span>
+      <p #maquinaCarga class="texto salto"> </p>
 
-            <p #empezar class="texto salto pt-1">  </p>
-          </div>  
+      <span #ki class="icono d-none"><img src="assets/botones/kame.svg" alt="ico-ki" style="width: 5vh;"></span>
+      <p #maquinaKi class="texto salto"> </p>
 
-      </div> 
-   
-      <div class="marcoBoton">
-        <button class="boton" (click)="siguientePagina()" >
-            <a [ngClass]="{'btnActivoCSS':btnActivo}">JUGAR</a>
-        </button>
+      <p #empezar class="texto salto pt-1"> </p>
     </div>
+
+  </div>
+  <!-- boton siguiente -->
+  <app-btn-cell-next-fase [texto]="'JUGAR'" [ruta]="'/fase1'">
+  </app-btn-cell-next-fase>
 </div>

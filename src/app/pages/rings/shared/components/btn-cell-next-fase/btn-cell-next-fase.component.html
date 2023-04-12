@@ -1,0 +1,7 @@
+<div class="marcoBotonCell">
+  <button class="botonCell" (click)="siguientePagina()" >
+      <a [ngClass]="{'btnActivoCSS':btnActivo}">
+       <span *ngIf="!btnActivo"> {{texto}}</span>
+      </a>
+  </button>
+</div>

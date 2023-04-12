@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-rules-page',
   templateUrl: './rules-page.component.html',
@@ -29,16 +27,7 @@ export class RulesPageComponent implements OnInit {
   @ViewChild('carga') carga!: ElementRef | undefined;
   @ViewChild('ki') ki!: ElementRef | undefined;
 
-  constructor(private ruta: Router,private ren: Renderer2) { }
-
-  siguientePagina() {
-    this.btnActivo = true;
-    if (this.btnActivo) {
-      setTimeout(() => {
-        this.ruta.navigate(['/fase1']);
-      }, 2100);
-    }
-  }
+  constructor( private ren: Renderer2) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -62,13 +51,13 @@ export class RulesPageComponent implements OnInit {
   }
 
   //efecto maquina de escribir estilo videojuego para imprimir por pantalla texto explicativo del juego
-  maquina(texto: string, maquina: ElementRef, intervalo: number , icono?:ElementRef) {
+  maquina(texto: string, maquina: ElementRef, intervalo: number, icono?: ElementRef) {
     const ELEMENTO = icono?.nativeElement;
     const LONGITUD = texto.length;
     const TEXTO = texto;
     const MAQUINA = maquina.nativeElement;
 
-    if(icono){
+    if (icono) {
       this.ren.removeClass(ELEMENTO, 'd-none');
     }
     var i = 0;
@@ -85,7 +74,7 @@ export class RulesPageComponent implements OnInit {
       }
     }, intervalo);
 
-    if(TEXTO == this.txtEmpezar){
+    if (TEXTO == this.txtEmpezar) {
       this.mostrar = true;
     }
 
