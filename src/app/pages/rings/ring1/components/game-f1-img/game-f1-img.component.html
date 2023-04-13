@@ -9,7 +9,7 @@
   <img *ngIf="gohan.cargaGohan || gohan.ganaGohan" class="carga" src="assets/gohan/ss1/gohanCarga.png" alt="gohanCarga">
   <img id="gohanHerido" *ngIf="gohan.heridaGohan" class="gohanHerida" src="assets/gohan/ss1/gohanHerida.png"
     alt="gohanHerida">
-  <img id="gohanKame" *ngIf="gohan.kameGohan || choqueKame" class="gohanKame" src="assets/gohan/ss1/gohanKame.png"
+  <img id="gohanKame" *ngIf="gohan.kameGohan" class="gohanKame" src="assets/gohan/ss1/gohanKame.png"
     alt="gohanKame">
   <img *ngIf="gohan.cansadoGohan" class="gohanCansado" src="assets/gohan/gohan.png" alt="gohanCansado">
   <img *ngIf="gohan.gohanPierdeCombate" class="lose" src="assets/gohan/ss1/muerto.png" alt="gohanMuerto">
@@ -24,7 +24,7 @@
   <img *ngIf="gohan.contraGohan" class="CellHeridoContra" src="assets/fase1/f1/cellContra.png" alt="cellContraHerido">
   <img *ngIf="cell.cargaCell" class="cellCarga" src="assets/fase1/f1/cellCarga.png" alt="cellCarga">
   <img *ngIf="cell.cansadoCell" class="cellCansado" src="assets/fase1/f1/cellAgotado.png" alt="cellCansado">
-  <img *ngIf="cell.kameCell || choqueKame" class="cellKame" src="assets/fase1/f1/cellKame.png" alt="cellKi">
+  <img *ngIf="cell.kameCell" class="cellKame" src="assets/fase1/f1/cellKame.png" alt="cellKi">
   <img *ngIf="cell.destelloCell" class="cellDestello" src="assets/fase1/f1/cellDestello.png" alt="cellDestello">
 
   <!--sin defensa-->
@@ -37,20 +37,20 @@
   <img *ngIf="cell.golpeCell" class="efectoGolpeCell" src="assets/efectos/defensa2.png" alt="efecto defensa">
   <img *ngIf="cell.cargaCell" class="efectoKiCell" src="assets/efectos/ki1.png" alt="efectoKi">
   <img *ngIf="gohan.cargaGohan" class="efectoCargaGohan" src="assets/efectos/ki1.png" alt="efectoKi">
-  <img *ngIf="cell.kameCell || choqueKame" class="efectokameCell" src="assets/efectos/bolaKi2.png" alt="efectoKi">
+  <img *ngIf="cell.kameCell " class="efectokameCell" src="assets/efectos/bolaKi2.png" alt="efectoKi">
 
-  <img id="KameCell" *ngIf="cell.kameCell || choqueKame" src="assets/efectos/kame.gif" alt="efectoKi"
-    [ngClass]="{'efectokameCell2': cell.kameCell, 'choqueCell': choqueKame}">
+  <img #kameCell *ngIf="cell.kameCell " src="assets/efectos/kame.gif" alt="efectoKi"
+    [ngClass]="{'efectokameCell2': cell.kameCell && !gohan.kameGohan, 'choqueCell': cell.kameCell && gohan.kameGohan}">
 
   <img *ngIf="cell.kameCell" class="efectokameDefensaGohanCell" src="assets/efectos/bolaKi2.png" alt="efectoKi">
 
   <img *ngIf="gohan.heridaGohan || gohan.heridaKame" class="kameCellImpacto" src="assets/efectos/fuego1.png"
     alt="efectoKi">
 
-  <img *ngIf="gohan.kameGohan || choqueKame" class="efectoKameGohan" src="assets/efectos/bola1.gif" alt="efectoKi">
+  <img *ngIf="gohan.kameGohan" class="efectoKameGohan" src="assets/efectos/bola1.gif" alt="efectoKi">
 
-  <img id="KameGohan" *ngIf="gohan.kameGohan || choqueKame" src="assets/efectos/bola2.gif" alt="efectoKi"
-    [ngClass]="{'lanzarKameGohan': gohan.kameGohan, 'choqueGohan': choqueKame}">
+  <img #kameGohan *ngIf="gohan.kameGohan " src="assets/efectos/bola2.gif" alt="efectoKi"
+    [ngClass]="{'lanzarKameGohan': gohan.kameGohan && !cell.kameCell, 'choqueGohan': gohan.kameGohan && cell.kameCell}">
 
   <img *ngIf="cell.kameContraCell" class="kameGohanImpacto" src="assets/efectos/fuego1.png" alt="efectoKi">
 

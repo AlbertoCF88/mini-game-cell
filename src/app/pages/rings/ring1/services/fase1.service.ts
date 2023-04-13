@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import Gohan from '../../models/Gohan';
 import Cell from '../../models/Cell'
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +24,11 @@ export class Fase1Service {
   //Condiciones fase1
   //contadorGolpeBoton sirve para no abusar de usar el mismo boton
   contadorGolpeBoton: number = 0;
-  //choqueKame activar animacion impacto kame
-  choqueKame: boolean = false;
-  // btnContarChoque valor iniciar de los dos kames
-  btnContarChoque: number = 26;
 
+  // controlar los estilos de kameVskame
+  private _kameVsStyle = new BehaviorSubject<boolean>(false);
+  kameVsStyle$ = this._kameVsStyle.asObservable();
+  
   //manejar joystick con la misma instancia para todos los hijos del mismo padre
   joystick: Joystick = {
     ocultarBotones: false,
@@ -45,6 +46,11 @@ export class Fase1Service {
     this.cell.baseCell = descanso;
   }
 
+  kameVskame(activar: boolean) {
+    this.gohan.kameGohan = activar;
+    this.cell.kameCell = activar;
+  }
+
   barraCEll() {
     //vida en la vista
     this.cell.vidaBarraCell = (this.cell.vidaCell * 1) / 200;
@@ -54,55 +60,47 @@ export class Fase1Service {
     this.gohan.vidaBarraGohan = (this.gohan.vidaGohan * 1) / 100;
   }
   choqueKames() {
-    this.btnContarChoque = this.btnContarChoque + 0.3;
-    this.cell.poderCell = this.cell.poderCell - 0.3;
-    const KameCell = document.getElementById('KameCell');
-    const KameGohan = document.getElementById('KameGohan');
-    KameGohan!.style.opacity = '1';
-    KameCell!.style.opacity = '1';
-    KameGohan!.style.left = this.btnContarChoque + 'vw';
-    KameCell!.style.width = this.cell.poderCell + '%';
+    this._kameVsStyle.next(true)
+    // if (this.btnContarChoque >= 41 && this.cell.vidaCell >= 60) {
+    //   KameGohan!.classList.add('kameWin');
+    //   KameCell!.classList.add('kameCellPierde');
+    //   this.joystick.ocultarBtnPulsar = false;
 
-    if (this.btnContarChoque >= 41 && this.cell.vidaCell >= 60) {
-      KameGohan!.classList.add('kameWin');
-      KameCell!.classList.add('kameCellPierde');
-      this.joystick.ocultarBtnPulsar = false;
+    //   setTimeout(() => {
+    //     this.cell.kameContraCell = true;
+    //     this.cell.heridoCell = true;
+    //     this.kameVskame(false);
+    //     this.gohan.ganaGohan = true;
+    //     this.cell.kameContraCell = true;
 
-      setTimeout(() => {
-        this.cell.kameContraCell = true;
-        this.cell.heridoCell = true;
-        this.choqueKame = false;
-        this.gohan.ganaGohan = true;
-        this.cell.kameContraCell = true;
-
-        this.joystick.texto = 'Gohan sale victorioso';
-        this.cell.vidaCell = this.cell.vidaCell - 50;
-        this.barraCEll();
-      }, 2000);
-      setTimeout(() => {
-        this.resetarAnimaciones();
-      }, 4000);
-      return;
-    } else if (this.btnContarChoque >= 47 && this.cell.vidaCell < 60) {
-      //menos vida mas dificil ganar a cell
-      KameGohan!.classList.add('kameWin');
-      KameCell!.classList.add('kameCellPierde');
-      this.joystick.ocultarBtnPulsar = false;
-      this.joystick.texto = 'Gohan sale victorioso';
-      setTimeout(() => {
-        this.cell.kameContraCell = true;
-        this.cell.heridoCell = true;
-        this.choqueKame = false;
-        this.gohan.ganaGohan = true;
-        this.cell.kameContraCell = true;
-        this.cell.vidaCell = this.cell.vidaCell - 50;
-        this.barraCEll();
-      }, 2000);
-      setTimeout(() => {
-        this.resetarAnimaciones();
-      }, 4000);
-      return;
-    }
+    //     this.joystick.texto = 'Gohan sale victorioso';
+    //     this.cell.vidaCell = this.cell.vidaCell - 50;
+    //     this.barraCEll();
+    //   }, 2000);
+    //   setTimeout(() => {
+    //     this.resetarAnimaciones();
+    //   }, 4000);
+    //   return;
+    // } else if (this.btnContarChoque >= 47 && this.cell.vidaCell < 60) {
+    //   //menos vida mas dificil ganar a cell
+    //   KameGohan!.classList.add('kameWin');
+    //   KameCell!.classList.add('kameCellPierde');
+    //   this.joystick.ocultarBtnPulsar = false;
+    //   this.joystick.texto = 'Gohan sale victorioso';
+    //   setTimeout(() => {
+    //     this.cell.kameContraCell = true;
+    //     this.cell.heridoCell = true;
+    //     this.kameVskame(false);
+    //     this.gohan.ganaGohan = true;
+    //     this.cell.kameContraCell = true;
+    //     this.cell.vidaCell = this.cell.vidaCell - 50;
+    //     this.barraCEll();
+    //   }, 2000);
+    //   setTimeout(() => {
+    //     this.resetarAnimaciones();
+    //   }, 4000);
+    //   return;
+    // }
   }
 
   accionGolpe(golpe: string) {
@@ -339,38 +337,34 @@ export class Fase1Service {
         break;
       case 'ki':
         if (this.gohan.acumularCargaGohan == 3 && this.cell.acumularCargaCell == 3) {
-          this.choqueKame = true;
+          this.kameVskame(true);
           setTimeout(() => {
-            const KameGohan = document.getElementById('KameGohan');
-            const KameCell = document.getElementById('KameCell');
-            KameGohan!.style.opacity = '1';
-            KameCell!.style.opacity = '1';
-            KameCell!.style.width = 40 + '%';
+            this._kameVsStyle.next(true)
             this.joystick.ocultarBtnPulsar = true;
           }, 3000);
 
           setTimeout(() => {
-            if (
-              (this.btnContarChoque < 41 && this.cell.vidaCell >= 60) ||
-              (this.btnContarChoque < 47 && this.cell.vidaCell < 60)
-            ) {
-              this.joystick.ocultarBtnPulsar = false;
-              const KameGohan = document.getElementById('KameGohan');
-              const KameCell = document.getElementById('KameCell');
-              const gohanPosturaKame = document.getElementById('gohanKame');
-              KameGohan!.style.opacity = '0';
-              KameCell!.style.width = 64 + '%';
-              setTimeout(() => {
-                gohanPosturaKame!.style.width = '0vw';
-              }, 2000);
-              this.joystick.texto = 'Cell sale victorioso';
-              this.gohan.heridaGohan = true;
-              this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
-              this.barraGohan();
-              setTimeout(() => {
-                this.resetarAnimaciones();
-              }, 4000);
-            }
+            // if (
+            //   (this.btnContarChoque < 41 && this.cell.vidaCell >= 60) ||
+            //   (this.btnContarChoque < 47 && this.cell.vidaCell < 60)
+            // ) {
+            //   this.joystick.ocultarBtnPulsar = false;
+            //   const KameGohan = document.getElementById('KameGohan');
+            //   const KameCell = document.getElementById('KameCell');
+            //   const gohanPosturaKame = document.getElementById('gohanKame');
+            //   KameGohan!.style.opacity = '0';
+            //   KameCell!.style.width = 64 + '%';
+            //   setTimeout(() => {
+            //     gohanPosturaKame!.style.width = '0vw';
+            //   }, 2000);
+            //   this.joystick.texto = 'Cell sale victorioso';
+            //   this.gohan.heridaGohan = true;
+            //   this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
+            //   this.barraGohan();
+            //   setTimeout(() => {
+            //     this.resetarAnimaciones();
+            //   }, 4000);
+            // }
           }, 13200);
           this.cell.acumularCargaCell = 0;
           this.gohan.acumularCargaGohan = 0;
@@ -426,9 +420,9 @@ export class Fase1Service {
     this.joystick.texto = '';
     this.descansoPjs(true);
     this.joystick.ocultarTexto = false;
-    this.choqueKame = false;
+    this.kameVskame(false);
     this.cell.poderCell = 40;
-    this.btnContarChoque = 26;
+   // this.btnContarChoque = 26;
     this.joystick.ocultarBtnPulsar = false;
     /**Gohan */
     this.gohan.rayaGohan = false,
