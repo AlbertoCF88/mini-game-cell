@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 export class BtnCellNextFaseComponent implements OnInit {
 
   @Input() texto!: string;
-  @Input() ruta!:string;
+  @Input() ruta!: string;
   btnActivo: boolean = false;
 
-  constructor( private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() { }
   siguientePagina() {
