@@ -11,13 +11,13 @@ import { Subscription } from 'rxjs';
 export class GameF1ImgComponent implements OnInit {
   @ViewChild('kameGohan', { static: false }) kameGohan: ElementRef | undefined;
   @ViewChild('kameCell', { static: false }) kameCell: ElementRef | undefined;
-  
+
   @Input() gohan!: Gohan;
   @Input() cell!: Cell;
   @Input() servicio: any;
 
   // btnContarChoque valor iniciar de los dos kames
-  btnContarChoque: number = 26;
+
 
   subscription!: Subscription;
 
@@ -26,21 +26,27 @@ export class GameF1ImgComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.servicio.kameVsStyle$.subscribe(
       (applyStyle: boolean) => {
+        const kameGohan = this.kameGohan?.nativeElement;
+        const kameCell = this.kameCell?.nativeElement;
         if (applyStyle) {
-          this.btnContarChoque = this.btnContarChoque + 0.3;
+          this.servicio.contadorGolpeBoton =  this.servicio.contadorGolpeBoton + 0.3;
           this.cell.poderCell = this.cell.poderCell - 0.3;
 
-          const kameGohan = this.kameGohan?.nativeElement;
           this.render.setStyle(kameGohan, 'opacity', 1);
-          this.render.setStyle(kameGohan, 'left', this.btnContarChoque + 'vw');
-        
-          const kameCell = this.kameCell?.nativeElement;
+          this.render.setStyle(kameGohan, 'left', this.servicio.contadorGolpeBoton + 'vw');
+
           this.render.setStyle(kameCell, 'opacity', 1);
           this.render.setStyle(kameCell, 'width', this.cell.poderCell + '%');
+
+          if (applyStyle && !this.servicio.joystick.ocultarBtnPulsar) {
+            //applyStyle si es false ha terminado el tiempo del combate
+            this.render.setStyle(kameGohan, 'opacity', 0);
+            this.render.setStyle(kameCell, 'width', 64 + '%');
+          }
         }
       });
   }
-
+  
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

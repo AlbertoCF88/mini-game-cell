@@ -764,7 +764,7 @@
     right    : 18.8vw;
     height   : 100%;
     opacity  : 1;
-    animation: animaKi 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    animation: animaKi 3.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
 }
 
 .efectokameCell2 {
@@ -783,19 +783,21 @@
 
     /*inicio*/
     0% {
-        opacity: 0;
-        width  : 4%;
-        bottom : 19vh;
-        right  : 18.8vw;
-        height : 100%;
+        transform: rotate(0deg);
+        opacity  : 0;
+        width    : 4%;
+        bottom   : 19vh;
+        right    : 18.8vw;
+        height   : 100%;
     }
 
     80% {
-        opacity: 1;
-        width  : 17%;
-        bottom : 13vh;
-        right  : 16.8vw;
-        height : 718%;
+        transform: rotate(800deg);
+        opacity  : 1;
+        width    : 17%;
+        bottom   : 13vh;
+        right    : 16.8vw;
+        height   : 718%;
     }
 
     100% {
@@ -830,7 +832,7 @@
     width    : 20vw;
     height   : auto;
     bottom   : 3.6vw;
-    right: 70.8vw;
+    right    : 70.8vw;
     opacity  : 0;
     animation: fuegoCell 6s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s backwards;
 }

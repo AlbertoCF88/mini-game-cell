@@ -23,12 +23,15 @@ export class Fase1Service {
 
   //Condiciones fase1
   //contadorGolpeBoton sirve para no abusar de usar el mismo boton
-  contadorGolpeBoton: number = 0;
+  contadorGolpeBoton: number = 26;
 
   // controlar los estilos de kameVskame
   private _kameVsStyle = new BehaviorSubject<boolean>(false);
   kameVsStyle$ = this._kameVsStyle.asObservable();
-  
+  devueltaKameVs: boolean = false;
+  //el componente hijo le pasara el contardor de pulsaciones
+  contadorBtnKame: number = 0;
+
   //manejar joystick con la misma instancia para todos los hijos del mismo padre
   joystick: Joystick = {
     ocultarBotones: false,
@@ -59,48 +62,26 @@ export class Fase1Service {
     //vida en la vista
     this.gohan.vidaBarraGohan = (this.gohan.vidaGohan * 1) / 100;
   }
+
+  ganaGohankameVs() {
+    this.joystick.texto = 'Gohan sale victorioso';
+    setTimeout(() => {
+      this.cell.kameContraCell = true;
+      this.cell.heridoCell = true;
+      this.kameVskame(false);
+      this.gohan.ganaGohan = true;
+      this.cell.kameContraCell = true;
+      this.cell.vidaCell = this.cell.vidaCell - 50;
+      this.barraCEll();
+    }, 2000);
+    setTimeout(() => {
+      this.resetarAnimaciones();
+    }, 4000);
+  }
+
   choqueKames() {
+    //cada vez que es pulsado este btn mueve el kame
     this._kameVsStyle.next(true)
-    // if (this.btnContarChoque >= 41 && this.cell.vidaCell >= 60) {
-    //   KameGohan!.classList.add('kameWin');
-    //   KameCell!.classList.add('kameCellPierde');
-    //   this.joystick.ocultarBtnPulsar = false;
-
-    //   setTimeout(() => {
-    //     this.cell.kameContraCell = true;
-    //     this.cell.heridoCell = true;
-    //     this.kameVskame(false);
-    //     this.gohan.ganaGohan = true;
-    //     this.cell.kameContraCell = true;
-
-    //     this.joystick.texto = 'Gohan sale victorioso';
-    //     this.cell.vidaCell = this.cell.vidaCell - 50;
-    //     this.barraCEll();
-    //   }, 2000);
-    //   setTimeout(() => {
-    //     this.resetarAnimaciones();
-    //   }, 4000);
-    //   return;
-    // } else if (this.btnContarChoque >= 47 && this.cell.vidaCell < 60) {
-    //   //menos vida mas dificil ganar a cell
-    //   KameGohan!.classList.add('kameWin');
-    //   KameCell!.classList.add('kameCellPierde');
-    //   this.joystick.ocultarBtnPulsar = false;
-    //   this.joystick.texto = 'Gohan sale victorioso';
-    //   setTimeout(() => {
-    //     this.cell.kameContraCell = true;
-    //     this.cell.heridoCell = true;
-    //     this.kameVskame(false);
-    //     this.gohan.ganaGohan = true;
-    //     this.cell.kameContraCell = true;
-    //     this.cell.vidaCell = this.cell.vidaCell - 50;
-    //     this.barraCEll();
-    //   }, 2000);
-    //   setTimeout(() => {
-    //     this.resetarAnimaciones();
-    //   }, 4000);
-    //   return;
-    // }
   }
 
   accionGolpe(golpe: string) {
@@ -337,37 +318,46 @@ export class Fase1Service {
         break;
       case 'ki':
         if (this.gohan.acumularCargaGohan == 3 && this.cell.acumularCargaCell == 3) {
+          //activar posiciones de kames
           this.kameVskame(true);
           setTimeout(() => {
-            this._kameVsStyle.next(true)
+            //le dedecimos al componente que tiene que cambiar estilos
+       
+            this.kameVskame(true);
+            //habilitar btn choqueKames()
             this.joystick.ocultarBtnPulsar = true;
+            this._kameVsStyle.next(true)
           }, 3000);
 
           setTimeout(() => {
-            // if (
-            //   (this.btnContarChoque < 41 && this.cell.vidaCell >= 60) ||
-            //   (this.btnContarChoque < 47 && this.cell.vidaCell < 60)
-            // ) {
-            //   this.joystick.ocultarBtnPulsar = false;
-            //   const KameGohan = document.getElementById('KameGohan');
-            //   const KameCell = document.getElementById('KameCell');
-            //   const gohanPosturaKame = document.getElementById('gohanKame');
-            //   KameGohan!.style.opacity = '0';
-            //   KameCell!.style.width = 64 + '%';
-            //   setTimeout(() => {
-            //     gohanPosturaKame!.style.width = '0vw';
-            //   }, 2000);
-            //   this.joystick.texto = 'Cell sale victorioso';
-            //   this.gohan.heridaGohan = true;
-            //   this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
-            //   this.barraGohan();
-            //   setTimeout(() => {
-            //     this.resetarAnimaciones();
-            //   }, 4000);
-            // }
+            //duracion del combate de kames
+            this.joystick.ocultarBtnPulsar = false;
+            console.log("fin lucha kames")
+            console.log("this.contadorGolpeBoton", this.contadorGolpeBoton)
+            if (
+              (this.contadorGolpeBoton < 41 && this.cell.vidaCell >= 60) ||
+              (this.contadorGolpeBoton < 47 && this.cell.vidaCell < 60)
+            ) {
+              this._kameVsStyle.next(true)
+              setTimeout(() => {
+                this.gohan.kameGohan = false;
+              }, 2000);
+              this.joystick.texto = 'Cell sale victorioso';
+              this.gohan.heridaGohan = true;
+              this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
+              this.barraGohan();
+              setTimeout(() => {
+                this.resetarAnimaciones();
+              }, 3500);
+            }else{
+              this.ganaGohankameVs();
+            }
+
           }, 13200);
+
           this.cell.acumularCargaCell = 0;
           this.gohan.acumularCargaGohan = 0;
+
           break;
         } else if (this.gohan.acumularCargaGohan == 3) {
           this.cell.baseCell = true;
@@ -416,13 +406,14 @@ export class Fase1Service {
   }
 
   resetarAnimaciones() {
+    this._kameVsStyle.next(false)
     this.joystick.ocultarBotones = false;
     this.joystick.texto = '';
     this.descansoPjs(true);
     this.joystick.ocultarTexto = false;
     this.kameVskame(false);
     this.cell.poderCell = 40;
-   // this.btnContarChoque = 26;
+    this.contadorGolpeBoton = 26;
     this.joystick.ocultarBtnPulsar = false;
     /**Gohan */
     this.gohan.rayaGohan = false,
