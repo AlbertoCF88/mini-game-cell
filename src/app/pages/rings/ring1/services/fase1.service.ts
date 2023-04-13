@@ -27,10 +27,6 @@ export class Fase1Service {
   choqueKame: boolean = false;
   // btnContarChoque valor iniciar de los dos kames
   btnContarChoque: number = 26;
-  //ganar o perder
-  win: boolean = false;
-  lose: boolean = false;
-  winGif: boolean = false;
 
   //manejar joystick con la misma instancia para todos los hijos del mismo padre
   joystick: Joystick = {
@@ -102,7 +98,7 @@ export class Fase1Service {
         this.cell.vidaCell = this.cell.vidaCell - 50;
         this.barraCEll();
       }, 2000);
-      window.setTimeout(() => {
+      setTimeout(() => {
         this.resetarAnimaciones();
       }, 4000);
       return;
@@ -435,62 +431,58 @@ export class Fase1Service {
     this.btnContarChoque = 26;
     this.joystick.ocultarBtnPulsar = false;
     /**Gohan */
-    // this.gohan =new Gohan(100, 1, 3, 3);
-    this.gohan.golpeGohan = false;
-    this.gohan.rayaGohan = false;
-    this.gohan.rayaGohan = false;
-    this.gohan.defensaGohan = false;
-    this.gohan.contraGohan = false;
-    this.gohan.cargaGohan = false;
-    this.gohan.kameGohan = false;
-    this.gohan.heridaGohan = false;
-    this.gohan.cansadoGohan = false;
-    this.gohan.heridaKame = false;
-    this.gohan.ganaGohan = false;
-    /**Cell */
-    // cell = new Cell(200, 1, 3, 3)
-    this.cell.esquivaCell = false;
-    this.cell.heridoCell = false;
-    this.cell.golpeCell = false;
-    this.cell.cargaCell = false;
-    this.cell.cansadoCell = false;
-    this.cell.destelloCell = false;
-    this.cell.kameCell = false;
-    this.cell.kameContraCell = false;
-    this.cell.contraCell = false;
-    //comprobacion ganador
-    this.ganador();
+    this.gohan.rayaGohan = false,
+      this.gohan.golpeGohan = false,
+      this.gohan.defensaGohan = false,
+      this.gohan.contraGohan = false,
+      this.gohan.cargaGohan = false,
+      this.gohan.kameGohan = false,
+      this.gohan.heridaGohan = false,
+      this.gohan.ganaGohan = false,
+      this.gohan.cansadoGohan = false,
+      this.gohan.heridaKame = false,
+      this.gohan.gohanPierdeCombate = false,
+      /**Cell */
+      this.cell.esquivaCell = false,
+      this.cell.contraCell = false,
+      this.cell.heridoCell = false,
+      this.cell.golpeCell = false,
+      this.cell.cargaCell = false,
+      this.cell.cansadoCell = false,
+      this.cell.destelloCell = false,
+      this.cell.kameCell = false,
+      this.cell.kameContraCell = false,
+      this.cell.cellPierdeCombate = false,
+      //comprobacion ganador
+      this.ganador();
   }
 
   ganador() {
     if (this.cell.vidaBarraCell <= 0) {
       //gana gohan
       this.descansoPjs(false);
-      this.win = true;
       setTimeout(() => {
-        this.winGif = !this.winGif;
+        this.cell.cellPierdeCombate = true;
       }, 6500);
     } else if (this.gohan.vidaBarraGohan <= 0) {
       //Gana cell
       this.joystick.ocultarBotones = true;
       this.descansoPjs(false);
-      this.lose = true;
+      this.gohan.gohanPierdeCombate = true;
       this.cell.cargaCell = true;
       return;
     }
   }
 
   reintentar() {
-    this.lose = !this.lose;
-    this.cell.cargaCell = !this.cell.cargaCell;
+    this.resetarAnimaciones();
     this.descansoPjs(true);
     this.cell.vidaCell = 200;
     this.gohan.vidaGohan = 100;
-    this.barraGohan();
-    this.barraCEll();
     this.gohan.acumularCargaGohan = 3;
     this.cell.acumularCargaCell = 3;
-    this.resetarAnimaciones();
+    this.barraGohan();
+    this.barraCEll();
   }
 } //final
 

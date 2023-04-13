@@ -12,7 +12,7 @@
   <img id="gohanKame" *ngIf="gohan.kameGohan || choqueKame" class="gohanKame" src="assets/gohan/ss1/gohanKame.png"
     alt="gohanKame">
   <img *ngIf="gohan.cansadoGohan" class="gohanCansado" src="assets/gohan/gohan.png" alt="gohanCansado">
-  <img *ngIf="lose" class="lose" src="assets/gohan/ss1/muerto.png" alt="gohanMuerto">
+  <img *ngIf="gohan.gohanPierdeCombate" class="lose" src="assets/gohan/ss1/muerto.png" alt="gohanMuerto">
 
   <!--Cell-->
   <img *ngIf="cell.baseCell" class="cellBase" src="assets/presentacion/cell/cell1Base.png" alt="cell">
@@ -57,10 +57,10 @@
   <div *ngIf="cell.destelloCell" class="efectoDestello"> </div>
 
   <!---Gana gohan-->
-  <img *ngIf="win" class="cellPierde" src="assets/fase1/f1/cellPierde.png" alt="cellPierde">
+  <img *ngIf="cell.cellPierdeCombate" class="cellPierde" src="assets/fase1/f1/cellPierde.png" alt="cellPierde">
 
 
-  <div *ngIf="win" class="bocadillo">
+  <div *ngIf="cell.cellPierdeCombate" class="bocadillo">
     <p class="parrafo">Necesito más poder, tengo que absorber a C-17</p>
   </div>
 </div>

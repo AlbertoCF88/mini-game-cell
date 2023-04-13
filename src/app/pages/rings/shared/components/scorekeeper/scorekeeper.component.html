@@ -1,15 +1,24 @@
 <ng-container>
-  <div class="cajaPerder">
-    <h1 class="pierdes">Tú pierdes</h1>
-    <button class="boton">
-      <span class="btnChoqueKame">¿Reintentar?</span>
-    </button>
-  </div>
+  <!-- botoner reintentar -->
 
-  <!-- <img  class="winGif" src="assets/fase1/f1/winGohan.gif" alt="efectoKi"> -->
+  <ng-container *ngIf="gohan.gohanPierdeCombate">
+    <div class="cajaPerder">
+      <h1 class="pierdes">Tú pierdes</h1>
+      <button class="boton" (click)="reintentar()">
+        <span class="btnChoqueKame">¿Reintentar?</span>
+      </button>
+    </div>
+  </ng-container>
+
+  <!-- animacion  -->
+  <ng-container *ngIf="cell.cellPierdeCombate">
+    <img class="winGif" src="assets/fase1/f1/winGohan.gif" alt="gif">
+  </ng-container>
 
   <!-- boton siguiente -->
-  <app-btn-cell-next-fase [texto]="'Ir a Fase 2'" [ruta]="'/fase2'">
-  </app-btn-cell-next-fase>
+  <ng-container *ngIf="btnActivo">
+    <app-btn-cell-next-fase [texto]="'Ir a Fase 2'" [ruta]="'/fase2'">
+    </app-btn-cell-next-fase>
+  </ng-container>
 
 </ng-container>

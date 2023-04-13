@@ -1,7 +1,5 @@
 import { Joystick } from './Interface/Joystick';
-import { Fase1Service } from './../../../ring1/services/fase1.service';
-import { Component, Input, OnInit, SkipSelf } from '@angular/core';
-
+import { Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-joystick',
@@ -12,7 +10,7 @@ export class JoystickComponent implements OnInit {
 
   joy!: Joystick;
 
-  @Input() servicio!: Fase1Service;
+  @Input() servicio!: any;//cualquier servicio pasado por padre
 
   constructor() { }
 

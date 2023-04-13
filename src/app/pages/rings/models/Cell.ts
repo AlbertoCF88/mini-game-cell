@@ -1,27 +1,28 @@
 export default class Cell {
     //vida
     // cantidad de vida real
-    private _vidaCell: number
+    private _vidaCell: number;
     //representacion de la vida en la vista
-    private _vidaBarraCell: number
+    private _vidaBarraCell: number;
     //energia maxima
-    private _maximaEnergiaCell: number
-    private _acumularCargaCell: number
+    private _maximaEnergiaCell: number;
+    private _acumularCargaCell: number;
 
     //para mover el kame de cell
-    private _poderCell: number
+    private _poderCell: number;
 
     //activar acciones en vista, ocultar o mostrar animacion
-    private _baseCell: boolean
-    private _esquivaCell: boolean
-    private _contraCell: boolean
-    private _heridoCell: boolean
-    private _golpeCell: boolean
-    private _cargaCell: boolean
-    private _cansadoCell: boolean
-    private _destelloCell: boolean
-    private _kameCell: boolean
-    private _kameContraCell: boolean
+    private _baseCell: boolean;
+    private _esquivaCell: boolean;
+    private _contraCell: boolean;
+    private _heridoCell: boolean;
+    private _golpeCell: boolean;
+    private _cargaCell: boolean;
+    private _cansadoCell: boolean;
+    private _destelloCell: boolean;
+    private _kameCell: boolean;
+    private _kameContraCell: boolean;
+    private _cellPierdeCombate: boolean;
     // this.defensaCell no tiene
 
     //cosntructor con valores por defecto para no activar animaciones
@@ -40,7 +41,8 @@ export default class Cell {
         cansadoCell: boolean = false,
         destelloCell: boolean = false,
         kameCell: boolean = false,
-        kameContraCell: boolean = false
+        kameContraCell: boolean = false,
+        cellPierdeCombate: boolean = false,
     ) {
         this._vidaCell = vidaCell
         this._vidaBarraCell = vidaBarraCell
@@ -58,6 +60,7 @@ export default class Cell {
         this._kameCell = kameCell
         this._acumularCargaCell = acumularCargaCell
         this._kameContraCell = kameContraCell
+        this._cellPierdeCombate = cellPierdeCombate
     }
 
 
@@ -78,7 +81,7 @@ export default class Cell {
         this._vidaBarraCell = vidaBarraCell;
     }
 
-    public get  maximaEnergiaCell(): number {
+    public get maximaEnergiaCell(): number {
         return this._maximaEnergiaCell
     }
 
@@ -186,5 +189,11 @@ export default class Cell {
         this._kameContraCell = kameContraCell;
     }
 
+    public get cellPierdeCombate(): boolean {
+        return this._cellPierdeCombate
+    }
+    public set cellPierdeCombate(cellPierdeCombat: boolean) {
+        this._cellPierdeCombate = cellPierdeCombat
+    }
 
 }

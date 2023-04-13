@@ -13,6 +13,8 @@ export class LifeComponent implements OnInit {
   @Input() gohan!: Gohan;
   @Input() cell!: Cell;
 
+  constructor() { }
+  
   ngOnInit(): void {
   }
 

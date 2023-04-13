@@ -1,32 +1,35 @@
 export default class Gohan {
     //vida
     // cantidad de vida real
-    private _vidaGohan: number
+    private _vidaGohan: number;
     //representacion de la vida en la vista
-    private _vidaBarraGohan: number
+    private _vidaBarraGohan: number;
     //energia maxima
-    private _maximaEnergiaGohan: number
-    private _acumularCargaGohan: number
+    private _maximaEnergiaGohan: number;
+    private _acumularCargaGohan: number;
 
     //activar acciones en vista, ocultar o mostrar animacion
-    private _gohanBase: boolean
-    private _rayaGohan: boolean
-    private _golpeGohan: boolean
-    private _defensaGohan: boolean
-    private _contraGohan: boolean
-    private _cargaGohan: boolean
-    private _kameGohan: boolean
-    private _heridaGohan: boolean
+    private _gohanBase: boolean;
+    private _rayaGohan: boolean;
+    private _golpeGohan: boolean;
+    private _defensaGohan: boolean;
+    private _contraGohan: boolean;
+    private _cargaGohan: boolean;
+    private _kameGohan: boolean;
+    private _heridaGohan: boolean;
     // en caso de ganar en choque de kames
-    private _ganaGohan: boolean
-    private _cansadoGohan: boolean
-    private _heridaKame: boolean
+    private _ganaGohan: boolean;
+    private _cansadoGohan: boolean;
+    private _heridaKame: boolean;
+
+    private _gohanPierdeCombate: boolean;
+
 
     //cosntructor con valores por defecto para no activar animaciones
     constructor(
         vidaGohan: number,
         vidaBarraGohan: number,
-        maximaEnergiaGohan:number,
+        maximaEnergiaGohan: number,
         acumularCargaGohan: number,
         gohanBase: boolean = false,
         rayaGohan: boolean = false,
@@ -38,7 +41,8 @@ export default class Gohan {
         heridaGohan: boolean = false,
         ganaGohan: boolean = false,
         cansadoGohan: boolean = false,
-        heridaKame: boolean = false
+        heridaKame: boolean = false,
+        gohanPierdeCombate: boolean = false,
     ) {
         this._vidaGohan = vidaGohan
         this._vidaBarraGohan = vidaBarraGohan
@@ -55,6 +59,7 @@ export default class Gohan {
         this._ganaGohan = ganaGohan
         this._cansadoGohan = cansadoGohan
         this._heridaKame = heridaKame
+        this._gohanPierdeCombate = gohanPierdeCombate
     }
 
 
@@ -88,8 +93,8 @@ export default class Gohan {
     }
 
     public set acumularCargaGohan(acumularCargaGohan: number) {
-         //no puede ser nunca mayor a su maximo energia
-         if (acumularCargaGohan > this.maximaEnergiaGohan) {
+        //no puede ser nunca mayor a su maximo energia
+        if (acumularCargaGohan > this.maximaEnergiaGohan) {
             this._acumularCargaGohan = this._maximaEnergiaGohan;
         }
         this._acumularCargaGohan = acumularCargaGohan;
@@ -183,6 +188,11 @@ export default class Gohan {
         this._heridaKame = heridaKame;
     }
 
-
+    public get gohanPierdeCombate(): boolean {
+        return this._gohanPierdeCombate
+    }
+    public set gohanPierdeCombate(gohanPierdeCombate: boolean) {
+        this._gohanPierdeCombate = gohanPierdeCombate
+    }
 
 }

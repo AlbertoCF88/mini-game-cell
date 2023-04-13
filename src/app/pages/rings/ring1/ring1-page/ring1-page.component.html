@@ -15,13 +15,12 @@
     </ng-container>
 
     <!-- imagenes en pantalla -->
-    <!-- *ngIf="!ocultarPresentacion" -->
-    <ng-container>
-      <app-game-f1-img></app-game-f1-img>
+    <ng-container *ngIf="!ocultarPresentacion">
+      <app-game-f1-img [gohan]="gohan" [cell]="cell"></app-game-f1-img>
     </ng-container>
+
     <!--botonera -->
-    <!-- *ngIf="!ocultarPresentacion" -->
-    <ng-container>
+    <ng-container *ngIf="!ocultarPresentacion">
       <app-joystick [servicio]="servicioF1">
       </app-joystick>
     </ng-container>
@@ -29,6 +28,6 @@
   </div>
 
   <!-- score -->
-  <app-scorekeeper></app-scorekeeper>
+  <app-scorekeeper [gohan]="gohan" [cell]="cell" [servicio]="servicioF1"></app-scorekeeper>
 
 </div>
