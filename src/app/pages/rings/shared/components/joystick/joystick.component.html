@@ -1,9 +1,14 @@
 <div id="marcoBotonera">
 
-  <!-- texto  *ngIf="ocultarTexto"-->
-  <div id="wait" > 
+  <!-- texto -->
+  <div id="wait" *ngIf="joy.texto !='' ">
     <!--tiempo de espera -->
-    <span class="textoWait">{{joy.texto}}</span>
+    <img src="../../../../../../assets/comentarista/comentarista.png" class="card-img comentarista" alt="comentarista">
+    <div class="card-img-overlay  d-flex justify-content-center">
+      <span class="textoWait card justify-content-end" style="max-width:  45vw">
+        {{joy.texto}}
+      </span>
+    </div>
   </div>
 
   <!-- boton choque kames -->
@@ -17,7 +22,7 @@
   <ng-container *ngIf="!joy.ocultarBotones">
     <!-- botonera izquierda -->
     <div id="caja1">
-      <button id="puño" class="boton"  (click)="accionGolpe('golpe')">
+      <button id="puño" class="boton" (click)="accionGolpe('golpe')">
         <i><img src="assets/botones/golpe.svg" alt="icono puño" class="icono"></i>
       </button>
 
@@ -27,7 +32,7 @@
     </div>
     <!-- botonera derecha -->
     <div id="caja2">
-      <button id="carga" class="boton"  (click)="accionCarga('carga')">
+      <button id="carga" class="boton" (click)="accionCarga('carga')">
         <i><img src="assets/botones/cargaDB.svg" alt="icono carga" class="icono"></i>
       </button>
 
