@@ -1,3 +1,4 @@
+import { Joystick } from './../../../shared/components/joystick/Interface/Joystick';
 import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import Gohan from '../../../models/Gohan';
 import Cell from '../../../models/Cell';
@@ -29,7 +30,7 @@ export class GameF1ImgComponent implements OnInit {
         const kameGohan = this.kameGohan?.nativeElement;
         const kameCell = this.kameCell?.nativeElement;
         if (applyStyle) {
-          this.servicio.contadorGolpeBoton =  this.servicio.contadorGolpeBoton + 0.3;
+          this.servicio.contadorGolpeBoton = this.servicio.contadorGolpeBoton + 0.3;
           this.cell.poderCell = this.cell.poderCell - 0.3;
 
           this.render.setStyle(kameGohan, 'opacity', 1);
@@ -38,15 +39,21 @@ export class GameF1ImgComponent implements OnInit {
           this.render.setStyle(kameCell, 'opacity', 1);
           this.render.setStyle(kameCell, 'width', this.cell.poderCell + '%');
 
-          if (applyStyle && !this.servicio.joystick.ocultarBtnPulsar) {
-            //applyStyle si es false ha terminado el tiempo del combate
+          if (!this.servicio.joystick.ocultarBtnPulsar && this.servicio.joystick.texto === 'Gohan sale victorioso') {
+            //ganas
+            this.render.addClass(kameGohan, 'kameWin');
+            this.render.addClass(kameCell, 'kameCellPierde');
+          }
+          if (!this.servicio.joystick.ocultarBtnPulsar && this.servicio.joystick.texto === 'Cell sale victorioso') {
+            //pierdes
             this.render.setStyle(kameGohan, 'opacity', 0);
             this.render.setStyle(kameCell, 'width', 64 + '%');
           }
         }
+
       });
   }
-  
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

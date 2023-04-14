@@ -65,6 +65,7 @@ export class Fase1Service {
 
   ganaGohankameVs() {
     this.joystick.texto = 'Gohan sale victorioso';
+    this._kameVsStyle.next(true)
     setTimeout(() => {
       this.cell.kameContraCell = true;
       this.cell.heridoCell = true;
@@ -77,6 +78,20 @@ export class Fase1Service {
     setTimeout(() => {
       this.resetarAnimaciones();
     }, 4000);
+  }
+  ganaCellKameVs() {
+    this.joystick.texto = 'Cell sale victorioso';
+    this._kameVsStyle.next(true)
+    setTimeout(() => {
+      this.gohan.kameGohan = false;
+    }, 2000);
+
+    this.gohan.heridaGohan = true;
+    this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
+    this.barraGohan();
+    setTimeout(() => {
+      this.resetarAnimaciones();
+    }, 3500);
   }
 
   choqueKames() {
@@ -321,8 +336,6 @@ export class Fase1Service {
           //activar posiciones de kames
           this.kameVskame(true);
           setTimeout(() => {
-            //le dedecimos al componente que tiene que cambiar estilos
-       
             this.kameVskame(true);
             //habilitar btn choqueKames()
             this.joystick.ocultarBtnPulsar = true;
@@ -332,33 +345,20 @@ export class Fase1Service {
           setTimeout(() => {
             //duracion del combate de kames
             this.joystick.ocultarBtnPulsar = false;
-            console.log("fin lucha kames")
-            console.log("this.contadorGolpeBoton", this.contadorGolpeBoton)
             if (
               (this.contadorGolpeBoton < 41 && this.cell.vidaCell >= 60) ||
               (this.contadorGolpeBoton < 47 && this.cell.vidaCell < 60)
             ) {
-              this._kameVsStyle.next(true)
-              setTimeout(() => {
-                this.gohan.kameGohan = false;
-              }, 2000);
-              this.joystick.texto = 'Cell sale victorioso';
-              this.gohan.heridaGohan = true;
-              this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
-              this.barraGohan();
-              setTimeout(() => {
-                this.resetarAnimaciones();
-              }, 3500);
-            }else{
+              this.ganaCellKameVs()
+            } else {
               this.ganaGohankameVs();
             }
-
           }, 13200);
 
           this.cell.acumularCargaCell = 0;
           this.gohan.acumularCargaGohan = 0;
-
           break;
+          
         } else if (this.gohan.acumularCargaGohan == 3) {
           this.cell.baseCell = true;
           this.gohan.kameGohan = true;
