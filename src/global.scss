@@ -67,6 +67,7 @@ img {
 .show {
   display: block !important;
 }
+
 //botones amarillos genericos
 .boton {
   margin            : 1vw;
@@ -100,53 +101,6 @@ img {
 }
 
 //fin botones amarillos
-/*-bocadillos------------------------------------bocadillos-----*/
-.bocadillo {
-  width                  : 33vw;
-  height                 : 23vw;
-  background-image       : url(assets/efectos/bocadillo2.png);
-  position               : absolute;
-  bottom                 : 10vw;
-  left                   : 43vw;
-  z-index                : 98;
-  background-image       : no-repeat;
-  background-image       : fixed;
-  background-image       : center;
-  -webkit-background-size: cover;
-  -moz-background-size   : cover;
-  -o-background-size     : cover;
-  background-size        : cover;
-  justify-content        : center;
-  display                : flex;
-  align-items            : center;
-  opacity                : 0;
-  animation              : animaBocadillo 1s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
-}
-
-@keyframes animaBocadillo {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.parrafo {
-  color      : black;
-  position   : relative;
-  z-index    : 99;
-  width      : 21vw;
-  font-family: comic sans-serif;
-  font-weight: bold;
-  font-size  : 2.2vw;
-  text-align : center;
-  opacity    : 0;
-  animation  : animaBocadillo 1s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
-}
-
-/*-FIN bocadillos------------------------------------FIN bocadillos-----*/
 
 /*ionic--------actionSheetController------------------------------------*/
 .atras {

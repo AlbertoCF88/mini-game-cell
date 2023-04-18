@@ -1,9 +1,7 @@
-import { Joystick } from './../../../shared/components/joystick/Interface/Joystick';
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import Gohan from '../../../models/Gohan';
 import Cell from '../../../models/Cell';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-game-f1-img',
   templateUrl: './game-f1-img.component.html',
@@ -17,14 +15,17 @@ export class GameF1ImgComponent implements OnInit {
   @Input() cell!: Cell;
   @Input() servicio: any;
 
-  // btnContarChoque valor iniciar de los dos kames
-
-
+  //cambiara los estilos cunado se active el kame Vs kame
+  // cada vez que el servicio le mande un true
   subscription!: Subscription;
 
   constructor(private render: Renderer2) { }
 
   ngOnInit() {
+    this.cambiarEstiloskameVsKame();
+  }
+
+  cambiarEstiloskameVsKame() {
     this.subscription = this.servicio.kameVsStyle$.subscribe(
       (applyStyle: boolean) => {
         const kameGohan = this.kameGohan?.nativeElement;

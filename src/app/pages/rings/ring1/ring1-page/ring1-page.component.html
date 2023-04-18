@@ -1,6 +1,6 @@
 <div class="p-0 container pantalla" style="height: 100vh;">
   <!-- barra vida y energia -->
-  <div [ngClass]="{'opacity-0' : ocultarPresentacion}">
+  <div [ngClass]="{'opacity-0' : ocultarPresentacion || cell.cellPierdeCombate}">
     <app-life [gohan]="gohan" [cell]="cell"></app-life>
     <app-energy [gohan]="gohan" [cell]="cell"></app-energy>
   </div>
@@ -16,18 +16,19 @@
 
     <!-- imagenes en pantalla -->
     <ng-container *ngIf="!ocultarPresentacion">
-      <app-game-f1-img [gohan]="gohan" [cell]="cell" [servicio]="servicioF1"></app-game-f1-img>
+      <app-game-f1-img [gohan]="gohan" [cell]="cell" [servicio]="servicioF1">
+      </app-game-f1-img>
     </ng-container>
 
     <!--botonera -->
-    <ng-container *ngIf="!ocultarPresentacion">
+    <ng-container *ngIf="!ocultarPresentacion || cell.cellPierdeCombate">
       <app-joystick [servicio]="servicioF1">
       </app-joystick>
     </ng-container>
 
   </div>
 
-  <!-- score -->
+  <!-- animacion de perder o ganar -->
   <app-scorekeeper [gohan]="gohan" [cell]="cell" [servicio]="servicioF1"></app-scorekeeper>
 
 </div>

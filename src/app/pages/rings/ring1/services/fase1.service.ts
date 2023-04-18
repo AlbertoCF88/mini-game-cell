@@ -28,9 +28,10 @@ export class Fase1Service {
   // controlar los estilos de kameVskame
   private _kameVsStyle = new BehaviorSubject<boolean>(false);
   kameVsStyle$ = this._kameVsStyle.asObservable();
-  devueltaKameVs: boolean = false;
-  //el componente hijo le pasara el contardor de pulsaciones
-  contadorBtnKame: number = 0;
+
+  // controlar los estilos de kameVskame
+  private _winGif = new BehaviorSubject<boolean>(false);
+  winGif$ = this._winGif.asObservable();
 
   //manejar joystick con la misma instancia para todos los hijos del mismo padre
   joystick: Joystick = {
@@ -79,6 +80,7 @@ export class Fase1Service {
       this.resetarAnimaciones();
     }, 4000);
   }
+
   ganaCellKameVs() {
     this.joystick.texto = 'Cell sale victorioso';
     this._kameVsStyle.next(true)
@@ -358,7 +360,7 @@ export class Fase1Service {
           this.cell.acumularCargaCell = 0;
           this.gohan.acumularCargaGohan = 0;
           break;
-          
+
         } else if (this.gohan.acumularCargaGohan == 3) {
           this.cell.baseCell = true;
           this.gohan.kameGohan = true;
@@ -444,14 +446,17 @@ export class Fase1Service {
 
   ganador() {
     if (this.cell.vidaBarraCell <= 0) {
-      //gana gohan
-      this.descansoPjs(false);
-      setTimeout(() => {
-        this.cell.cellPierdeCombate = true;
-      }, 6500);
-    } else if (this.gohan.vidaBarraGohan <= 0) {
-      //Gana cell
       this.joystick.ocultarBotones = true;
+      //gana gohan
+      this.gohan.gohanBase = true;
+      this.cell.baseCell = false;
+      this.cell.cellPierdeCombate = true;
+      setTimeout(() => {
+        this._winGif.next(true);
+      }, 3500);
+    } else if (this.gohan.vidaBarraGohan <= 0) {
+      this.joystick.ocultarBotones = true;
+      //Gana cell
       this.descansoPjs(false);
       this.gohan.gohanPierdeCombate = true;
       this.cell.cargaCell = true;

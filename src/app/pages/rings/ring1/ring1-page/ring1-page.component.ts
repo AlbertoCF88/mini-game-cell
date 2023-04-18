@@ -15,7 +15,7 @@ export class Ring1PageComponent implements OnInit {
   cell!: Cell;
 
   ocultarPresentacion: boolean = true;
-
+  
   constructor(private fase1: Fase1Service) { }
 
   ngOnInit() {

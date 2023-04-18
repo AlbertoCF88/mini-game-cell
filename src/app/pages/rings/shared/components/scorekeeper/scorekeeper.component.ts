@@ -13,11 +13,14 @@ export class ScorekeeperComponent implements OnInit {
   @Input() cell!: Cell;
   @Input() servicio!: any;//cualquier servicio pasado por padre
 
+  activarGifWin: boolean = false;
   btnActivo: boolean = false;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.mostrarGifWin();
+  }
 
   reintentar() {
     //NO entiendo porque es necesario entrar dos veces para este componente y el componente
@@ -26,6 +29,16 @@ export class ScorekeeperComponent implements OnInit {
     for (let index = 0; index <= 1; index++) {
       this.servicio.reintentar();
     }
+  }
+
+  mostrarGifWin() {
+    this.servicio.winGif$.subscribe(
+      (winGif: boolean) => {
+        if (winGif) {
+          this.activarGifWin = true;
+          this.mostrarBtnNext();
+        }
+      });
   }
 
   mostrarBtnNext() {
