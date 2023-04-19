@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import Gohan from '../../../models/Gohan';
 import Cell from '../../../models/Cell';
 
+
 @Component({
   selector: 'app-life',
   templateUrl: './life.component.html',

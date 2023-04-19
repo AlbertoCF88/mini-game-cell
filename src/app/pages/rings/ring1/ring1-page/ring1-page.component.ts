@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import Gohan from '../../models/Gohan';
-import Cell from '../../models/Cell';
 import { Fase1Service } from '../services/fase1.service';
+import GohanF1  from '../../models/extendedmodels/GohanF1';
+import CellF1 from '../../models/extendedmodels/CellF1';
 
 @Component({
   selector: 'app-ring1-page',
@@ -11,8 +11,8 @@ import { Fase1Service } from '../services/fase1.service';
 })
 export class Ring1PageComponent implements OnInit {
 
-  gohan!: Gohan;
-  cell!: Cell;
+  gohan!: GohanF1;
+  cell!: CellF1;
 
   ocultarPresentacion: boolean = true;
   

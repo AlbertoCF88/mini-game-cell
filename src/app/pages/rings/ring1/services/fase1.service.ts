@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import Gohan from '../../models/Gohan';
-import Cell from '../../models/Cell'
+
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject } from 'rxjs';
+import  GohanF1  from '../../models/extendedmodels/GohanF1';
+import CellF1 from '../../models/extendedmodels/CellF1';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,14 @@ export class Fase1Service {
   // vidaBarraGohan 1
   //maxima energia 3
   // acumularCargaGoha 3
-  gohan = new Gohan(100, 1, 3, 3);
+  gohan = new GohanF1(100, 1, 3, 3);
+ 
   //Cell
   // vida 200
   // vidaBarraCell 1
   //maxima energia 3
   // acumularCargaCell 3
-  cell = new Cell(200, 1, 3, 3)
+  cell = new CellF1(200, 1, 3, 3)
 
   //Condiciones fase1
   //contadorGolpeBoton sirve para no abusar de usar el mismo boton
@@ -43,6 +45,7 @@ export class Fase1Service {
 
   constructor() {
     this.descansoPjs(true);
+    console.log("goahn", this.gohan);
   }
 
   descansoPjs(descanso: boolean) {

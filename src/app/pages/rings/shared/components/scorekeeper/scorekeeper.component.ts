@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Gohan from '../../../models/Gohan';
 import Cell from '../../../models/Cell';
+import GohanF1 from '../../../models/extendedmodels/GohanF1';
+import CellF1 from '../../../models/extendedmodels/CellF1';
 
 @Component({
   selector: 'app-scorekeeper',
@@ -9,8 +11,8 @@ import Cell from '../../../models/Cell';
 })
 export class ScorekeeperComponent implements OnInit {
 
-  @Input() gohan!: Gohan;
-  @Input() cell!: Cell;
+  @Input() gohan!: any;
+  @Input() cell!: any;
   @Input() servicio!: any;//cualquier servicio pasado por padre
 
   activarGifWin: boolean = false;
@@ -19,8 +21,26 @@ export class ScorekeeperComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.comprobarTipo();
     this.mostrarGifWin();
   }
+
+  comprobarTipo() {
+    if (this.gohan instanceof Gohan) {
+      this.gohan as Gohan;
+    }
+    if (this.gohan instanceof GohanF1) {
+      this.gohan as GohanF1;
+    }
+    // cell
+    if (this.cell instanceof Cell) {
+      this.cell as Cell;
+    }
+    if (this.cell instanceof CellF1) {
+      this.cell as CellF1;
+    }
+  }
+
 
   reintentar() {
     //NO entiendo porque es necesario entrar dos veces para este componente y el componente

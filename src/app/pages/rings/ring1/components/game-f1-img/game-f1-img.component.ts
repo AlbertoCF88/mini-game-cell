@@ -1,7 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import Gohan from '../../../models/Gohan';
-import Cell from '../../../models/Cell';
+
 import { Subscription } from 'rxjs';
+import  GohanF1  from '../../../models/extendedmodels/GohanF1';
+import { Fase1Service } from '../../services/fase1.service';
+import CellF1 from '../../../models/extendedmodels/CellF1';
 @Component({
   selector: 'app-game-f1-img',
   templateUrl: './game-f1-img.component.html',
@@ -11,15 +13,14 @@ export class GameF1ImgComponent implements OnInit {
   @ViewChild('kameGohan', { static: false }) kameGohan: ElementRef | undefined;
   @ViewChild('kameCell', { static: false }) kameCell: ElementRef | undefined;
 
-  @Input() gohan!: Gohan;
-  @Input() cell!: Cell;
-  @Input() servicio: any;
+  @Input() gohan!: GohanF1;
+  @Input() cell!: CellF1;
 
   //cambiara los estilos cunado se active el kame Vs kame
   // cada vez que el servicio le mande un true
   subscription!: Subscription;
 
-  constructor(private render: Renderer2) { }
+  constructor(private render: Renderer2 , private servicio: Fase1Service) { }
 
   ngOnInit() {
     this.cambiarEstiloskameVsKame();

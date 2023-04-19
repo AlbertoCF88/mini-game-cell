@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Cell from '../../../models/Cell';
 import Gohan from '../../../models/Gohan';
-
 @Component({
   selector: 'app-energy',
   templateUrl: './energy.component.html',
@@ -9,7 +8,7 @@ import Gohan from '../../../models/Gohan';
 })
 export class EnergyComponent implements OnInit {
   //como las varibles que le pasa el padre son de tipo model, le pasa la referencia del objeto y no es una copia
-  @Input() gohan!: Gohan
+  @Input() gohan!: Gohan;
   @Input() cell!: Cell
 
   listEnergiaGohan: number[] = []
