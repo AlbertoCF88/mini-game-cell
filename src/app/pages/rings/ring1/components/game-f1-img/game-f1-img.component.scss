@@ -323,10 +323,11 @@
 
 .gohanHerida {
     position : absolute;
-    width    : 17vw;
-    bottom   : 5vw;
-    left     : 6vw;
+    width    : 25vw;
+    bottom   : 7vw;
+    left     : 4vw;
     opacity  : 0;
+    transform: rotate(14deg);
     animation: animarHerido 3s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s backwards;

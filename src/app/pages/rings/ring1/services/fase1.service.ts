@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject } from 'rxjs';
-import  GohanF1  from '../../models/extendedmodels/GohanF1';
+import GohanF1 from '../../models/extendedmodels/GohanF1';
 import CellF1 from '../../models/extendedmodels/CellF1';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class Fase1Service {
   //maxima energia 3
   // acumularCargaGoha 3
   gohan = new GohanF1(100, 1, 3, 3);
- 
+  
   //Cell
   // vida 200
   // vidaBarraCell 1
