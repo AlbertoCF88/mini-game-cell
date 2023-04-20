@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { Ring1PageComponent } from './pages/rings/ring1/ring1-page/ring1-page.component';
 import { RingsModule } from './pages/rings/rings.module';
+import { Ring2PageComponent } from './pages/rings/ring2/ring2-page/ring2-page.component';
 
 
 
@@ -18,6 +19,9 @@ const routes: Routes = [
   },
   {
     path: 'fase1', component: Ring1PageComponent
+  },
+  {
+    path: 'fase2', component: Ring2PageComponent
   },
   // {
   //   path: 'rules', component: RulesPageComponent, canActivate: [GuardFase2Guard]

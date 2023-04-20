@@ -1,0 +1,65 @@
+<div id="marcoPersonajes">
+  <img *ngIf="gohan.gohanBase " class="gohanBase" src="assets/gohan/ss1/gohanBase.png" alt="Gohan">
+  <img *ngIf="gohan.rayaGohan" class="raya" src="assets/gohan/ss1/rayas.png" alt="rayas">
+
+  <img id="golpe2" *ngIf="gohan.golpeGohan1 || gohan.golpeGohan2"
+    [ngClass]="{'accionPuño2':gohan.golpeGohan1, 'accionPuño3':gohan.golpeGohan2 }" src="assets/gohan/ss1/puño2.png"
+    alt="golpe">
+
+  <img *ngIf="gohan.punioGohan1 || gohan.punioGohan2"
+    [ngClass]="{'golpegohanCa': gohan.punioGohan1, 'golpegohanCa1':gohan.punioGohan2}"
+    src="assets/gohan/ss1/gohanGolpe.png" alt="puñetazo">
+
+  <img *ngIf="gohan.cargaGohan" class="carga" src="assets/gohan/ss1/gohanCarga.png" alt="gohanCarga">
+
+  <img id="gohanHerido" *ngIf="gohan.heridaGohan1 || gohan.heridaGohan2"
+    [ngClass]="{'gohanHerida1':gohan.heridaGohan1, 'gohanHerida4':gohan.heridaGohan2}"
+    src="assets/gohan/ss1/gohanHerida.png" alt="gohanHerida">
+
+  <img *ngIf="gohan.heridaGohan3 || gohan.heridaGohan4"
+    [ngClass]="{'gohanHerida2':gohan.heridaGohan3, 'gohanHerida3': gohan.heridaGohan4}"
+    src="assets/gohan/ss1/gohanHerida.png" alt="gohanHerida">
+
+  <img id="gohanKame" *ngIf="gohan.kameGohan" class="gohanKame" src="assets/gohan/ss1/gohanKame.png" alt="gohanKame">
+  <img *ngIf="gohan.gohanPierdeExplosion" class="gohanPierde" src="assets/cell/f2/kame2.png" alt="ganaCell">
+  
+  <!--Cell-->
+  <img *ngIf="cell.baseCell" class="cellBase" src="assets/cell/f2/presentar.png" alt="cellBase">
+  <img *ngIf="cell.rayaCell" class="rayaCell" src="assets/cell/f2/rayas.png" alt="rayas">
+  <img id="patadaCell" *ngIf="cell.patadaCell" class="cellPatada" src="assets/fase1/f2/patada.png" alt="cellBase">
+
+  <img id="heridaCellcadena" *ngIf="cell.heridoCell1 || cell.heridoCell2 "
+    [ngClass]="{'heridaCell1': cell.heridoCell1, 'heridaCell2': cell.heridoCell2}" src="assets/cell/f2/heridaCadena.png"
+    alt="heridaCell">
+
+  <img *ngIf="cell.heridoCell2 || cell.heridoCell3 "
+    [ngClass]="{'heridaCell3': cell.heridoCell2, 'heridaCell4': cell.heridoCell3 }"
+    src="assets/cell/f2/heridaCadena.png" alt="heridaCell">
+
+  <img *ngIf="cell.golpeIzCell" class="golpe1" src="assets/cell/f2/golpe1.png" alt="cellGolpe1">
+  <img *ngIf="cell.punioCell" class="cellPuño" src="assets/cell/f2/puño.png" alt="cellPuño">
+  <img *ngIf="cell.golpeDeCell" class="golpe2" src="assets/cell/f2/golpe2.png" alt="cellGolpe2">
+  <img *ngIf="cell.kameCell" class="kameCell" src="assets/cell/f2/kame.png" alt="cellGolpe2">
+  <img *ngIf="cell.cellPierdeCombate" class="pierdeCell" src="assets/cell/f2/herido.png" alt="cellPierde">
+  
+  <!-- celll bocadillos -->
+  <!-- <div *ngIf="consola2.empieza" class="bocadillo">
+    <p class="parrafo">Voy a comprobar el incremento de mi poder, ¡Prepárate! </p>
+  </div> -->
+  <div *ngIf="cell.bocadillo" class="bocadillo">
+    <p class="parrafo">Preciso complentar mi cuerpo</p>
+  </div>
+  
+  <!---efectos-->
+  <img id="KameCell" *ngIf="cell.kameCell " src="assets/efectos/bola2.gif" alt="efectoKi"
+    class="efectokameCell"> 
+  <img id="KameGohan" *ngIf="gohan.kameGohan" src="assets/efectos/bola2.gif" alt="efectoKi"
+    class="efectokameGohan"> 
+  <img id="bolaUnion" *ngIf="unionbola" src="assets/efectos/bolaUnion.gif" alt="efectoKi" class="unionBola">
+  <img *ngIf="cell.heridokameCell" src="assets/efectos/explosion.gif" alt="efectoKi" class="explosion">
+
+  <!---Img explosion-->
+  <div *ngIf="gohan.gohanPierdeExplosion" class="marcoExplision "></div>
+
+ 
+</div>

@@ -18,11 +18,11 @@ export default class CellF2 extends Cell {
     private _heridoCell3: boolean
     private _heridoCell4: boolean
 
+    private _heridokameCell: boolean
     private _kameCell: boolean
     private _cellPierdeCombate: boolean
 
-
-
+    private _bocadillo: boolean
 
     //cosntructor con valores por defecto para no activar animaciones
     constructor(
@@ -35,16 +35,22 @@ export default class CellF2 extends Cell {
         baseCell: boolean = false,
         cargaCell: boolean = false,
         rayaCell: boolean = false,
+
         patadaCell: boolean = false,
         punioCell: boolean = false,
         golpeIzCell: boolean = false,
         golpeDeCell: boolean = false,
+
         heridoCell1: boolean = false,
         heridoCell2: boolean = false,
         heridoCell3: boolean = false,
         heridoCell4: boolean = false,
+
+        heridokameCell: boolean = false,
         kameCell: boolean = false,
         cellPierdeCombate: boolean = false,
+
+        bocadillo: boolean = false,
     ) {
         super(vidaCell, vidaBarraCell, maximaEnergiaCell, acumularCargaCell)
 
@@ -60,8 +66,10 @@ export default class CellF2 extends Cell {
         this._heridoCell2 = heridoCell2
         this._heridoCell3 = heridoCell3
         this._heridoCell4 = heridoCell4
+        this._heridokameCell = heridokameCell
         this._kameCell = kameCell
         this._cellPierdeCombate = cellPierdeCombate
+        this._bocadillo = bocadillo
     }
 
     //get and set
@@ -177,6 +185,14 @@ export default class CellF2 extends Cell {
         return this._kameCell;
     }
 
+    public get heridokameCell(): boolean {
+        return this._heridokameCell;
+    }
+
+    public set heridokameCell(heridokameCell: boolean) {
+        this._heridokameCell = heridokameCell;
+    }
+
     public set kameCell(kameCell: boolean
     ) {
         this._kameCell = kameCell;
@@ -188,5 +204,13 @@ export default class CellF2 extends Cell {
 
     public set cellPierdeCombate(cellPierdeCombate: boolean) {
         this._cellPierdeCombate = cellPierdeCombate;
+    }
+
+    public get bocadillo(): boolean {
+        return this._bocadillo;
+    }
+
+    public set bocadillo(bocadillo: boolean) {
+        this._bocadillo = bocadillo;
     }
 }

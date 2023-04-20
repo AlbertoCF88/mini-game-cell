@@ -45,7 +45,6 @@ export class Fase1Service {
 
   constructor() {
     this.descansoPjs(true);
-    console.log("goahn", this.gohan);
   }
 
   descansoPjs(descanso: boolean) {

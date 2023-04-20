@@ -1,0 +1,23 @@
+<div class="p-0 container pantalla" style="height: 100vh;">
+  <!-- barra vida y energia -->
+  <div>
+    <app-life [gohan]="gohan" [cell]="cell"></app-life>
+    <app-energy [gohan]="gohan" [cell]="cell"></app-energy>
+  </div>
+
+  <div id="juego-pantalla">
+    <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
+
+    <!-- imagenes en pantalla -->
+
+      <app-game-f2-img [gohan]="gohan" [cell]="cell">
+      </app-game-f2-img>
+  
+
+
+
+  </div>
+
+
+
+</div>

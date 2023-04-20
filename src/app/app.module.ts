@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { RingsModule } from './pages/rings/rings.module';
 import { Ring1Module } from './pages/rings/ring1/ring1.module';
-
+import { Ring2Module } from './pages/rings/ring2/ring2.module';
 
 
 @NgModule({
@@ -28,6 +28,7 @@ import { Ring1Module } from './pages/rings/ring1/ring1.module';
     AppRoutingModule,
     RingsModule,
     Ring1Module,
+    Ring2Module,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
