@@ -21,7 +21,7 @@ const routes: Routes = [
     path: 'fase1', component: Ring1PageComponent
   },
   {
-    path: 'fase2', component: Ring2PageComponent
+    path: 'fase2', component: Ring2PageComponent , canActivate: [GuardFase2Guard]
   },
   // {
   //   path: 'rules', component: RulesPageComponent, canActivate: [GuardFase2Guard]

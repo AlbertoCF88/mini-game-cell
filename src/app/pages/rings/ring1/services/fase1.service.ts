@@ -4,6 +4,7 @@ import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject } from 'rxjs';
 import GohanF1 from '../../models/extendedmodels/GohanF1';
 import CellF1 from '../../models/extendedmodels/CellF1';
+import { LocalStorageGuard } from '../../models/localStorageInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,14 @@ export class Fase1Service {
   // vidaBarraGohan 1
   //maxima energia 3
   // acumularCargaGoha 3
-  gohan = new GohanF1(100, 1, 3, 3);
-  
+  gohan: GohanF1;
+
   //Cell
   // vida 200
   // vidaBarraCell 1
   //maxima energia 3
   // acumularCargaCell 3
-  cell = new CellF1(200, 1, 3, 3)
+  cell: CellF1;
 
   //Condiciones fase1
   //contadorGolpeBoton sirve para no abusar de usar el mismo boton
@@ -36,14 +37,28 @@ export class Fase1Service {
   winGif$ = this._winGif.asObservable();
 
   //manejar joystick con la misma instancia para todos los hijos del mismo padre
-  joystick: Joystick = {
-    ocultarBotones: false,
-    ocultarBtnPulsar: false,
-    ocultarTexto: false,
-    texto: '',
-  }
+  joystick: Joystick;
+
+  //manejar el localStorage los avances de las fases
+  localStorageGuard: LocalStorageGuard;
 
   constructor() {
+    this.gohan = new GohanF1(100, 1, 3, 3);
+    this.cell = new CellF1(200, 1, 3, 3)
+    
+    this.joystick = {
+      ocultarBotones: false,
+      ocultarBtnPulsar: false,
+      ocultarTexto: false,
+      texto: '',
+    }
+
+    this.localStorageGuard = {
+      fase1: true,
+      fase2: false,
+      fase3: false,
+    }
+
     this.descansoPjs(true);
   }
 
@@ -453,6 +468,7 @@ export class Fase1Service {
       this.gohan.gohanBase = true;
       this.cell.baseCell = false;
       this.cell.cellPierdeCombate = true;
+      this.localStorage();
       setTimeout(() => {
         this._winGif.next(true);
       }, 3500);
@@ -464,6 +480,11 @@ export class Fase1Service {
       this.cell.cargaCell = true;
       return;
     }
+  }
+
+  localStorage() {
+    this.localStorageGuard.fase2 = true;
+    localStorage.setItem("localStorageGuard", JSON.stringify(this.localStorageGuard));
   }
 
   reintentar() {

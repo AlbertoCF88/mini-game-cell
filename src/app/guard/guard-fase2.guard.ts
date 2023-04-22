@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { LocalStorageGuard } from '../pages/rings/models/localStorageInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,24 +10,36 @@ export class GuardFase2Guard implements CanActivate {
   //la fase 1 obviamente no necesita proteccion , simpre va a estar accesible
   //por no hacer una base de datos, guardo el localStorage el avance del juego
 
-  constructor(private alertIon: AlertController) {}
+  private localStorage: Storage | null = null;
+  private localStorageGuard: LocalStorageGuard;
 
-  canActivate(): boolean{
-    let nivel =  localStorage.getItem('nivel');
+  constructor(private alertIon: AlertController) {
+    this.localStorageGuard = { fase1: true, fase2: false, fase3: false };
+  }
 
-    if(nivel == 'fase2'){
-      return true;
-    }else{
+  canActivate(): boolean {
+    this.localStorage = localStorage;
+    const localString = this.localStorage.getItem('localStorageGuard');
+    
+    if (localString) {
+      this.localStorageGuard = JSON.parse(localString);
+      if ( this.localStorageGuard &&  this.localStorageGuard.fase2 == true) {
+        return true;
+      } else {
+        this.presentAlert();
+        return false;
+      }
+    } else {
       this.presentAlert();
       return false;
     }
   }
-  
+
   async presentAlert() {
     const alert = await this.alertIon.create({
       header: ' ¡Bloqueado! 🔒',
       subHeader: 'Aún no has desbloqueado esta fase',
-      message: 'Primero debes pasarte la 1ºFase',
+      message: 'Primero debes desbloquear la 1º Fase',
       cssClass: 'back-alert',
       buttons: ['OK'],
     });
@@ -34,3 +47,47 @@ export class GuardFase2Guard implements CanActivate {
     await alert.present();
   }
 }
+
+
+// export class GuardFase2Guard implements CanActivate {
+//   //la fase 1 obviamente no necesita proteccion , simpre va a estar accesible
+//   //por no hacer una base de datos, guardo el localStorage el avance del juego
+
+//   private localStorage: Storage | null = null;
+//  // private localStorageGuard: LocalStorageGuard = new LocalStorageGuard();
+
+//   constructor(private alertIon: AlertController) { }
+
+
+//   canActivate(): boolean {
+//     this.localStorage = localStorage;
+//     const localString = this.localStorage.getItem('localStorageGuard');
+//     console.log("localStorageGuard", localString)
+//     if (localString) {
+//       const localStorageGuard = JSON.parse(localString);
+//       console.log("localStorageGuard", localStorageGuard)
+//       console.log(" this.localStorageGuard.fase2",localStorageGuard.fase2)
+//       if (localStorageGuard && localStorageGuard.fase2 == true) {
+//         return true;
+//       } else {
+//         this.presentAlert();
+//         return false;
+//       }
+//     } else {
+//       this.presentAlert();
+//       return false;
+//     }
+//   }
+
+//   async presentAlert() {
+//     const alert = await this.alertIon.create({
+//       header: ' ¡Bloqueado! 🔒',
+//       subHeader: 'Aún no has desbloqueado esta fase',
+//       message: 'Primero debes desbloquear la 1º Fase',
+//       cssClass: 'back-alert',
+//       buttons: ['OK'],
+//     });
+
+//     await alert.present();
+//   }
+// }
