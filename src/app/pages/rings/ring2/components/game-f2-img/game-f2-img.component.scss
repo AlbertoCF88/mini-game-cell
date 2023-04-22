@@ -91,7 +91,7 @@
       forwards;
   }
   
-  .accionPuño2 {
+  .golpeGohan1 {
     z-index  : 95;
     position : absolute;
     width    : 9vw;
@@ -102,7 +102,7 @@
     animation: animaCadena 4s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
   }
   
-  .accionPuño3 {
+  .golpeGohan2 {
     z-index  : 95;
     position : absolute;
     width    : 6vw;
@@ -262,7 +262,7 @@
       cubic-bezier(0.18, 0.89, 0.32, 1.28) backwards;
   }
   
-  .golpegohanCa {
+  .punioGohan1 {
     z-index  : 94;
     position : absolute;
     width    : 8vw;
@@ -273,7 +273,7 @@
     animation: animaCadena 4s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
   }
   
-  .golpegohanCa1 {
+  .punioGohan2 {
     z-index  : 94;
     position : absolute;
     width    : 8vw;

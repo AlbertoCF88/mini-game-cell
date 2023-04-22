@@ -3,22 +3,22 @@
   <img *ngIf="gohan.rayaGohan" class="raya" src="assets/gohan/ss1/rayas.png" alt="rayas">
 
   <img id="golpe2" *ngIf="gohan.golpeGohan1 || gohan.golpeGohan2"
-    [ngClass]="{'accionPuño2':gohan.golpeGohan1, 'accionPuño3':gohan.golpeGohan2 }" src="assets/gohan/ss1/puño2.png"
+    [ngClass]="{'golpeGohan1':gohan.golpeGohan1, 'golpeGohan2':gohan.golpeGohan2 }" src="assets/gohan/ss1/puño2.png"
     alt="golpe">
 
   <img *ngIf="gohan.punioGohan1 || gohan.punioGohan2"
-    [ngClass]="{'golpegohanCa': gohan.punioGohan1, 'golpegohanCa1':gohan.punioGohan2}"
+    [ngClass]="{'punioGohan1': gohan.punioGohan1, 'punioGohan2':gohan.punioGohan2}"
     src="assets/gohan/ss1/gohanGolpe.png" alt="puñetazo">
 
   <img *ngIf="gohan.cargaGohan" class="carga" src="assets/gohan/ss1/gohanCarga.png" alt="gohanCarga">
 
   <img id="gohanHerido" *ngIf="gohan.heridaGohan1 || gohan.heridaGohan2"
     [ngClass]="{'gohanHerida1':gohan.heridaGohan1, 'gohanHerida4':gohan.heridaGohan2}"
-    src="assets/gohan/ss1/gohanHerida.png" alt="gohanHerida">
+    src="assets/gohan/ss1/gohanHeridaF2.png" alt="gohanHerida">
 
   <img *ngIf="gohan.heridaGohan3 || gohan.heridaGohan4"
     [ngClass]="{'gohanHerida2':gohan.heridaGohan3, 'gohanHerida3': gohan.heridaGohan4}"
-    src="assets/gohan/ss1/gohanHerida.png" alt="gohanHerida">
+    src="assets/gohan/ss1/gohanHeridaF2.png" alt="gohanHerida">
 
   <img id="gohanKame" *ngIf="gohan.kameGohan" class="gohanKame" src="assets/gohan/ss1/gohanKame.png" alt="gohanKame">
   <img *ngIf="gohan.gohanPierdeExplosion" class="gohanPierde" src="assets/cell/f2/kame2.png" alt="ganaCell">
@@ -26,7 +26,7 @@
   <!--Cell-->
   <img *ngIf="cell.baseCell" class="cellBase" src="assets/cell/f2/presentar.png" alt="cellBase">
   <img *ngIf="cell.rayaCell" class="rayaCell" src="assets/cell/f2/rayas.png" alt="rayas">
-  <img id="patadaCell" *ngIf="cell.patadaCell" class="cellPatada" src="assets/fase1/f2/patada.png" alt="cellBase">
+  <img id="patadaCell" *ngIf="cell.patadaCell" class="cellPatada" src="assets/cell/f2/patada.png" alt="cellBase">
 
   <img id="heridaCellcadena" *ngIf="cell.heridoCell1 || cell.heridoCell2 "
     [ngClass]="{'heridaCell1': cell.heridoCell1, 'heridaCell2': cell.heridoCell2}" src="assets/cell/f2/heridaCadena.png"

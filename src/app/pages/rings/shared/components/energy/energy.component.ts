@@ -21,10 +21,10 @@ export class EnergyComponent implements OnInit {
   }
 
   private cargasPjs() {
-    for (let i = 1; i <= this.gohan.acumularCargaGohan; i++) {
+    for (let i = 1; i <= this.gohan.maximaEnergiaGohan; i++) {
       this.listEnergiaGohan.push(i);
     }
-    for (let i = 1; i <= this.cell.acumularCargaCell; i++) {
+    for (let i = 1; i <= this.cell.maximaEnergiaCell; i++) {
       this.listEnergiaCell.push(i);
     }
   }

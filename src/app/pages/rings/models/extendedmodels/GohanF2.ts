@@ -7,6 +7,7 @@ export default class GohanF2 extends Gohan {
 
     private _golpeGohan1: boolean;
     private _golpeGohan2: boolean;
+    
     private _punioGohan1: boolean;
     private _punioGohan2: boolean;
 

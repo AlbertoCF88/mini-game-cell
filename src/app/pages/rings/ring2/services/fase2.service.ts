@@ -11,8 +11,8 @@ import CellF2 from '../../models/extendedmodels/CellF2';
 })
 export class Fase2Service {
 
-  gohan = new GohanF2(100, 1, 3, 0);
-  cell = new CellF2(100, 1, 3, 0);
+  gohan : GohanF2 = new GohanF2(100, 1, 3, 0);
+  cell: CellF2 = new CellF2(100, 1, 3, 0);
 
   //Condiciones fase2
 
@@ -60,12 +60,13 @@ export class Fase2Service {
       this.cell.rayaCell = true;
       setTimeout(() => {
         this.cell.patadaCell = true;
-        this.gohan.golpeGohan2 = true;
+        this.gohan.golpeGohan1 = true;
         this.btn1 = true;
         setTimeout(() => {
           this.btncontador();
           this.btn1 = false;
           if (this.contadorGolpeBoton >= 10) {
+            //ganas
             this.contadorGolpeBoton = 0;
             this.cell.patadaCell = false;
             this.cell.heridoCell1 = true;
@@ -76,8 +77,9 @@ export class Fase2Service {
              // this.funCadena2();
             }, 2000);
           } else {
+            //pierdes
             this.contadorGolpeBoton = 0;
-            this.gohan.golpeGohan2 = false;
+            this.gohan.golpeGohan1 = false;
             this.gohan.heridaGohan1 = true;
             this.gohan.vidaGohan = this.gohan.vidaGohan - 15;
             this.barraGohan();
