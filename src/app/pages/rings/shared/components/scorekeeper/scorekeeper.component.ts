@@ -3,6 +3,10 @@ import Gohan from '../../../models/Gohan';
 import Cell from '../../../models/Cell';
 import GohanF1 from '../../../models/extendedmodels/GohanF1';
 import CellF1 from '../../../models/extendedmodels/CellF1';
+import GohanF2 from '../../../models/extendedmodels/GohanF2';
+import CellF2 from '../../../models/extendedmodels/CellF2';
+import { Fase1Service } from '../../../ring1/services/fase1.service';
+import { Fase2Service } from '../../../ring2/services/fase2.service';
 
 @Component({
   selector: 'app-scorekeeper',
@@ -38,6 +42,23 @@ export class ScorekeeperComponent implements OnInit {
     }
     if (this.cell instanceof CellF1) {
       this.cell as CellF1;
+    }
+    // excepcion
+    if (!(this.gohan instanceof Gohan) && !(this.gohan instanceof GohanF1)&& !(this.gohan instanceof GohanF2)) {
+      throw new Error('no es una instancia valida Gohan');
+    }
+    if (!(this.cell instanceof Cell) && !(this.cell instanceof CellF1)&& !(this.cell instanceof CellF2)) {
+      throw new Error('no es una instancia valida Cell');
+    }
+    // servicios
+    if (this.servicio instanceof Fase1Service) {
+      this.servicio as Fase1Service;
+    }
+    if (this.servicio instanceof Fase2Service) {
+      this.servicio as Fase2Service;
+    }
+    if (!(this.servicio instanceof Fase1Service) && !(this.servicio instanceof Fase2Service)){
+      throw new Error('no es una instancia valida de servicio');
     }
   }
 

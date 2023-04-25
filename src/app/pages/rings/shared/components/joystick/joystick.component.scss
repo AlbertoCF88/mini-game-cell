@@ -1,4 +1,4 @@
-#marcoBotonera {
+.marcoBotonera {
     position       : relative;
     z-index        : 99;
     margin         : 0 auto;
@@ -101,5 +101,61 @@
         }
     }
 
+    //btn fase 2
+    .marcoBoton {
+        width   : 100%;
+        bottom  : 0;
+        z-index : 97;
+        opacity : 1;
+        position: absolute;
+
+        .botonContador {
+            width : 12vw;
+            height: 12vw;
+        }
+
+        .botonF2 {
+            border-radius  : 100%;
+            display        : flex;
+            justify-content: center;
+            align-items    : center;
+            text-align     : center;
+            box-sizing     : border-box;
+            background     : #0000004a;
+            transition     : all ease 0.1s;
+            border-radius  : 1px solid black !important;
+        }
+
+        .botonF2:active {
+            background: transparent;
+
+        }
+
+
+    }
+
+    .cadena1 {
+        position: relative;
+        bottom  : 23vw;
+        left    : 18vw;
+    }
+
+    .cadena2 {
+        position: relative;
+        bottom  : 29vw;
+        left    : 34vw;
+    }
+
+    .cadena3 {
+        position: relative;
+        bottom  : 18vw;
+        left    : 71vw;
+    }
+
+    .cadena4 {
+        position: relative;
+        bottom  : 25vw;
+        left    : 11vw;
+    }
 
 }

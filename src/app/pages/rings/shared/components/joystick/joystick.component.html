@@ -1,4 +1,4 @@
-<div id="marcoBotonera">
+<div class="marcoBotonera">
 
   <!-- texto -->
   <div id="wait" *ngIf="joy.texto !='' ">
@@ -41,5 +41,16 @@
       </button>
     </div>
   </ng-container>
+
+
+  <!-- boton Fase2 -->
+  <div *ngIf="btnFase2Activar" class="marcoBoton">
+    <div
+      [ngClass]="{'cadena1': btnStyle===1, 'cadena2': btnStyle===2,'cadena3': btnStyle===3,'cadena4': btnStyle===4 }">
+      <button class="botonF2 botonContador" (click)="btnContadorFase2()">
+        <img src="assets/botones/golpe.svg" alt="btn" class="icono">
+      </button>
+    </div>
+  </div>
 
 </div>
