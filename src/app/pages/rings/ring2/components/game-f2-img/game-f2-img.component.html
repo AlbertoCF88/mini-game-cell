@@ -22,7 +22,7 @@
 
   <img id="gohanKame" *ngIf="gohan.kameGohan" class="gohanKame" src="assets/gohan/ss1/gohanKame.png" alt="gohanKame">
   <img *ngIf="gohan.gohanPierdeExplosion" class="gohanPierde" src="assets/cell/f2/kame2.png" alt="ganaCell">
-  
+
   <!--Cell-->
   <img *ngIf="cell.baseCell" class="cellBase" src="assets/cell/f2/presentar.png" alt="cellBase">
   <img *ngIf="cell.rayaCell" class="rayaCell" src="assets/cell/f2/rayas.png" alt="rayas">
@@ -32,8 +32,8 @@
     [ngClass]="{'heridaCell1': cell.heridoCell1, 'heridaCell2': cell.heridoCell2}" src="assets/cell/f2/heridaCadena.png"
     alt="heridaCell">
 
-  <img *ngIf="cell.heridoCell2 || cell.heridoCell3 "
-    [ngClass]="{'heridaCell3': cell.heridoCell2, 'heridaCell4': cell.heridoCell3 }"
+  <img *ngIf="cell.heridoCell3 || cell.heridoCell4 "
+    [ngClass]="{'heridaCell3': cell.heridoCell3, 'heridaCell4': cell.heridoCell4 }"
     src="assets/cell/f2/heridaCadena.png" alt="heridaCell">
 
   <img *ngIf="cell.golpeIzCell" class="golpe1" src="assets/cell/f2/golpe1.png" alt="cellGolpe1">
@@ -41,7 +41,7 @@
   <img *ngIf="cell.golpeDeCell" class="golpe2" src="assets/cell/f2/golpe2.png" alt="cellGolpe2">
   <img *ngIf="cell.kameCell" class="kameCell" src="assets/cell/f2/kame.png" alt="cellGolpe2">
   <img *ngIf="cell.cellPierdeCombate" class="pierdeCell" src="assets/cell/f2/herido.png" alt="cellPierde">
-  
+
   <!-- celll bocadillos -->
   <!-- <div *ngIf="consola2.empieza" class="bocadillo">
     <p class="parrafo">Voy a comprobar el incremento de mi poder, ¡Prepárate! </p>
@@ -49,17 +49,17 @@
   <div *ngIf="cell.bocadillo" class="bocadillo">
     <p class="parrafo">Preciso complentar mi cuerpo</p>
   </div>
-  
+
   <!---efectos-->
   <img id="KameCell" *ngIf="cell.kameCell " src="assets/efectos/bola2.gif" alt="efectoKi"
-    class="efectokameCell"> 
+    class="efectokameCell">
   <img id="KameGohan" *ngIf="gohan.kameGohan" src="assets/efectos/bola2.gif" alt="efectoKi"
-    class="efectokameGohan"> 
-  <img id="bolaUnion" *ngIf="unionbola" src="assets/efectos/bolaUnion.gif" alt="efectoKi" class="unionBola">
+    class="efectokameGohan">
+  <img #bolaUnion *ngIf="unionbola" src="assets/efectos/bolaUnion.gif" alt="efectoKi" class="unionBola">
   <img *ngIf="cell.heridokameCell" src="assets/efectos/explosion.gif" alt="efectoKi" class="explosion">
 
   <!---Img explosion-->
   <div *ngIf="gohan.gohanPierdeExplosion" class="marcoExplision "></div>
 
- 
+
 </div>

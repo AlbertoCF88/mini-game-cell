@@ -45,7 +45,7 @@ export class Fase1Service {
   constructor() {
     this.gohan = new GohanF1(100, 1, 3, 3);
     this.cell = new CellF1(200, 1, 3, 3)
-    
+
     this.joystick = {
       ocultarBotones: false,
       ocultarBtnPulsar: false,
