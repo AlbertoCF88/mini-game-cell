@@ -37,7 +37,6 @@
   <img *ngIf="cell.cargaCell" class="efectoKiCell" src="assets/efectos/ki1.png" alt="efectoKi">
   <img *ngIf="gohan.cargaGohan" class="efectoCargaGohan" src="assets/efectos/ki1.png" alt="efectoKi">
   <img *ngIf="cell.kameCell && gohan.kameGohan" class="efectokameCell" src="assets/efectos/bolaKi2.png" alt="efectoKi">
-  -->
 
   <img #kameCell *ngIf="cell.kameCell " src="assets/efectos/kame.gif" alt="efectoKi"
     [ngClass]="{'efectokameCell2': cell.kameCell && !gohan.kameGohan, 'choqueCell': cell.kameCell && gohan.kameGohan}">

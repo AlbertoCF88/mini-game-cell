@@ -16,7 +16,19 @@
     /*retraso*/
     forwards;
 }
-
+.cellBase {
+  z-index  : 94;
+  position : absolute;
+  width    : 16vw;
+  height   : auto;
+  bottom   : 4vw;
+  right    : 11vw;
+  animation: cell3 2s
+    /*duracion*/
+    cubic-bezier(0.18, 0.89, 0.32, 1.28)
+    /*retraso*/
+    forwards;
+}
 @keyframes gohan3 {
 
   /*inicio*/
@@ -316,8 +328,13 @@
     right: 78vw;
   }
 
+  99% {
+    opacity: 1;
+  }
+
   100% {
-    right: 49vw;
+    right  : 49vw;
+    opacity: 0;
   }
 }
 
@@ -535,8 +552,13 @@
     ;
   }
 
+  99% {
+    opacity: 1;
+  }
+
   100% {
-    right: 44vw;
+    right  : 44vw;
+    opacity: 0;
   }
 }
 
@@ -594,4 +616,21 @@
   background-size : cover;
   background-image: fixed;
   background-image: no-repeat;
+  animation: explode 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50%{
+    transform: scale(3);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

@@ -16,14 +16,13 @@ export class GameF2ImgComponent implements OnInit {
   @Input() cell!: CellF2;
 
   unionbola!: boolean;
-  moverBola!: Subscription;
 
   constructor(private f2: Fase2Service, private render: Renderer2) { }
 
   ngOnInit() {
     this.activarBolaGigante();
     this.kameVsKame()
-
+    this.cellmueveBola();
   }
 
   activarBolaGigante() {
@@ -31,54 +30,63 @@ export class GameF2ImgComponent implements OnInit {
       next: (activar: boolean) => {
         this.unionbola = activar;
 
-        if(this.unionbola===true){
-
-          this.cellmueveBola();
-        }
       }
     });
   }
 
   kameVsKame() {
-
-
-    this.moverBola = this.f2.kameVsStyle$.subscribe(
+    //detecta cada vez que aprietas el btn
+    this.f2.kameVsStyle$.subscribe(
       (applyStyle: boolean) => {
         const bolaUnion = this.bolaUnion?.nativeElement;
         if (applyStyle) {
           this.f2.cell.poderCell = this.f2.cell.poderCell - 0.5;
-
           this.render.setStyle(bolaUnion, 'right', this.f2.cell.poderCell + 'vw');
-
-
-          // if (!this.servicio.joystick.ocultarBtnPulsar && this.servicio.joystick.texto === 'Gohan sale victorioso') {
-          //   //ganas
-          //   this.render.addClass(kameGohan, 'kameWin');
-          //   this.render.addClass(kameCell, 'kameCellPierde');
-          // }
-          // if (!this.servicio.joystick.ocultarBtnPulsar && this.servicio.joystick.texto === 'Cell sale victorioso') {
-          //   //pierdes
-          //   this.render.setStyle(kameGohan, 'opacity', 0);
-          //   this.render.setStyle(kameCell, 'width', 64 + '%');
-          // }
         }
-
       });
   }
 
   cellmueveBola() {
-    const bolaUnion = this.bolaUnion?.nativeElement;
-    console.log("bolaUnion",bolaUnion)
-    setInterval(() => {
-      this.cell.poderCell = this.cell.poderCell + 0.5;
-      this.render.setStyle(bolaUnion, 'right', this.f2.cell.poderCell + 'vw');
-    }, 1000)
-  }
+    this.f2.cellBola$.subscribe(
+      (activar: boolean) => {
+        const bolaUnion = this.bolaUnion?.nativeElement;
+        if (activar) {
+          console.log("bolaUnion", bolaUnion)
+          let stopInterval = setInterval(() => {
+            this.render.setStyle(bolaUnion, 'right', this.f2.cell.poderCell + 'vw');
+            this.f2.cell.poderCell = this.f2.cell.poderCell + 0.5;
+            console.log("poder cell", this.f2.cell.poderCell)
+            //comprobar ganador del combate
+            if (this.cell.poderCell <= 10 || this.cell.poderCell >= 72) {
+              clearInterval(stopInterval);
+              if (this.cell.poderCell <= 10) {
+                //ganas
+                this.unionbola = false;
+                this.f2.joystick.ocultarBtnPulsar = false;
+                this.gohan.kameGohan = false;
+                this.cell.kameCell = false;
+                this.cell.cellPierdeCombate = true;
+                this.cell.heridokameCell = true;
+                this.cell.vidaCell = 0;
+                this.f2.barraCEll();
+              } else {
+                //pierdes
+                this.unionbola = false;
+                this.f2.joystick.ocultarBtnPulsar = false;
+                this.gohan.kameGohan = false;
+                this.cell.kameCell = false;
+                this.cell.baseCell = true;
+                this.gohan.vidaGohan = 0;
+                this.f2.barraGohan();
+                this.f2.gohan.gohanPierdeExplosion = true;
+                this.f2.cell.baseCell=false;
+              }
 
 
-
-  ngOnDestroy() {
-    this.moverBola.unsubscribe();
+            }
+          }, this.f2.fallos)
+        }
+      });
   }
 
 }

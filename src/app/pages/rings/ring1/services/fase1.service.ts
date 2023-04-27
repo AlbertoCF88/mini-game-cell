@@ -60,6 +60,7 @@ export class Fase1Service {
     }
 
     this.descansoPjs(true);
+    this.localStorage();
   }
 
   descansoPjs(descanso: boolean) {

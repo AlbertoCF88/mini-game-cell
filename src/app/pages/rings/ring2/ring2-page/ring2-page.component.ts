@@ -13,6 +13,8 @@ export class Ring2PageComponent implements OnInit {
   gohan!: GohanF2;
   cell!: CellF2;
 
+  ocultarPresentacion: boolean = true;
+  
   constructor(private fase2: Fase2Service) { }
 
   ngOnInit() {

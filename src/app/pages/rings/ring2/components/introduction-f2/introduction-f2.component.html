@@ -1,0 +1,14 @@
+<div id="marcoPersonajes">
+  <!-- entrada gohan -->
+  <img *ngIf="gohan.gohanBase" class="gohanBase" src="assets/gohan/ss1/gohanBase.png" alt="Gohan" />
+  <img *ngIf="gohan.cargaGohan" class="carga" src="assets/gohan/ss1/gohanCarga.png" alt="gohanCarga" />
+  <img *ngIf="gohan.cargaGohan" class="efectoCargaGohan" src="assets/efectos/ki1.png" alt="efectoKi" />
+  <!-- entrada cell-->
+  <img *ngIf="cell.baseCell" class="cellBase" src="assets/cell/f2/presentar.png" alt="cellBase" />
+  <img *ngIf="cell.cargaCell" class="cellCarga" src="assets/cell/f2/carga.png" alt="cellCarga" />
+  <img *ngIf="cell.cargaCell" class="efectoKiCell" src="assets/efectos/ki1.png" alt="efectoKi" />
+  
+  <div *ngIf="cell.bocadillo" class="bocadillo">
+    <p class="parrafo">Voy a comprobar el incremento de mi poder, ¡Prepárate!  </p>
+</div>
+</div>

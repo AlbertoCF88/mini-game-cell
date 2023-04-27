@@ -8,7 +8,7 @@
       </div>
 
       <span
-        [ngClass]="gohan.maximaEnergiaGohan && gohan.acumularCargaGohan === 3 ? 'max ps-2' :'maxVacio ps-2' ">Max.</span>
+        [ngClass]="gohan.maximaEnergiaGohan && gohan.acumularCargaGohan === gohan.maximaEnergiaGohan ? 'max ps-2' :'maxVacio ps-2' ">Max.</span>
 
     </div>
   </div>
@@ -17,7 +17,7 @@
     <div class="d-flex justify-content-center align-items-center">
 
       <span
-        [ngClass]="cell.maximaEnergiaCell && cell.acumularCargaCell === 3 ? 'max pe-2' :'maxVacio pe-2' ">Max.</span>
+        [ngClass]="cell.maximaEnergiaCell && cell.acumularCargaCell === cell.maximaEnergiaCell ? 'max pe-2' :'maxVacio pe-2' ">Max.</span>
 
       <div *ngFor="let carga of  listEnergiaCell; let i = index" class="formaEnergia"
         [ngClass]="i < cell.acumularCargaCell ? 'energia':'energiaVacio' ">

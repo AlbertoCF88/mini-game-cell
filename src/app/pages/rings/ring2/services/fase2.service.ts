@@ -34,6 +34,8 @@ export class Fase2Service {
   private _kameVsStyle = new BehaviorSubject<boolean>(false);
   kameVsStyle$ = this._kameVsStyle.asObservable();
 
+  private _cellBola = new BehaviorSubject<boolean>(false);
+  cellBola$ = this._cellBola.asObservable();
   //fallos hace que la bola final sea mas rapida o mas lenta segun los fallos de las pulsaciones de los botones
   fallos: number = 400;
 
@@ -50,7 +52,7 @@ export class Fase2Service {
     this.descansoPjs(true);
 
     //this.randomSwitch();
-    this.combateFinal();
+   // this.combateFinal();
   }
 
 
@@ -284,20 +286,22 @@ export class Fase2Service {
   }
 
   combateFinal() {
-    this.gohan.kameGohan = true;
-    this.cell.kameCell = true;
-    this.gohan.acumularCargaGohan = 0;
-    this.cell.acumularCargaCell = 0;
+    this.gohan.rayaGohan = true;
+    this.cell.rayaCell = true;
     setTimeout(() => {
+      this.descansoPjs(false);
+      this.gohan.kameGohan = true;
+      this.cell.kameCell = true;
+      this.gohan.acumularCargaGohan = 0;
+      this.cell.acumularCargaCell = 0;
       setTimeout(() => {
-        this._unionbola.next(true)
-        this.joystick.ocultarBtnPulsar = true;
-        //al mismo tiempo que el jugar pulsa para mover la bola
-        //la bola se mueve sola cada cierto tiempo hacia el jugador
-        //la rapidez de la bola depende de los fallos
-        // setInterval(() => {
-        //   this.cell.poderCell = this.cell.poderCell + 0.5;
-        // }, 1000)
+        setTimeout(() => {
+          this._unionbola.next(true)
+          this.joystick.ocultarBtnPulsar = true;
+          setTimeout(() => {
+            this._cellBola.next(true);
+          }, 500);
+        }, 2000);
       }, 2000);
     }, 2000);
   }
@@ -306,6 +310,9 @@ export class Fase2Service {
     //cada vez que es pulsado este btn mueve la bola gigante
     this._kameVsStyle.next(true)
   }
+
+
+
 
   resetarAnimaciones() {
     this.descansoPjs(false)
@@ -331,14 +338,14 @@ export class Fase2Service {
     this.cell.heridoCell4 = false;
   }
 
-  resetearFase(){
+  resetearFase() {
     this.cell.poderCell = 43;
-    this.gohan.vidaGohan=100;
-    this.cell.vidaCell=100;
+    this.gohan.vidaGohan = 100;
+    this.cell.vidaCell = 100;
     this.gohan.acumularCargaGohan = 0;
     this.cell.acumularCargaCell = 0;
-    this.fallos=400;
-    this.explosion= false;
+    this.fallos = 400;
+    this.explosion = false;
     this.barraGohan();
     this.barraCEll();
     this.resetarAnimaciones();
