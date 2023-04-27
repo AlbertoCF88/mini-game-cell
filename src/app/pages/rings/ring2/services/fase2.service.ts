@@ -14,6 +14,10 @@ export class Fase2Service {
   cell: CellF2 = new CellF2(100, 1, 4, 0);
 
   //Condiciones fase2
+  //cadenas son las veces aleatoriamente que va a generar botones cadena
+  cadenas: number = 0;
+  //vecesEntrasRandomSwitch es un contador para salir del bucle randomSwitch
+  vecesEntrasRandomSwitch: number = 0
 
   //contadorGolpeBoton sirve para contar las veces que le das a cada btn que sale en pantalla
   contadorGolpeBoton: number = 0;
@@ -49,12 +53,8 @@ export class Fase2Service {
       ocultarTexto: false,
       texto: '',
     }
-    this.descansoPjs(true);
-
-    //this.randomSwitch();
-   // this.combateFinal();
+   this.randomCadenas()
   }
-
 
   descansoPjs(descanso: boolean) {
     this.gohan.gohanBase = descanso;
@@ -73,29 +73,17 @@ export class Fase2Service {
     this.gohan.vidaBarraGohan = (this.gohan.vidaGohan * 1) / 100;
   }
 
-  randomSwitch() {
-    let i = 0;
-    const interval = setInterval(() => {
-      switch (Math.floor(Math.random() * 4) + 1) {
-        case 1:
-          this.cadena1();
-          break;
-        case 2:
-          this.cadena2();
-          break;
-        case 3:
-          this.cadena3();
-          break;
-        case 4:
-          this.cadena4();
-          break;
-      }
-      i++;
-      if (i >= Math.floor(Math.random() * 3) + 8) {
-        clearInterval(interval);
-      }
-    }, 5000);
+  randomCadenas() {
+    this.cadenas = Math.floor(Math.random() * 3) + 8;
+  }
 
+  randomSwitch() {
+    this.vecesEntrasRandomSwitch++
+    if (this.cadenas === this.vecesEntrasRandomSwitch) {
+      //salir del bucles
+      this.combateFinal();
+      return;
+    }
     switch (Math.floor(Math.random() * 4) + 1) {
       case 1:
         this.cadena1();
@@ -113,175 +101,174 @@ export class Fase2Service {
   }
 
   cadena1() {
+    this.descansoPjs(false);
+    this.gohan.rayaGohan = true;
+    this.cell.rayaCell = true;
     setTimeout(() => {
-      this.descansoPjs(false);
-      this.gohan.rayaGohan = true;
-      this.cell.rayaCell = true;
+      this.cell.patadaCell = true;
+      this.gohan.golpeGohan1 = true;
+      this._btnActivar.next(true);
+      this._btnStyle.next(1);
       setTimeout(() => {
-        this.cell.patadaCell = true;
-        this.gohan.golpeGohan1 = true;
-        this._btnActivar.next(true);
-        this._btnStyle.next(1);
-        setTimeout(() => {
-          this.btncontador();
-          this._btnActivar.next(false);
-          if (this.contadorGolpeBoton >= 10) {
-            //ganas
-            this.contadorGolpeBoton = 0;
-            this.cell.patadaCell = false;
-            this.cell.heridoCell1 = true;
-            this.cell.vidaCell = this.cell.vidaCell - 8;
-            this.barraCEll();
-            setTimeout(() => {
-              this.resetarAnimaciones()
-            }, 2000);
-          } else {
-            //pierdes
-            this.fallos = this.fallos - 10;
-            this.contadorGolpeBoton = 0;
-            this.gohan.golpeGohan1 = false;
-            this.gohan.heridaGohan1 = true;
-            this.gohan.vidaGohan = this.gohan.vidaGohan - 8;
-            this.barraGohan();
-            this.fallos = this.fallos - 50;
-            setTimeout(() => {
-              this.resetarAnimaciones()
-            }, 2000);
-            return;
-          }
-        }, 2000);
+        this.btncontador();
+        this._btnActivar.next(false);
+        if (this.contadorGolpeBoton >= 10) {
+          //ganas
+          this.contadorGolpeBoton = 0;
+          this.cell.patadaCell = false;
+          this.cell.heridoCell1 = true;
+          this.cell.vidaCell = this.cell.vidaCell - 8;
+          this.barraCEll();
+          setTimeout(() => {
+            this.resetarAnimaciones()
+            this.randomSwitch();
+          }, 2000);
+        } else {
+          //pierdes
+          this.fallos = this.fallos - 10;
+          this.contadorGolpeBoton = 0;
+          this.gohan.golpeGohan1 = false;
+          this.gohan.heridaGohan1 = true;
+          this.gohan.vidaGohan = this.gohan.vidaGohan - 8;
+          this.barraGohan();
+          this.fallos = this.fallos - 50;
+          setTimeout(() => {
+            this.resetarAnimaciones()
+            this.randomSwitch();
+          }, 2000);
+          return;
+        }
       }, 2000);
-    }, 5000);
+    }, 2000);
     return;
   }
 
   cadena2() {
+    this.descansoPjs(false);
+    this.gohan.rayaGohan = true;
+    this.cell.rayaCell = true;
     setTimeout(() => {
-      this.descansoPjs(false);
-      this.gohan.rayaGohan = true;
-      this.cell.rayaCell = true;
+      this.cell.golpeIzCell = true;
+      this.gohan.punioGohan2 = true;
+      this._btnActivar.next(true);
+      this._btnStyle.next(2);
       setTimeout(() => {
-        this.cell.golpeIzCell = true;
-        this.gohan.punioGohan2 = true;
-        this._btnActivar.next(true);
-        this._btnStyle.next(2);
-        setTimeout(() => {
-          this.btncontador();
-          this._btnActivar.next(false);
-          if (this.contadorGolpeBoton >= 10) {
-            //ganas
-            this.contadorGolpeBoton = 0;
-            this.cell.golpeIzCell = false;
-            this.cell.heridoCell2 = true;
-            this.cell.vidaCell = this.cell.vidaCell - 8;
-            this.barraCEll();
-            setTimeout(() => {
-              this.resetarAnimaciones()
-            }, 2000);
-          } else {
-            //pierdes
-            this.fallos = this.fallos - 10;
-            this.contadorGolpeBoton = 0;
-            this.gohan.punioGohan2 = false;
-            this.gohan.heridaGohan3 = true;
-            this.gohan.vidaGohan = this.gohan.vidaGohan - 8;
-            this.barraGohan();
-            this.fallos = this.fallos - 50;
-            setTimeout(() => {
-              this.resetarAnimaciones()
-            }, 2000);
-            return;
-          }
-        }, 2000);
+        this.btncontador();
+        this._btnActivar.next(false);
+        if (this.contadorGolpeBoton >= 10) {
+          //ganas
+          this.contadorGolpeBoton = 0;
+          this.cell.golpeIzCell = false;
+          this.cell.heridoCell2 = true;
+          this.cell.vidaCell = this.cell.vidaCell - 8;
+          this.barraCEll();
+          setTimeout(() => {
+            this.resetarAnimaciones()
+            this.randomSwitch();
+          }, 2000);
+        } else {
+          //pierdes
+          this.fallos = this.fallos - 10;
+          this.contadorGolpeBoton = 0;
+          this.gohan.punioGohan2 = false;
+          this.gohan.heridaGohan3 = true;
+          this.gohan.vidaGohan = this.gohan.vidaGohan - 8;
+          this.barraGohan();
+          this.fallos = this.fallos - 50;
+          setTimeout(() => {
+            this.resetarAnimaciones()
+            this.randomSwitch();
+          }, 2000);
+          return;
+        }
       }, 2000);
-    }, 5000);
+    }, 2000);
     return;
   }
+
   cadena3() {
+    this.descansoPjs(false);
+    this.gohan.rayaGohan = true;
+    this.cell.rayaCell = true;
     setTimeout(() => {
-      this.descansoPjs(false);
-      this.gohan.rayaGohan = true;
-      this.cell.rayaCell = true;
+      this.cell.punioCell = true;
+      this.gohan.golpeGohan2 = true;
+      this._btnActivar.next(true);
+      this._btnStyle.next(3);
       setTimeout(() => {
-        this.cell.punioCell = true;
-        this.gohan.golpeGohan2 = true;
-        this._btnActivar.next(true);
-        this._btnStyle.next(3);
-        setTimeout(() => {
-          this.btncontador();
-          this._btnActivar.next(false);
-          if (this.contadorGolpeBoton >= 10) {
-            //ganas
-            this.contadorGolpeBoton = 0;
-            this.cell.punioCell = false;
-            this.cell.heridoCell3 = true;
-            this.cell.vidaCell = this.cell.vidaCell - 8;
-            this.barraCEll();
-            setTimeout(() => {
-              this.resetarAnimaciones()
-            }, 2000);
-          } else {
-            //pierdes
-            this.fallos = this.fallos - 10;
-            this.contadorGolpeBoton = 0;
-            this.gohan.golpeGohan2 = false;
-            this.gohan.heridaGohan4 = true;
-            this.gohan.vidaGohan = this.gohan.vidaGohan - 8;
-            this.barraGohan();
-            this.fallos = this.fallos - 50;
-            setTimeout(() => {
-              this.resetarAnimaciones()
-            }, 2000);
-            return;
-          }
-        }, 2000);
+        this.btncontador();
+        this._btnActivar.next(false);
+        if (this.contadorGolpeBoton >= 10) {
+          //ganas
+          this.contadorGolpeBoton = 0;
+          this.cell.punioCell = false;
+          this.cell.heridoCell3 = true;
+          this.cell.vidaCell = this.cell.vidaCell - 8;
+          this.barraCEll();
+          setTimeout(() => {
+            this.resetarAnimaciones()
+            this.randomSwitch();
+          }, 2000);
+        } else {
+          //pierdes
+          this.fallos = this.fallos - 10;
+          this.contadorGolpeBoton = 0;
+          this.gohan.golpeGohan2 = false;
+          this.gohan.heridaGohan4 = true;
+          this.gohan.vidaGohan = this.gohan.vidaGohan - 8;
+          this.barraGohan();
+          this.fallos = this.fallos - 50;
+          setTimeout(() => {
+            this.resetarAnimaciones()
+            this.randomSwitch();
+          }, 2000);
+          return;
+        }
       }, 2000);
-    }, 5000);
+    }, 2000);
     return;
   }
-
-
 
   cadena4() {
+    this.descansoPjs(false);
+    this.gohan.rayaGohan = true;
+    this.cell.rayaCell = true;
     setTimeout(() => {
-      this.descansoPjs(false);
-      this.gohan.rayaGohan = true;
-      this.cell.rayaCell = true;
+      this.cell.golpeDeCell = true;
+      this.gohan.punioGohan1 = true;
+      this._btnActivar.next(true);
+      this._btnStyle.next(4);
       setTimeout(() => {
-        this.cell.golpeDeCell = true;
-        this.gohan.punioGohan1 = true;
-        this._btnActivar.next(true);
-        this._btnStyle.next(4);
-        setTimeout(() => {
-          this.btncontador();
-          this._btnActivar.next(false);
-          if (this.contadorGolpeBoton >= 10) {
-            //ganas
-            this.contadorGolpeBoton = 0;
-            this.cell.golpeDeCell = false;
-            this.cell.heridoCell4 = true;
-            this.cell.vidaCell = this.cell.vidaCell - 8;
-            this.barraCEll();
-            setTimeout(() => {
-              this.resetarAnimaciones()
-            }, 2000);
-          } else {
-            //pierdes
-            this.fallos = this.fallos - 10;
-            this.contadorGolpeBoton = 0;
-            this.gohan.punioGohan1 = false;
-            this.gohan.heridaGohan2 = true;
-            this.gohan.vidaGohan = this.gohan.vidaGohan - 8;
-            this.barraGohan();
-            this.fallos = this.fallos - 50;
-            setTimeout(() => {
-              this.resetarAnimaciones()
-            }, 2000);
-            return;
-          }
-        }, 2000);
+        this.btncontador();
+        this._btnActivar.next(false);
+        if (this.contadorGolpeBoton >= 10) {
+          //ganas
+          this.contadorGolpeBoton = 0;
+          this.cell.golpeDeCell = false;
+          this.cell.heridoCell4 = true;
+          this.cell.vidaCell = this.cell.vidaCell - 8;
+          this.barraCEll();
+          setTimeout(() => {
+            this.resetarAnimaciones()
+            this.randomSwitch();
+          }, 2000);
+        } else {
+          //pierdes
+          this.fallos = this.fallos - 10;
+          this.contadorGolpeBoton = 0;
+          this.gohan.punioGohan1 = false;
+          this.gohan.heridaGohan2 = true;
+          this.gohan.vidaGohan = this.gohan.vidaGohan - 8;
+          this.barraGohan();
+          this.fallos = this.fallos - 50;
+          setTimeout(() => {
+            this.resetarAnimaciones()
+            this.randomSwitch();
+          }, 2000);
+          return;
+        }
       }, 2000);
-    }, 5000);
+    }, 2000);
     return;
   }
 

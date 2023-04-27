@@ -14,17 +14,17 @@ export class Ring2PageComponent implements OnInit {
   cell!: CellF2;
 
   ocultarPresentacion: boolean = true;
-  
+
   constructor(private fase2: Fase2Service) { }
 
   ngOnInit() {
     this.gohan = this.fase2.gohan;
     this.cell = this.fase2.cell;
+
   }
 
   public get servicioF2(): Fase2Service {
     //con esto consigo que todos los componentes hijos tengan la misma instancia del servicio que el padre
     return this.fase2;
   }
-
 }

@@ -14,9 +14,6 @@ export class IntroductionF2Component implements OnInit {
   @Input() gohan!: GohanF2;
   @Input() cell!: CellF2;
 
-  //esto sirve solo para que cuando termine la animacion no cambie bruscamente
-
-
   constructor(private f2: Fase2Service) { }
 
   ngOnInit() {
@@ -41,8 +38,9 @@ export class IntroductionF2Component implements OnInit {
           this.f2.descansoPjs(true);
           this.cell.bocadillo = true;
           setTimeout(() => {
-            this.finPresentacion.emit(false)
-          }, 2800);
+            this.finPresentacion.emit(false);
+            this.f2.randomSwitch();
+          }, 3000);
         }
       }, 500);
 
