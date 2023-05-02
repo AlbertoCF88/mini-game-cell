@@ -21,8 +21,7 @@
     src="assets/gohan/ss1/gohanHeridaF2.png" alt="gohanHerida">
 
   <img id="gohanKame" *ngIf="gohan.kameGohan" class="gohanKame" src="assets/gohan/ss1/gohanKame.png" alt="gohanKame">
-  <img *ngIf="gohan.gohanPierdeExplosion" class="gohanPierde" src="assets/cell/f2/kame2.png" alt="ganaCell">
-
+  
   <!--Cell-->
   <img *ngIf="cell.baseCell" class="cellBase" src="assets/cell/f2/presentar.png" alt="cellBase">
   <img *ngIf="cell.rayaCell" class="rayaCell" src="assets/cell/f2/rayas.png" alt="rayas">
@@ -42,13 +41,10 @@
   <img *ngIf="cell.kameCell" class="kameCell" src="assets/cell/f2/kame.png" alt="cellGolpe2">
   <img *ngIf="cell.cellPierdeCombate" class="pierdeCell" src="assets/cell/f2/herido.png" alt="cellPierde">
 
-  <!-- celll bocadillos -->
-  <!-- <div *ngIf="consola2.empieza" class="bocadillo">
-    <p class="parrafo">Voy a comprobar el incremento de mi poder, ¡Prepárate! </p>
-  </div> -->
   <div *ngIf="cell.bocadillo" class="bocadillo">
     <p class="parrafo">Preciso complentar mi cuerpo</p>
   </div>
+  <img *ngIf="gohan.gohanPierdeCombate" class="gohanPierde" src="assets/cell/f2/kame2.png" alt="ganaCell">
 
   <!---efectos-->
   <img id="KameCell" *ngIf="cell.kameCell " src="assets/efectos/bola2.gif" alt="efectoKi"
@@ -59,7 +55,7 @@
   <img *ngIf="cell.heridokameCell" src="assets/efectos/explosion.gif" alt="efectoKi" class="explosion">
 
   <!---Img explosion-->
-  <div *ngIf="gohan.gohanPierdeExplosion" class="marcoExplision "></div>
+  <div *ngIf="gohan.gohanPierdeCombate" class="marcoExplision "></div>
 
 
 </div>

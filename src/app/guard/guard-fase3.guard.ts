@@ -6,7 +6,7 @@ import { LocalStorageGuard } from '../pages/rings/models/localStorageInterface';
 @Injectable({
   providedIn: 'root'
 })
-export class GuardFase2Guard implements CanActivate {
+export class GuardFase3Guard implements CanActivate {
   //la fase 1 obviamente no necesita proteccion , simpre va a estar accesible
   //por no hacer una base de datos, guardo el localStorage el avance del juego
 
@@ -14,7 +14,7 @@ export class GuardFase2Guard implements CanActivate {
   private localStorageGuard: LocalStorageGuard;
 
   constructor(private alertIon: AlertController) {
-    this.localStorageGuard = { fase1: true, fase2: false, fase3: false };
+    this.localStorageGuard = { fase1: true, fase2: true, fase3: false };
   }
 
   canActivate(): boolean {
@@ -23,7 +23,7 @@ export class GuardFase2Guard implements CanActivate {
     
     if (localString) {
       this.localStorageGuard = JSON.parse(localString);
-      if ( this.localStorageGuard &&  this.localStorageGuard.fase2 == true) {
+      if ( this.localStorageGuard &&  this.localStorageGuard.fase3 == true) {
         return true;
       } else {
         this.presentAlert();
@@ -39,7 +39,7 @@ export class GuardFase2Guard implements CanActivate {
     const alert = await this.alertIon.create({
       header: ' ¡Bloqueado! 🔒',
       subHeader: 'Aún no has desbloqueado esta fase',
-      message: 'Primero debes desbloquear la 1º Fase',
+      message: 'Primero debes desbloquear la 2º Fase',
       cssClass: 'back-alert',
       buttons: ['OK'],
     });

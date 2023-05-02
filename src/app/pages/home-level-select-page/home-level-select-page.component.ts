@@ -25,9 +25,6 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
 
   //  ngAfterViewInit ejecuta despues de pintar el html y asi coger los id de las bolas
   ngAfterViewInit(): void {
-    //creamos la propiedad para is debloqueado niveles
-    localStorage.setItem('nivel', "");
-
     this.randomNumero()
     setInterval(() => { this.randomNumero() }, 5000);
     //Se repite cada 5s igual que la animacion en CSS, 5s infinito

@@ -18,7 +18,6 @@ export class IntroductionF2Component implements OnInit {
 
   ngOnInit() {
     this.presentacionF2();
-
   }
 
   presentacionF2() {
@@ -38,6 +37,7 @@ export class IntroductionF2Component implements OnInit {
           this.f2.descansoPjs(true);
           this.cell.bocadillo = true;
           setTimeout(() => {
+            this.cell.bocadillo = false;
             this.finPresentacion.emit(false);
             this.f2.randomSwitch();
           }, 3000);

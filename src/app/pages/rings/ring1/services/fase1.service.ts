@@ -32,7 +32,7 @@ export class Fase1Service {
   private _kameVsStyle = new BehaviorSubject<boolean>(false);
   kameVsStyle$ = this._kameVsStyle.asObservable();
 
-  // controlar los estilos de kameVskame
+  // controlar si pierdes
   private _winGif = new BehaviorSubject<boolean>(false);
   winGif$ = this._winGif.asObservable();
 
@@ -60,7 +60,6 @@ export class Fase1Service {
     }
 
     this.descansoPjs(true);
-    this.localStorage();
   }
 
   descansoPjs(descanso: boolean) {

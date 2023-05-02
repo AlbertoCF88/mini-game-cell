@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@ang
 import CellF2 from '../../../models/extendedmodels/CellF2';
 import GohanF2 from '../../../models/extendedmodels/GohanF2';
 import { Fase2Service } from '../../services/fase2.service';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-game-f2-img',
@@ -61,6 +61,7 @@ export class GameF2ImgComponent implements OnInit {
               clearInterval(stopInterval);
               if (this.cell.poderCell <= 10) {
                 //ganas
+                this.gohan.gohanBase=true;
                 this.unionbola = false;
                 this.f2.joystick.ocultarBtnPulsar = false;
                 this.gohan.kameGohan = false;
@@ -69,6 +70,12 @@ export class GameF2ImgComponent implements OnInit {
                 this.cell.heridokameCell = true;
                 this.cell.vidaCell = 0;
                 this.f2.barraCEll();
+                setTimeout(() => {
+                  this.cell.bocadillo = true;
+                 setTimeout(() => {
+                   this.f2.cambiarValorWinGif(true);
+                 }, 2500);
+                }, 1500);
               } else {
                 //pierdes
                 this.unionbola = false;
@@ -78,7 +85,7 @@ export class GameF2ImgComponent implements OnInit {
                 this.cell.baseCell = true;
                 this.gohan.vidaGohan = 0;
                 this.f2.barraGohan();
-                this.f2.gohan.gohanPierdeExplosion = true;
+                this.f2.gohan.gohanPierdeCombate = true;
                 this.f2.cell.baseCell=false;
               }
 

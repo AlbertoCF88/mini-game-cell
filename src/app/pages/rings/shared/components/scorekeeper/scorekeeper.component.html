@@ -11,12 +11,12 @@
 
   <!-- animacion  -->
   <ng-container *ngIf="activarGifWin">
-    <img class="winGif" src="assets/cell/f1/winGohan.gif" alt="gif">
+    <img class="winGif" [src]="gif" alt="gif">
   </ng-container>
 
   <!-- boton siguiente -->
   <ng-container *ngIf="btnActivo">
-    <app-btn-cell-next-fase [texto]="'Ir a Fase 2'" [ruta]="'/fase2'">
+    <app-btn-cell-next-fase [texto]="'Ir a Fase {{fase}}'" [fase]="'/fase{{fase}}'">
     </app-btn-cell-next-fase>
   </ng-container>
 

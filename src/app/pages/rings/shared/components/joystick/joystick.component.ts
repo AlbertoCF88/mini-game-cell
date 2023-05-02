@@ -39,21 +39,20 @@ export class JoystickComponent implements OnInit {
   }
 
   activarBotonFase2() {
-    this.servicio.btnActivar$.subscribe({
-      next: (valor: boolean) => {
-        this.btnFase2Activar = valor;
-
-
-      }
-    });
-    this.servicio.btnStyle$.subscribe({
-      next: (numero: number) => {
-        this.btnStyle = numero;
-      }
-    });
+    if(this.servicio  instanceof Fase2Service){
+      this.servicio.btnActivar$.subscribe({
+        next: (valor: boolean) => {
+          this.btnFase2Activar = valor;
+        }
+      });
+      this.servicio.btnStyle$.subscribe({
+        next: (numero: number) => {
+          this.btnStyle = numero;
+        }
+      });
+    }
+   
   }
-
-
 
 
   choqueKames() {

@@ -17,7 +17,7 @@ export default class GohanF2 extends Gohan {
     private _heridaGohan4: boolean;
 
     private _kameGohan: boolean;
-    private _gohanPierdeExplosion: boolean;
+    private _gohanPierdeCombate: boolean;
 
     //activar acciones en vista, ocultar o mostrar animacion
     constructor(
@@ -38,7 +38,7 @@ export default class GohanF2 extends Gohan {
         heridaGohan3: boolean = false,
         heridaGohan4: boolean = false,
         kameGohan: boolean = false,
-        gohanPierdeExplosion: boolean = false,
+        gohanPierdeCombate: boolean = false,
     ) {
         super(vidaGohan, vidaBarraGohan, maximaEnergiaGohan, acumularCargaGohan)
 
@@ -54,7 +54,7 @@ export default class GohanF2 extends Gohan {
         this._heridaGohan3 = heridaGohan3
         this._heridaGohan4 = heridaGohan4
         this._kameGohan = kameGohan
-        this._gohanPierdeExplosion = gohanPierdeExplosion
+        this._gohanPierdeCombate = gohanPierdeCombate
     }
 
     //get and set
@@ -164,12 +164,12 @@ export default class GohanF2 extends Gohan {
         this._kameGohan = kameGohan;
     }
 
-    public get gohanPierdeExplosion(): boolean {
-        return this._gohanPierdeExplosion;
+    public get gohanPierdeCombate(): boolean {
+        return this._gohanPierdeCombate;
     }
 
-    public set gohanPierdeExplosion(gohanPierdeExplosion: boolean) {
-        this._gohanPierdeExplosion = gohanPierdeExplosion;
+    public set gohanPierdeCombate(gohanPierdeCombate: boolean) {
+        this._gohanPierdeCombate = gohanPierdeCombate;
     }
 
 

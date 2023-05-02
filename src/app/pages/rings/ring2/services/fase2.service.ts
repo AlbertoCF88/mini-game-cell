@@ -4,6 +4,7 @@ import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject, Subject } from 'rxjs';
 import GohanF2 from '../../models/extendedmodels/GohanF2';
 import CellF2 from '../../models/extendedmodels/CellF2';
+import { LocalStorageGuard } from '../../models/localStorageInterface';
 
 
 @Injectable({
@@ -45,15 +46,32 @@ export class Fase2Service {
 
   //activar imagen explosion
   explosion: boolean = false;
+  // controlar si pierdes
+
+  private _winGif = new BehaviorSubject<boolean>(false);
+  winGif$ = this._winGif.asObservable();
+
+  //manejar el localStorage los avances de las fases
+  localStorageGuard: LocalStorageGuard;
 
   constructor() {
+    this.localStorageGuard = {
+      fase1: true,
+      fase2: true,
+      fase3: false,
+    }
+
     this.joystick = {
       ocultarBotones: true,
       ocultarBtnPulsar: false,
       ocultarTexto: false,
-      texto: '',
+      texto: 'Ahora debes pulsar el boton 👊 repetidas veces cuando salga.'
     }
-   this.randomCadenas()
+    this.randomCadenas()
+  }
+  
+  cambiarValorWinGif(nuevoValor: boolean) {
+    this._winGif.next(nuevoValor);
   }
 
   descansoPjs(descanso: boolean) {
@@ -78,6 +96,7 @@ export class Fase2Service {
   }
 
   randomSwitch() {
+    this.joystick.texto = '';
     this.vecesEntrasRandomSwitch++
     if (this.cadenas === this.vecesEntrasRandomSwitch) {
       //salir del bucles
@@ -114,6 +133,7 @@ export class Fase2Service {
         this._btnActivar.next(false);
         if (this.contadorGolpeBoton >= 10) {
           //ganas
+          this.joystick.texto = 'Gohan se anota un tanto';
           this.contadorGolpeBoton = 0;
           this.cell.patadaCell = false;
           this.cell.heridoCell1 = true;
@@ -125,6 +145,7 @@ export class Fase2Service {
           }, 2000);
         } else {
           //pierdes
+          this.joystick.texto = 'Cell se anota un tanto';
           this.fallos = this.fallos - 10;
           this.contadorGolpeBoton = 0;
           this.gohan.golpeGohan1 = false;
@@ -157,6 +178,7 @@ export class Fase2Service {
         this._btnActivar.next(false);
         if (this.contadorGolpeBoton >= 10) {
           //ganas
+          this.joystick.texto = 'Gohan se anota un tanto';
           this.contadorGolpeBoton = 0;
           this.cell.golpeIzCell = false;
           this.cell.heridoCell2 = true;
@@ -168,6 +190,7 @@ export class Fase2Service {
           }, 2000);
         } else {
           //pierdes
+          this.joystick.texto = 'Cell se anota un tanto';
           this.fallos = this.fallos - 10;
           this.contadorGolpeBoton = 0;
           this.gohan.punioGohan2 = false;
@@ -200,6 +223,7 @@ export class Fase2Service {
         this._btnActivar.next(false);
         if (this.contadorGolpeBoton >= 10) {
           //ganas
+          this.joystick.texto = 'Gohan se anota un tanto';
           this.contadorGolpeBoton = 0;
           this.cell.punioCell = false;
           this.cell.heridoCell3 = true;
@@ -211,6 +235,7 @@ export class Fase2Service {
           }, 2000);
         } else {
           //pierdes
+          this.joystick.texto = 'Cell se anota un tanto';
           this.fallos = this.fallos - 10;
           this.contadorGolpeBoton = 0;
           this.gohan.golpeGohan2 = false;
@@ -243,6 +268,7 @@ export class Fase2Service {
         this._btnActivar.next(false);
         if (this.contadorGolpeBoton >= 10) {
           //ganas
+          this.joystick.texto = 'Gohan se anota un tanto';
           this.contadorGolpeBoton = 0;
           this.cell.golpeDeCell = false;
           this.cell.heridoCell4 = true;
@@ -254,6 +280,7 @@ export class Fase2Service {
           }, 2000);
         } else {
           //pierdes
+          this.joystick.texto = 'Cell se anota un tanto';
           this.fallos = this.fallos - 10;
           this.contadorGolpeBoton = 0;
           this.gohan.punioGohan1 = false;
@@ -298,9 +325,6 @@ export class Fase2Service {
     this._kameVsStyle.next(true)
   }
 
-
-
-
   resetarAnimaciones() {
     this.descansoPjs(false)
     /**Gohan */
@@ -329,13 +353,39 @@ export class Fase2Service {
     this.cell.poderCell = 43;
     this.gohan.vidaGohan = 100;
     this.cell.vidaCell = 100;
-    this.gohan.acumularCargaGohan = 0;
-    this.cell.acumularCargaCell = 0;
+    this.gohan.acumularCargaGohan = 4;
+    this.cell.acumularCargaCell = 4;
+    this.gohan.maximaEnergiaGohan = 4;
+    this.gohan.cargaGohan = false;
+    this.cell.cargaCell = false;
+    this.cell.maximaEnergiaCell = 4;
+    this.cell.heridokameCell = false;
+    this.cell.kameCell = false;
+    this.cell.cellPierdeCombate = false;
+    this.cell.bocadillo = false;
+    this.gohan.kameGohan = false;
+    this.gohan.gohanPierdeCombate = false;
+
     this.fallos = 400;
     this.explosion = false;
     this.barraGohan();
     this.barraCEll();
-    this.resetarAnimaciones();
+    this.cadenas=0;
+    this.vecesEntrasRandomSwitch = 0;
+    this.randomCadenas()
     this.randomSwitch();
   }
+
+  // ganador() lo compureba game fase2
+
+  localStorage() {
+    this.localStorageGuard.fase3 = true;
+    localStorage.setItem("localStorageGuard", JSON.stringify(this.localStorageGuard));
+  }
+
+  reintentar() {
+    this.resetarAnimaciones();
+    this.resetearFase()
+  }
+
 }
