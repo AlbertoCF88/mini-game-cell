@@ -6,6 +6,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { Ring1PageComponent } from './pages/rings/ring1/ring1-page/ring1-page.component';
 import { RingsModule } from './pages/rings/rings.module';
 import { Ring2PageComponent } from './pages/rings/ring2/ring2-page/ring2-page.component';
+import { GuardFase3Guard } from './guard/guard-fase3.guard';
+import { Ring3PageComponent } from './pages/rings/ring3/ring3-page/ring3-page.component';
 
 
 
@@ -22,6 +24,9 @@ const routes: Routes = [
   },
   {
     path: 'fase2', component: Ring2PageComponent , canActivate: [GuardFase2Guard]
+  },
+  {
+    path: 'fase3', component: Ring3PageComponent , canActivate: [GuardFase3Guard]
   },
   // {
   //   path: 'rules', component: RulesPageComponent, canActivate: [GuardFase2Guard]

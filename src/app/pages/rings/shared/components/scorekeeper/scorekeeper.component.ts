@@ -20,7 +20,8 @@ export class ScorekeeperComponent implements OnInit {
   @Input() servicio!: any;//cualquier servicio pasado por padre
 
   @Input() gif!: string;//url del gif
-  @Input() fase!:string;
+  @Input() ruta!:string;
+  @Input() texto!:string;
 
   activarGifWin: boolean = false;
   btnActivo: boolean = false;

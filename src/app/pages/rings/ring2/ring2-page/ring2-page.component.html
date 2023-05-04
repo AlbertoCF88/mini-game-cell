@@ -1,6 +1,6 @@
 <div class="p-0 container pantalla" style="height: 100vh;">
   <!-- barra vida y energia -->
-  <div>
+  <div [ngClass]="{'opacity-0' : ocultarPresentacion || cell.cellPierdeCombate}">
     <app-life [gohan]="gohan" [cell]="cell"></app-life>
     <app-energy [gohan]="gohan" [cell]="cell"></app-energy>
   </div>
@@ -29,6 +29,6 @@
   </div>
 
   <!-- animacion de perder o ganar -->
-  <app-scorekeeper [gohan]="gohan" [cell]="cell" [servicio]="servicioF2" [gif]="'assets/cell/f2/c-18.gif'" [fase]="'3'"></app-scorekeeper>
+  <app-scorekeeper [gohan]="gohan" [cell]="cell" [servicio]="servicioF2" [gif]="'assets/cell/f2/c-18.gif'" [texto]="'Ir a fase 3'" [ruta]="'/fase3'"></app-scorekeeper>
 
 </div>

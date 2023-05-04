@@ -73,7 +73,9 @@ export class GameF2ImgComponent implements OnInit {
                 setTimeout(() => {
                   this.cell.bocadillo = true;
                  setTimeout(() => {
+                  this.f2.localStorage();
                    this.f2.cambiarValorWinGif(true);
+                   return;
                  }, 2500);
                 }, 1500);
               } else {
