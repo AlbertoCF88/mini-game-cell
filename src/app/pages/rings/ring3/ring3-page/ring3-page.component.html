@@ -1,3 +1,34 @@
-<p>
-  ring3-page works!
-</p>
+<div class="p-0 container pantalla" style="height: 100vh;">
+  <!-- barra vida y energia -->
+  <div [ngClass]="{'opacity-0' : ocultarPresentacion}">
+    <app-life [gohan]="gohan" [cell]="cell"></app-life>
+    <app-energy [gohan]="gohan" [cell]="cell"></app-energy>
+  </div>
+
+  <div id="juego-pantalla">
+    <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
+    <!-- <img src="assets/fondo/fondo2.jpg" class="fondoCerca" alt="fondo2"> -->
+
+    <!-- presentacion -->
+    <!-- <ng-container *ngIf="ocultarPresentacion">
+      <app-introduction-f2 [gohan]="gohan" [cell]="cell" (finPresentacion)="ocultarPresentacion = $event">
+      </app-introduction-f2>
+    </ng-container> -->
+
+    <!-- imagenes en pantalla -->
+    <ng-container *ngIf="!ocultarPresentacion">
+      <app-game-f2-img [gohan]="gohan" [cell]="cell">
+      </app-game-f2-img>
+    </ng-container>
+
+    <!--botonera -->
+    <ng-container>
+      <app-joystick [servicio]="servicioF3">
+      </app-joystick>
+    </ng-container>
+  </div>
+
+  <!-- animacion de perder o ganar -->
+  <!-- <app-scorekeeper [gohan]="gohan" [cell]="cell" [servicio]="servicioF2" [gif]="'assets/cell/f2/c-18.gif'" [texto]="'Ir a fase 3'" [ruta]="'/fase3'"></app-scorekeeper> -->
+
+</div>
