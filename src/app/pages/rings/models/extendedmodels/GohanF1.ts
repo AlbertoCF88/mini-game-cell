@@ -10,7 +10,10 @@ export default class GohanF1 extends Gohan {
     private _contraGohan: boolean;
     private _cargaGohan: boolean;
     private _kameGohan: boolean;
+
     private _heridaGohan: boolean;
+    private _heridaGohanContra1: boolean;
+    private _heridaGohanContra2: boolean;
 
     private _ganaGohan: boolean;
     private _cansadoGohan: boolean;
@@ -33,6 +36,8 @@ export default class GohanF1 extends Gohan {
         cargaGohan: boolean = false,
         kameGohan: boolean = false,
         heridaGohan: boolean = false,
+        heridaGohanContra1: boolean = false,
+        heridaGohanContra2: boolean = false,
         ganaGohan: boolean = false,
         cansadoGohan: boolean = false,
         heridaKame: boolean = false,
@@ -48,6 +53,8 @@ export default class GohanF1 extends Gohan {
         this._cargaGohan = cargaGohan
         this._kameGohan = kameGohan
         this._heridaGohan = heridaGohan
+        this._heridaGohanContra1 = heridaGohan
+        this._heridaGohanContra2 = heridaGohan
         this._ganaGohan = ganaGohan
         this._cansadoGohan = cansadoGohan
         this._heridaKame = heridaKame
@@ -118,6 +125,23 @@ export default class GohanF1 extends Gohan {
 
     public set heridaGohan(heridaGohan: boolean) {
         this._heridaGohan = heridaGohan;
+    }
+
+    public get heridaGohanContra1(): boolean {
+        return this._heridaGohanContra1;
+    }
+
+    public set heridaGohanContra1(heridaGohanContra1: boolean
+    ) {
+        this._heridaGohanContra1 = heridaGohanContra1;
+    }
+
+    public get heridaGohanContra2(): boolean {
+        return this._heridaGohanContra2;
+    }
+
+    public set heridaGohanContra2(heridaGohanContra2: boolean) {
+        this._heridaGohanContra2 = heridaGohanContra2;
     }
 
     public get ganaGohan(): boolean {

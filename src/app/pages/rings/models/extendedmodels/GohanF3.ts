@@ -3,13 +3,18 @@ import Gohan from "../Gohan";
 export default class GohanF3 extends Gohan {
 
     private _base: boolean;
+
     private _raya: boolean;
+    private _rayaContra1: boolean;
+
     private _carga: boolean;
     private _defensa: boolean;
 
     private _gancho: boolean;
-    private _patada: boolean;
-
+    //contra
+    private _patada1: boolean;
+    private _patada2: boolean;
+    
     private _rafaga: boolean;
     private _cargaKame: boolean;
     private _kame: boolean;
@@ -24,12 +29,13 @@ export default class GohanF3 extends Gohan {
         maximaEnergiaGohan: number,
         acumularCargaGohan: number,
 
-        base:boolean = false,
+        base: boolean = false,
         raya: boolean = false,
-        carga:boolean = false,
+        rayaContra1: boolean = false,
+        carga: boolean = false,
         defensa: boolean = false,
         gancho: boolean = false,
-        patada: boolean = false,
+        patada1: boolean = false,
         rafaga: boolean = false,
         cargaKame: boolean = false,
         kame: boolean = false,
@@ -41,10 +47,11 @@ export default class GohanF3 extends Gohan {
 
         this._base = base
         this._raya = raya
+        this._rayaContra1 = rayaContra1
         this._carga = carga
         this._defensa = defensa
         this._gancho = gancho
-        this._patada = patada
+        this._patada1 = patada1
         this._rafaga = rafaga
         this._cargaKame = cargaKame
         this._kame = kame
@@ -66,9 +73,16 @@ export default class GohanF3 extends Gohan {
         return this._raya;
     }
 
-    public set raya(raya: boolean
-    ) {
+    public set raya(raya: boolean ) {
         this._raya = raya;
+    }
+
+    public get rayaContra1(): boolean {
+        return this._rayaContra1;
+    }
+
+    public set rayaContra1(rayaContra1: boolean) {
+        this._rayaContra1 = rayaContra1;
     }
 
     public get carga(): boolean {
@@ -97,13 +111,13 @@ export default class GohanF3 extends Gohan {
         this._gancho = gancho;
     }
 
-    public get patada(): boolean {
-        return this._patada;
+    public get patada1(): boolean {
+        return this._patada1;
     }
 
-    public set patada(patada: boolean
+    public set patada1(patada1: boolean
     ) {
-        this._patada = patada;
+        this._patada1 = patada1;
     }
 
     public get rafaga(): boolean {

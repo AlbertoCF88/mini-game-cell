@@ -11,7 +11,10 @@ export default class CellF3 extends Cell {
     private _desvioKi: boolean;
 
     private _muerto: boolean;
+
     private _herida: boolean;
+    private _heridaContra1: boolean;
+    private _heridaContra2: boolean;
 
     private _punio: boolean;
     private _patada: boolean;
@@ -31,20 +34,22 @@ export default class CellF3 extends Cell {
         acumularCargaGohan: number,
 
         poderCell: number = 43,
-        base:boolean = false,
+        base: boolean = false,
         raya: boolean = false,
         carga: boolean = false,
         defensa: boolean = false,
         desvioKi: boolean = false,
         muerto: boolean = false,
         herida: boolean = false,
+        heridaContra1: boolean = false,
+        heridaContra2: boolean = false,
         punio: boolean = false,
         patada: boolean = false,
         contra: boolean = false,
         atacaCellJunior: boolean = false,
         cellJunior: boolean = false,
         kame: boolean = false,
-        gana:boolean = false,
+        gana: boolean = false,
     ) {
         super(vidaGohan, vidaBarraGohan, maximaEnergiaGohan, acumularCargaGohan)
         this._poderCell = poderCell
@@ -55,6 +60,8 @@ export default class CellF3 extends Cell {
         this._desvioKi = desvioKi
         this._muerto = muerto
         this._herida = herida
+        this._heridaContra1 = herida
+        this._heridaContra2 = herida
         this._punio = punio
         this._patada = patada
         this._contra = contra
@@ -134,6 +141,23 @@ export default class CellF3 extends Cell {
     public set herida(herida: boolean
     ) {
         this._herida = herida;
+    }
+
+    public get heridaContra1(): boolean {
+        return this._heridaContra1;
+    }
+
+    public set heridaContra1(heridaContra1: boolean
+    ) {
+        this._heridaContra1 = heridaContra1;
+    }
+
+    public get heridaContra2(): boolean {
+        return this._heridaContra2;
+    }
+
+    public set heridaContra2(heridaContra2: boolean) {
+        this._heridaContra2 = heridaContra2;
     }
 
     public get punio(): boolean {
