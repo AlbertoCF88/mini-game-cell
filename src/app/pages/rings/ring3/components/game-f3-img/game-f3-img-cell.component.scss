@@ -1,0 +1,288 @@
+#marcoPersonajes {
+    margin  : auto;
+    position: absolute;
+    width   : 100vw;
+    height  : 2vw;
+}
+
+.cellBase {
+    z-index  : 94;
+    position : absolute;
+    width    : 16vw;
+    height   : auto;
+    bottom   : 2vw;
+    right    : 11vw;
+    opacity  : 0;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes aparecer {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.rayaCell {
+    z-index  : 95;
+    position : absolute;
+    width    : 24vw;
+    height   : auto;
+    bottom   : 3vw;
+    left     : 70vw;
+    opacity  : 0;
+    animation: raya 1s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.rayaCell1 {
+    z-index  : 95;
+    position : absolute;
+    width    : 24vw;
+    height   : auto;
+    bottom   : 5vw;
+    left     : 58vw;
+    opacity  : 0;
+    animation: raya 1s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.cellDefensa {
+    z-index  : 94;
+    position : absolute;
+    width    : 22vw;
+    height   : auto;
+    bottom   : 2vw;
+    right    : 8vw;
+    opacity  : 0;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.defensaEfectoCell {
+    z-index  : 94;
+    position : absolute;
+    width    : 64vw;
+    height   : auto;
+    bottom   : -4vh;
+    right    : -16vw;
+    opacity  : 0;
+    animation: efectoDefensaAnimar 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+.heridoCell {
+    z-index  : 94;
+    position : absolute;
+    width    : 22vw;
+    height   : auto;
+    bottom   : 3vw;
+    right    : 3vw;
+    opacity  : 0;
+    animation: animarCellHerido 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes animarCellHerido {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+        right  : 5vw;
+    }
+
+    20% {
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    25% {
+        right : 2vw;
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    26% {
+        filter: none;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.heridoCell1 {
+    z-index  : 94;
+    position : absolute;
+    width    : 22vw;
+    height   : auto;
+    bottom   : 7vw;
+    right    : 21vw;
+    opacity  : 0;
+    animation: animarCellHerido1 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes animarCellHerido1 {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    25% {
+        right : 15vw;
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    26% {
+        filter: none;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.heridoCell2 {
+    z-index  : 94;
+    position : absolute;
+    width    : 22vw;
+    height   : auto;
+    bottom   : 9vw;
+    right    : 46vw;
+    opacity  : 0;
+    transform: rotateY(180deg);
+    animation: animarCellHerido3 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes animarCellHerido3 {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    25% {
+        right : 53vw;
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    26% {
+        filter: none;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.contraCell {
+    z-index  : 96;
+    position : absolute;
+    width    : 22vw;
+    height   : auto;
+    bottom   : 11vw;
+    right    : 34vw;
+    opacity  : 0;
+    transform: rotateY(180deg);
+    animation: animarContraCell 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes animarContraCell {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        right  : 22vw;
+        opacity: 1;
+    }
+}
+
+.contraCell1 {
+    z-index  : 96;
+    position : absolute;
+    width    : 22vw;
+    height   : auto;
+    bottom   : 11vw;
+    left     : 30vw;
+    opacity  : 0;
+    transform: rotateY(180deg);
+    animation: animarContraCell 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}

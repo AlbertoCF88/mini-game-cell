@@ -1,0 +1,411 @@
+#marcoPersonajes {
+    margin  : auto;
+    position: absolute;
+    width   : 100vw;
+    height  : 2vw;
+}
+
+.baseSS2 {
+    position : absolute;
+    width    : 9vw;
+    bottom   : 4vw;
+    left     : 14vw;
+    opacity  : 0;
+    animation: aparecer 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes aparecer {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.gohanDefensa {
+    z-index  : 93;
+    position : absolute;
+    width    : 17vw;
+    bottom   : 6vh;
+    right    : 74.4vw;
+    opacity  : 0;
+    animation: aparecer 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+.efectoDefensaGohan {
+    z-index  : 94;
+    position : absolute;
+    width    : 35vw;
+    height   : auto;
+    bottom   : 3.3vh;
+    right    : 65vw;
+    opacity  : 0;
+    animation: efectoDefensaAnimar 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+@keyframes efectoDefensaAnimar {
+
+    /*inicio*/
+    0% {
+        filter: brightness(6);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {}
+}
+
+.heridaGohan {
+    position : absolute;
+    width    : 16vw;
+    bottom   : 11vw;
+    left     : 6vw;
+    opacity  : 0;
+    animation: aparecer 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.heridaGohan1 {
+    position : absolute;
+    width    : 16vw;
+    bottom   : 16vw;
+    left     : 71vw;
+    transform: rotateY(180deg);
+    opacity  : 0;
+    animation: animarGohanHerido1 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes animarGohanHerido1 {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+        right  : 5vw;
+    }
+
+    20% {
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    25% {
+        right : 2vw;
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    26% {
+        filter: none;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.heridaGohan2 {
+    position : absolute;
+    width    : 16vw;
+    bottom   : 17vw;
+    left     : 42vw;
+    transform: rotateY(180deg);
+    opacity  : 0;
+    animation: animarGohanHerido2 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes animarGohanHerido2 {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    25% {
+        left  : 48vw;
+        filter: invert(0.4) sepia(1) hue-rotate(305deg) saturate(1000%);
+    }
+
+    26% {
+        filter: none;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        left   : 48vw;
+        opacity: 0;
+    }
+}
+
+.rayaGohan {
+    z-index  : 94;
+    position : absolute;
+    width    : 17vw;
+    height   : auto;
+    bottom   : 4vw;
+    left     : 11vw;
+    opacity  : 0;
+    animation: raya 1s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.rayaGohanContra1 {
+    z-index  : 98;
+    position : absolute;
+    width    : 17vw;
+    height   : auto;
+    bottom   : 13vw;
+    left     : 72vw;
+    opacity  : 0;
+    animation: raya 1s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes raya {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.contraPatada {
+    position : absolute;
+    z-index  : 97;
+    width    : 22vw;
+    left     : 45vw;
+    top      : -35vw;
+    transform: rotate(317deg);
+    opacity  : 0;
+    animation: animaGanchoGohan 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.contraPatada1 {
+    position : absolute;
+    z-index  : 97;
+    width    : 22vw;
+    left     : 41vw;
+    top      : -35vw;
+    transform: rotateY(180deg);
+    opacity  : 0;
+    animation: animaGanchoGohan 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.gacho {
+    position : absolute;
+    z-index  : 96;
+    width    : 13vw;
+    left     : 71vw;
+    bottom   : 4vw;
+    opacity  : 0;
+    animation: animaGanchoGohan 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes animaGanchoGohan {
+
+    /*inicio*/
+    0% {
+        bottom : 4vw;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+        bottom : 13vw;
+    }
+
+    100% {
+        opacity: 1;
+        bottom : 13vw;
+    }
+}
+
+.efectogacho {
+    position : absolute;
+    z-index  : 95;
+    width    : 16vw;
+    left     : 72vw;
+    bottom   : 11vw;
+    transform: rotate(334deg);
+    opacity  : 0;
+    animation: aparecer 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.8s backwards;
+}
+
+.efectoCargaGohan {
+    z-index  : 95;
+    position : absolute;
+    width    : 26vw;
+    height   : 35vw;
+    bottom   : 3vw;
+    right    : 69vw;
+    opacity  : 1;
+    animation: efectoki 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
+}
+
+@keyframes efectoki {
+    0% {
+        opacity: 0;
+        filter : brightness(1);
+    }
+
+    10% {
+        filter: brightness(100%);
+    }
+
+    15% {
+        opacity: 1;
+        filter : brightness(1);
+    }
+
+    20% {
+        filter: brightness(200%);
+    }
+
+    25% {
+        filter: brightness(1);
+    }
+
+    30% {
+        filter: brightness(300%);
+    }
+
+    35% {
+        filter: brightness(1);
+    }
+
+    40% {
+        filter: brightness(200%);
+    }
+
+    45% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(300%);
+    }
+
+    55% {
+        filter: brightness(1);
+    }
+
+    60% {
+        filter: brightness(200%);
+    }
+
+    65% {
+        filter: brightness(1);
+    }
+
+    70% {
+        filter: brightness(300%);
+    }
+
+    75% {
+        filter: brightness(1);
+    }
+
+    80% {
+        filter: brightness(200%);
+    }
+
+    85% {
+
+        filter: brightness(1);
+    }
+
+    90% {
+        opacity: 1;
+        filter : brightness(300%);
+    }
+
+    95% {
+        filter: brightness(1);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+

@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 import { RingsModule } from './pages/rings/rings.module';
 import { Ring1Module } from './pages/rings/ring1/ring1.module';
 import { Ring2Module } from './pages/rings/ring2/ring2.module';
-
+import { Ring3Module } from './pages/rings/ring3/ring3.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { Ring2Module } from './pages/rings/ring2/ring2.module';
     RingsModule,
     Ring1Module,
     Ring2Module,
+    Ring3Module,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

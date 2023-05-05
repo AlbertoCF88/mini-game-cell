@@ -1,6 +1,7 @@
 <div class="p-0 container pantalla" style="height: 100vh;">
   <!-- barra vida y energia -->
-  <div [ngClass]="{'opacity-0' : ocultarPresentacion}">
+  <!-- <div [ngClass]="{'opacity-0' : ocultarPresentacion}"> -->
+  <div >
     <app-life [gohan]="gohan" [cell]="cell"></app-life>
     <app-energy [gohan]="gohan" [cell]="cell"></app-energy>
   </div>
@@ -16,9 +17,10 @@
     </ng-container> -->
 
     <!-- imagenes en pantalla -->
-    <ng-container *ngIf="!ocultarPresentacion">
-      <app-game-f2-img [gohan]="gohan" [cell]="cell">
-      </app-game-f2-img>
+    <!-- *ngIf="!ocultarPresentacion" -->
+    <ng-container >
+      <app-game-f3-img [gohan]="gohan" [cell]="cell">
+      </app-game-f3-img>
     </ng-container>
 
     <!--botonera -->
