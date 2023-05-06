@@ -53,4 +53,12 @@
     </div>
   </div>
 
+  <!-- boton Fase3 -->
+  <div *ngIf="btnFase3Activar" class="marcoBoton">
+    <div [ngClass]="{'btnContra1': btnStyle===1, 'btnContra2': btnStyle===2 }">
+      <button class="botonF2 botonContador" (click)="btnContadorFase3()">
+        <img src="assets/botones/golpeKi.svg" alt="btn" class="icono">
+      </button>
+    </div>
+  </div>
 </div>

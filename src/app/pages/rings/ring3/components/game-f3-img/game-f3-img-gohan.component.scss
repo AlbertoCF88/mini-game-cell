@@ -266,7 +266,7 @@
         forwards;
 }
 
-.gacho {
+.gohanGancho{
     position : absolute;
     z-index  : 96;
     width    : 13vw;
@@ -299,7 +299,7 @@
     }
 }
 
-.efectogacho {
+.gohanGanchoEfecto{
     position : absolute;
     z-index  : 95;
     width    : 16vw;
@@ -309,7 +309,7 @@
     opacity  : 0;
     animation: aparecer 2s
         /*duracion*/
-        cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.8s backwards;
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.3s backwards;
 }
 
 .efectoCargaGohan {

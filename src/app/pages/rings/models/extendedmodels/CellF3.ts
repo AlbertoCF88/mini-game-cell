@@ -5,7 +5,10 @@ export default class CellF3 extends Cell {
     private _poderCell: number;
 
     private _base: boolean;
+
     private _raya: boolean;
+    private _rayaContra: boolean;
+
     private _carga: boolean;
     private _defensa: boolean;
     private _desvioKi: boolean;
@@ -18,7 +21,9 @@ export default class CellF3 extends Cell {
 
     private _punio: boolean;
     private _patada: boolean;
+
     private _contra: boolean;
+    private _contra1: boolean;
 
     private _atacaCellJunior: boolean;
     private _cellJunior: boolean;
@@ -33,9 +38,10 @@ export default class CellF3 extends Cell {
         maximaEnergiaGohan: number,
         acumularCargaGohan: number,
 
-        poderCell: number = 43,
+        poderCell: number = 40,
         base: boolean = false,
         raya: boolean = false,
+        rayaContra: boolean = false,
         carga: boolean = false,
         defensa: boolean = false,
         desvioKi: boolean = false,
@@ -46,6 +52,7 @@ export default class CellF3 extends Cell {
         punio: boolean = false,
         patada: boolean = false,
         contra: boolean = false,
+        contra1: boolean = false,
         atacaCellJunior: boolean = false,
         cellJunior: boolean = false,
         kame: boolean = false,
@@ -55,16 +62,18 @@ export default class CellF3 extends Cell {
         this._poderCell = poderCell
         this._base = base
         this._raya = raya
+        this._rayaContra = rayaContra
         this._carga = carga
         this._defensa = defensa
         this._desvioKi = desvioKi
         this._muerto = muerto
         this._herida = herida
-        this._heridaContra1 = herida
-        this._heridaContra2 = herida
+        this._heridaContra1 = heridaContra1
+        this._heridaContra2 = heridaContra2
         this._punio = punio
         this._patada = patada
         this._contra = contra
+        this._contra1 = contra1
         this._atacaCellJunior = atacaCellJunior
         this._cellJunior = cellJunior
         this._kame = kame
@@ -75,8 +84,7 @@ export default class CellF3 extends Cell {
         return this._poderCell;
     }
 
-    public set poderCell(poderCell: number
-    ) {
+    public set poderCell(poderCell: number) {
         this._poderCell = poderCell;
     }
 
@@ -84,8 +92,7 @@ export default class CellF3 extends Cell {
         return this._base;
     }
 
-    public set base(base: boolean
-    ) {
+    public set base(base: boolean) {
         this._base = base;
     }
 
@@ -93,9 +100,17 @@ export default class CellF3 extends Cell {
         return this._raya;
     }
 
-    public set raya(raya: boolean
-    ) {
+    public set raya(raya: boolean) {
         this._raya = raya;
+    }
+
+
+    public get rayaContra(): boolean {
+        return this._rayaContra;
+    }
+
+    public set rayaContra(rayaContra: boolean) {
+        this._rayaContra = rayaContra;
     }
 
     public get carga(): boolean {
@@ -111,8 +126,7 @@ export default class CellF3 extends Cell {
         return this._defensa;
     }
 
-    public set defensa(defensa: boolean
-    ) {
+    public set defensa(defensa: boolean) {
         this._defensa = defensa;
     }
 
@@ -129,8 +143,7 @@ export default class CellF3 extends Cell {
         return this._muerto;
     }
 
-    public set muerto(muerto: boolean
-    ) {
+    public set muerto(muerto: boolean) {
         this._muerto = muerto;
     }
 
@@ -138,8 +151,7 @@ export default class CellF3 extends Cell {
         return this._herida;
     }
 
-    public set herida(herida: boolean
-    ) {
+    public set herida(herida: boolean) {
         this._herida = herida;
     }
 
@@ -164,8 +176,7 @@ export default class CellF3 extends Cell {
         return this._punio;
     }
 
-    public set punio(punio: boolean
-    ) {
+    public set punio(punio: boolean) {
         this._punio = punio;
     }
 
@@ -173,8 +184,7 @@ export default class CellF3 extends Cell {
         return this._patada;
     }
 
-    public set patada(patada: boolean
-    ) {
+    public set patada(patada: boolean) {
         this._patada = patada;
     }
 
@@ -186,12 +196,19 @@ export default class CellF3 extends Cell {
         this._contra = contra;
     }
 
+    public get contra1(): boolean {
+        return this._contra1;
+    }
+
+    public set contra1(contra1: boolean) {
+        this._contra1 = contra1;
+    }
+
     public get atacaCellJunior(): boolean {
         return this._atacaCellJunior;
     }
 
-    public set atacaCellJunior(atacaCellJunior: boolean
-    ) {
+    public set atacaCellJunior(atacaCellJunior: boolean) {
         this._atacaCellJunior = atacaCellJunior;
     }
 
@@ -199,8 +216,7 @@ export default class CellF3 extends Cell {
         return this._cellJunior;
     }
 
-    public set cellJunior(cellJunior: boolean
-    ) {
+    public set cellJunior(cellJunior: boolean) {
         this._cellJunior = cellJunior;
     }
 
@@ -208,8 +224,7 @@ export default class CellF3 extends Cell {
         return this._kame;
     }
 
-    public set kame(kame: boolean
-    ) {
+    public set kame(kame: boolean) {
         this._kame = kame;
     }
 

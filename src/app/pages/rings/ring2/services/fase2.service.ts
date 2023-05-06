@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import GohanF2 from '../../models/extendedmodels/GohanF2';
 import CellF2 from '../../models/extendedmodels/CellF2';
 import { LocalStorageGuard } from '../../models/localStorageInterface';
@@ -69,7 +69,7 @@ export class Fase2Service {
     }
     this.randomCadenas()
   }
-  
+
   cambiarValorWinGif(nuevoValor: boolean) {
     this._winGif.next(nuevoValor);
   }
@@ -370,7 +370,7 @@ export class Fase2Service {
     this.explosion = false;
     this.barraGohan();
     this.barraCEll();
-    this.cadenas=0;
+    this.cadenas = 0;
     this.vecesEntrasRandomSwitch = 0;
     this.randomCadenas()
     this.randomSwitch();

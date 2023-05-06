@@ -51,7 +51,39 @@
         forwards;
 }
 
-.rayaCell1 {
+@keyframes raya {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.rayaCellContra {
     z-index  : 95;
     position : absolute;
     width    : 24vw;
@@ -69,10 +101,10 @@
 .cellDefensa {
     z-index  : 94;
     position : absolute;
-    width    : 22vw;
-    height   : auto;
-    bottom   : 2vw;
-    right    : 8vw;
+    width    : 21vw;
+    height   : 35vw;
+    bottom   : 1vw;
+    right    : 1vw;
     opacity  : 0;
     animation: aparecer 3s
         /*duracion*/
@@ -84,12 +116,29 @@
 .defensaEfectoCell {
     z-index  : 94;
     position : absolute;
-    width    : 64vw;
+    width    : 68vw;
     height   : auto;
-    bottom   : -4vh;
+    bottom   : 2vh;
     right    : -16vw;
     opacity  : 0;
-    animation: efectoDefensaAnimar 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+    animation: efectoDefensaAnimar 1s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+@keyframes efectoDefensaAnimar {
+
+    /*inicio*/
+    0% {
+        filter: brightness(1);
+    }
+
+    80% {
+        filter : brightness(6);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .heridoCell {

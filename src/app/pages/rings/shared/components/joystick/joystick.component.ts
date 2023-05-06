@@ -1,5 +1,6 @@
 import { Fase1Service } from '../../../ring1/services/fase1.service';
 import { Fase2Service } from '../../../ring2/services/fase2.service';
+import { Fase3Service } from '../../../ring3/services/fase3.service';
 import { Joystick } from './Interface/Joystick';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -14,7 +15,8 @@ export class JoystickComponent implements OnInit {
 
   joy!: Joystick;
   btnFase2Activar!: boolean;
-  btnStyle!: number;
+  btnFase3Activar!: boolean;
+  btnStyle!: number;//compartido btnF2 y btnF3
 
   constructor() { }
 
@@ -23,6 +25,7 @@ export class JoystickComponent implements OnInit {
     this.joy = this.servicio.joystick;
     this.activarBotonFase2()
     this.btnStyle = this.servicio.btnStyle;
+    this.activarBotonFase3()
   }
 
   comprobarTipo() {
@@ -33,13 +36,16 @@ export class JoystickComponent implements OnInit {
     if (this.servicio instanceof Fase2Service) {
       this.servicio as Fase2Service;
     }
-    if (!(this.servicio instanceof Fase1Service) && !(this.servicio instanceof Fase2Service)) {
+    if (this.servicio instanceof Fase3Service) {
+      this.servicio as Fase3Service;
+    }
+    if (!(this.servicio instanceof Fase1Service) && !(this.servicio instanceof Fase2Service) && !(this.servicio instanceof Fase3Service)) {
       throw new Error('no es una instancia valida de servicio');
     }
   }
 
   activarBotonFase2() {
-    if(this.servicio  instanceof Fase2Service){
+    if (this.servicio instanceof Fase2Service) {
       this.servicio.btnActivar$.subscribe({
         next: (valor: boolean) => {
           this.btnFase2Activar = valor;
@@ -51,9 +57,22 @@ export class JoystickComponent implements OnInit {
         }
       });
     }
-   
   }
 
+  activarBotonFase3() {
+    if (this.servicio instanceof Fase3Service) {
+      this.servicio.btnActivar$.subscribe({
+        next: (valor: boolean) => {
+          this.btnFase3Activar = valor;
+        }
+      });
+      this.servicio.btnStyle$.subscribe({
+        next: (numero: number) => {
+          this.btnStyle = numero;
+        }
+      });
+    }
+  }
 
   choqueKames() {
     this.servicio.choqueKames();
@@ -77,5 +96,9 @@ export class JoystickComponent implements OnInit {
 
   btnContadorFase2() {
     this.servicio.contadorGolpeBoton++;
+  }
+
+  btnContadorFase3() {
+    this.servicio.contadorBtnContra ++;
   }
 }
