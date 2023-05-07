@@ -48,7 +48,7 @@
     bottom   : 3.3vh;
     right    : 65vw;
     opacity  : 0;
-    animation: efectoDefensaAnimar 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+    animation: efectoDefensaAnimar 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
 }
 
 @keyframes efectoDefensaAnimar {
@@ -71,7 +71,7 @@
     bottom   : 11vw;
     left     : 6vw;
     opacity  : 0;
-    animation: aparecer 2s
+    animation:  animarGohanHerido1 2s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
         /*retraso*/
@@ -311,14 +311,25 @@
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.3s backwards;
 }
-
+.gohanCargar {
+    position: absolute;
+    width: 13.6vw;
+    bottom: 2.4vw;
+    left: 12vw;
+    opacity: 0;
+    animation: aparecer 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
 .efectoCargaGohan {
-    z-index  : 95;
-    position : absolute;
-    width    : 26vw;
-    height   : 35vw;
-    bottom   : 3vw;
-    right    : 69vw;
+    z-index: 95;
+    position: absolute;
+    width: 24vw;
+    height: 38vw;
+    bottom: 3vw;
+    right: 71vw;
     opacity  : 1;
     animation: efectoki 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
 }

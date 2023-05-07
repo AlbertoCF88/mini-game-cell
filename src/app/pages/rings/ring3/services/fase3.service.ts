@@ -3,14 +3,15 @@ import GohanF3 from '../../models/extendedmodels/GohanF3';
 import CellF3 from '../../models/extendedmodels/CellF3';
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject } from 'rxjs';
+import { BooleanValueAccessor } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Fase3Service {
 
-  gohan: GohanF3 = new GohanF3(200, 1, 6, 6);
-  cell: CellF3 = new CellF3(200, 1, 6, 6);
+  gohan: GohanF3 = new GohanF3(100, 1, 5, 5);
+  cell: CellF3 = new CellF3(100, 1, 5, 5);
 
   joystick: Joystick;
 
@@ -23,6 +24,9 @@ export class Fase3Service {
 
   //contardor btn contra
   private contadorBtnContra: number = 0
+
+  //turno, cell ataca cada 2 turnos
+  private turno: number = 0;
 
   constructor() {
     this.joystick = {
@@ -42,7 +46,7 @@ export class Fase3Service {
 
   barraCEll() {
     //vida en la vista
-    this.cell.vidaBarraCell = (this.cell.vidaCell * 1) / 200;
+    this.cell.vidaBarraCell = (this.cell.vidaCell * 1) / 100;
   }
 
   barraGohan() {
@@ -50,87 +54,160 @@ export class Fase3Service {
     this.gohan.vidaBarraGohan = (this.gohan.vidaGohan * 1) / 100;
   }
 
-  //acciones botones
+  private punioOpatada() {
+    const randomNumber = Math.round(Math.random());//0 o 1
+    //es solo visual para ver puño cell o patada
+    switch (randomNumber) {
+      case 0:
+        this.cell.punio = true;
+        break;
+      case 1:
+        this.cell.patada = true;
+        break;
+      default:
+        break;
+    }
+  }
+
+  private turnoCell(btn: string): boolean {
+    this.turno++;
+    if (this.turno === 3 && btn != 'defensa') {
+      this.turno = 0
+      this.cell.raya = true;
+      this.descansoPjs(false);
+      this.punioOpatada();
+      this.gohan.herida = true;
+      this.joystick.texto = 'Cell ataca!';
+      this.gohan.vidaGohan = this.gohan.vidaGohan - 10;
+      this.barraGohan();
+      setTimeout(() => {
+        this.resetarAnimaciones();
+      }, 2100);
+
+      return true;
+    } else {
+      if (this.turno === 3 && btn == 'defensa') {
+        this.turno = 0
+        this.cell.raya = true;
+        this.descansoPjs(false);
+        this.gohan.defensa = true;
+        this.punioOpatada();
+        this.joystick.texto = 'Cell ataca!';
+        this.gohan.vidaGohan = this.gohan.vidaGohan - 0;
+        this.barraGohan();
+        setTimeout(() => {
+          this.resetarAnimaciones();
+        }, 2100);
+        return true;
+      }
+    }
+    return false
+  }
+
+  //*****acciones botones*************************
+
   accionGolpe(golpe: string) {
     if (this.joystick.ocultarTexto == false) {
+      setTimeout(() => {
+        this.joystick.ocultarBotones = true;
+      }, 100);
+      const turno = this.turnoCell(golpe);
+      if (turno) {
+        //turno de cell
+        return;
+      }
       this.gohan.raya = true;
       this.descansoPjs(false);
       this.joystick.ocultarTexto = true;
       this.accionCell(golpe);
-      setTimeout(() => {
-        this.joystick.ocultarBotones = true;
-      }, 100);
     }
   }
 
   accionDefensa(defensa: string) {
     if (this.joystick.ocultarTexto == false) {
-      this.descansoPjs(false);
+      setTimeout(() => {
+        this.resetarAnimaciones();
+      }, 2100);
+      const turno = this.turnoCell(defensa);
+      if (turno) {
+        //turno de cell
+        return;
+      }
+      this.gohan.base = false;
       this.joystick.ocultarTexto = true;
       this.gohan.defensa = true;
-      this.accionCell(defensa);
-      setTimeout(() => {
-        this.joystick.ocultarBotones = true;
-      }, 100);
+      this.joystick.texto = 'Cell no hace nada';
     }
   }
 
   accionCarga(carga: string) {
     if (this.joystick.ocultarTexto == false) {
+      setTimeout(() => {
+        this.joystick.ocultarBotones = true;
+      }, 100);
+      const turno = this.turnoCell(carga);
+      if (turno) {
+        //turno de cell
+        return;
+      }
       this.descansoPjs(false);
       this.joystick.ocultarTexto = true;
       this.gohan.carga = true;
       this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan + 1;
-      if (this.gohan.acumularCargaGohan == 7) {
+      if (this.gohan.acumularCargaGohan == 6) {
         this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 1;
       }
       this.accionCell(carga);
-      setTimeout(() => {
-        this.joystick.ocultarBotones = true;
-      }, 100);
     }
   }
 
   accionKi(ki: string) {
     if (this.joystick.ocultarTexto == false) {
-
-      this.descansoPjs(false);
-      this.joystick.ocultarTexto = true;
-      this.accionCell(ki);
       setTimeout(() => {
         this.joystick.ocultarBotones = true;
       }, 100);
+      const turno = this.turnoCell(ki);
+      if (turno) {
+        //turno de cell
+        return;
+      }
+      this.descansoPjs(false);
+      this.joystick.ocultarTexto = true;
+      this.accionCell(ki);
     }
   }
 
   // *CEll*************************CEll*********************CEll*** */
   accionCell(accion: string) {
-
     switch (accion) {
       case 'golpe':
         let random = Math.floor(Math.random() * (5 - 1) + 1); //minimo 1 y maximo 4 (excluye el 6)
-        random = 4
         switch (random) {
           case 1:
-            //daño directo
             this.dañoDirecto();
             break;
           case 2:
-            //defensa
             this.cellDefiende();
             break;
           case 3:
-            //cell esquiva
             this.cellEsquiva();
             break;
           case 4:
-            // esquiva con cadena de golpes
             this.esquivaCadena();
             break;
           default:
             this.dañoDirecto();
             break;
         }
+        break;
+      case 'defensa':
+        //no hace nada
+        //solo sive para boloquear el turno de cell cada 3 turnos
+        break;
+      case 'carga':
+        //si tu cargas cell tambien si lo necesita
+        //carga maxima 5
+        this.cellCargaki();
         break;
       default:
 
@@ -139,7 +216,7 @@ export class Fase3Service {
 
   }
 
-  /**************************cel responde al PUÑO ************************************  cel responde al PUÑO***************************************************  cel responde al PUÑO******************cel responde al PUÑO ************************************ **cel responde al PUÑO ************************************ */
+  /**************************cel responde al golpe ************************************  cel responde al PUÑO***************************************************  cel responde al PUÑO******************cel responde al PUÑO ************************************ **cel responde al PUÑO ************************************ */
   private dañoDirecto() {
     this.gohan.raya = true;
     this.gohan.gancho = true;
@@ -196,10 +273,7 @@ export class Fase3Service {
           this.gohan.gancho = false;
           this.gohan.rayaContra1 = true;
           this.gohan.patada1 = true;
-          this.cell.heridaContra1 = true;
           this.cell.contra = false;
-          this.cell.vidaCell = this.cell.vidaCell - 20;
-          this.barraCEll();
           //contraataque2
           this.contraataque2();
         } else {
@@ -207,6 +281,7 @@ export class Fase3Service {
           this.gohan.heridaContra1 = true;
           this.gohan.vidaGohan = this.gohan.vidaGohan - 20;
           this.barraGohan();
+          this.joystick.texto = 'cell sale victorioso';
           setTimeout(() => {
             this.resetarAnimaciones();
           }, 2100);
@@ -217,10 +292,10 @@ export class Fase3Service {
   }
 
   private contraataque2() {
+    this.contadorBtnContra = 0;
     let randomNumber = Math.round(Math.random());//0 o 1
-    randomNumber = 1
-    if (randomNumber) {
-      this.gohan.gancho = false;
+    if (randomNumber === 1) {
+      this.gohan.patada1 = false;
       this.gohan.rayaContra1 = true;
       this.gohan.patada1 = true;
       setTimeout(() => {
@@ -234,21 +309,24 @@ export class Fase3Service {
           this._btnActivar.next(false);
           this._btnStyle.next(0);
           if (this.contadorBtnContra >= 1) {
+            this.cell.contra1 = false;
             this.gohan.patada1 = false;
-            this.gohan.rayaContra2 = true;
+            this.gohan.rayaContra1 = true;
             this.gohan.patada2 = true;
             this.cell.heridaContra2 = true;
             this.cell.contra = false;
             this.cell.vidaCell = this.cell.vidaCell - 30;
             this.barraCEll();
+            this.joystick.texto = 'Gohan sale victorioso';
             setTimeout(() => {
               this.resetarAnimaciones();
             }, 2100);
           } else {
             this.gohan.patada1 = false
             this.gohan.heridaContra2 = true;
-            this.gohan.vidaGohan = this.gohan.vidaGohan - 20;
+            this.gohan.vidaGohan = this.gohan.vidaGohan - 50;
             this.barraGohan();
+            this.joystick.texto = 'cell sale victorioso';
             setTimeout(() => {
               this.resetarAnimaciones();
             }, 2100);
@@ -256,20 +334,53 @@ export class Fase3Service {
         }, 1000);
       }, 1000);
     } else {
+      this.cell.heridaContra1 = true;
+      this.cell.vidaCell = this.cell.vidaCell - 40;
+      this.barraCEll();
+      this.joystick.texto = 'Gohan sale victorioso';
       setTimeout(() => {
         this.resetarAnimaciones();
       }, 2100);
     }
   }
+  //***********************cell responde cargar ki************** */
+  private cellCargaki() {
+    this.gohan.carga = true;
+    this.cell.base = true;
+    this.cell.kame=true;
 
+    // if (this.gohan.acumularCargaGohan < 5 && this.cell.acumularCargaCell < 5) {
+    //   this.cell.carga = true;
+    //   this.cell.acumularCargaCell++;
+    //   this.joystick.texto = 'Los dos luchadores recuperan energia';
+    //   setTimeout(() => {
+    //     this.resetarAnimaciones();
+    //   }, 2100);
+    // } else {
+    //   this.cell.kame =true;
+    //   this.gohan.herida=true;
+    //   this.cell.acumularCargaCell =  this.cell.acumularCargaCell -3
+    //   this.joystick.texto = 'Gohan recibe un duro ataque!';
+    //   setTimeout(() => {
+    //     this.gohan.vidaGohan = this.gohan.vidaGohan - 100;
+    //     this.barraGohan();
+    //   }, 2000);
+    //   setTimeout(() => {
+    //     this.resetarAnimaciones();
+    //   }, 5900);
+    // }
+  }
   //******************************************************* */
-  resetarAnimaciones() {
+  private resetarAnimaciones() {
+    this.joystick.ocultarBotones = false;
     this.joystick.ocultarBtnPulsar = false;
     this.joystick.ocultarTexto = false;
     this.joystick.texto = '';
-    this.joystick.ocultarBotones = false;
     this.cell.poderCell = 40;
     this.contadorBtnContra = 0;
+    this._btnActivar.next(false);
+    this._btnStyle.next(0);
+
     this.descansoPjs(true);
 
     this.gohan.raya = false;

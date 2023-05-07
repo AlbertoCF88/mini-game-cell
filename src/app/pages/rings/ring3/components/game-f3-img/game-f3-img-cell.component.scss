@@ -98,6 +98,36 @@
         forwards;
 }
 
+.cellPunio {
+    z-index  : 94;
+    position : absolute;
+    width    : 29vw;
+    height   : 35vw;
+    bottom   : -2vw;
+    right    : 54vw;
+    opacity  : 0;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.cellPatada {
+    z-index  : 94;
+    position : absolute;
+    width    : 29vw;
+    height   : 35vw;
+    bottom   : -2vw;
+    right    : 54vw;
+    opacity  : 0;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
 .cellDefensa {
     z-index  : 94;
     position : absolute;
@@ -334,4 +364,174 @@
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
         /*retraso*/
         forwards;
+}
+
+.cellCarga {
+    position : absolute;
+    width    : 18vw;
+    bottom   : 4vh;
+    right    : 11vw;
+    opacity  : 0;
+    animation: cell3 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoKiCarga {
+    z-index  : 95;
+    position : absolute;
+    width    : 20vw;
+    bottom   : 4vw;
+    right    : 6vw;
+    opacity  : 0;
+    animation: efectoki 4.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
+}
+
+.cellCargaKame {
+    z-index  : 94;
+    position : absolute;
+    width    : 20vw;
+    bottom   : 4vw;
+    right    : 6vw;
+    opacity  : 0;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.cellKame {
+    z-index  : 94;
+    position : absolute;
+    width    : 19vw;
+    bottom   : 1.5vw;
+    right    : 0vw;
+    opacity  : 0;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.kame {
+    position: absolute;
+    z-index: 99;
+    width: 36%;
+    bottom: 18vh;
+    right: 17vw;
+    height: 26vw;
+    opacity: 0.9;
+    transform: rotate(180deg);
+    animation: animaKiKame 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 1.5s backwards;
+}
+
+@keyframes animaKiKame {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        width  : 65%;
+        bottom : 13vh;
+        right  : 20.8vw;
+        height : 748%;
+
+    }
+}
+
+@keyframes efectoki {
+    0% {
+        opacity: 0;
+        filter : brightness(1);
+    }
+
+    10% {
+        filter: brightness(100%);
+    }
+
+    15% {
+        opacity: 1;
+        filter : brightness(1);
+    }
+
+    20% {
+        filter: brightness(200%);
+    }
+
+    25% {
+        filter: brightness(1);
+    }
+
+    30% {
+        filter: brightness(300%);
+    }
+
+    35% {
+        filter: brightness(1);
+    }
+
+    40% {
+        filter: brightness(200%);
+    }
+
+    45% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(300%);
+    }
+
+    55% {
+        filter: brightness(1);
+    }
+
+    60% {
+        filter: brightness(200%);
+    }
+
+    65% {
+        filter: brightness(1);
+    }
+
+    70% {
+        filter: brightness(300%);
+    }
+
+    75% {
+        filter: brightness(1);
+    }
+
+    80% {
+        filter: brightness(200%);
+    }
+
+    85% {
+
+        filter: brightness(1);
+    }
+
+    90% {
+        opacity: 1;
+        filter : brightness(300%);
+    }
+
+    95% {
+        filter: brightness(1);
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
