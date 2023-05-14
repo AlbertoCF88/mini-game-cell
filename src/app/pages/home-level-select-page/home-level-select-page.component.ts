@@ -1,5 +1,6 @@
+import { ModalNameComponent } from './modal-name/modal-name.component';
 import { Component, ElementRef, AfterViewInit, Renderer2, ViewChild } from '@angular/core';
-import { Style } from '@capacitor/status-bar';
+import { AlertController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home-level-select-page',
@@ -9,6 +10,9 @@ import { Style } from '@capacitor/status-bar';
 export class HomeLevelSelectPageComponent implements AfterViewInit {
 
   @ViewChild('bolas', { static: true }) bolas: ElementRef | undefined;
+
+  public showModal: boolean = false;
+  public nombre: string = '';
 
   //solo para el html
   listaBolas: Array<any> = [
@@ -21,11 +25,17 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
     { id: 'bola7' },
   ];
 
-  constructor(private ren: Renderer2, private el: ElementRef) { }
+  constructor(
+    private ren: Renderer2,
+    private el: ElementRef,
+    private alertController: AlertController
+  ) { }
+
 
   //  ngAfterViewInit ejecuta despues de pintar el html y asi coger los id de las bolas
   ngAfterViewInit(): void {
-    this.randomNumero()
+    this.buscarNombre();
+    this.randomNumero();
     setInterval(() => { this.randomNumero() }, 5000);
     //Se repite cada 5s igual que la animacion en CSS, 5s infinito
   }
@@ -47,5 +57,33 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
       this.ren.setStyle(bola, 'left', aleatorioH + 'vw');
       this.ren.setStyle(bola, 'bottom', aleatorioV + 'vh');
     }
+  }
+
+  //Modal
+  private buscarNombre() {
+    this.showModal = true;
+    const nombreGuardado = localStorage.getItem('nombreMinigameCell');
+    if (nombreGuardado) {
+      this.nombre = nombreGuardado;
+    }
+  }
+
+  async guardarNombre() {
+    if (this.nombre !== '') {
+      localStorage.setItem('nombreMinigameCell', this.nombre);
+      this.cerrarModal();
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'El nombre no puede estar en blanco.',
+        cssClass: 'back-alert',
+        buttons: ['Aceptar']
+      });
+      await alert.present();
+    }
+  }
+
+  cerrarModal() {
+    this.showModal = false;
   }
 }

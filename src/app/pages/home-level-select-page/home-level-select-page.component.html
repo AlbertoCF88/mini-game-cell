@@ -8,26 +8,44 @@
   <div class="alturaOver p-3" style="z-index: 99; position: relative">
 
     <a class="btn btn-outline-dark botoneCellFase mb-4"
-      style="background-image: url(../../assets/botones/botones_router/fase1.png)"
-      [routerLink]="['/rules']">
+      style="background-image: url(../../assets/botones/botones_router/fase1.png)" [routerLink]="['/rules']">
       <span class="textoBtnCell">Empezar juego</span>
     </a>
     <a class="btn btn-outline-dark botoneCellFase mb-4"
-      style="background-image: url(../../assets/botones/botones_router/fase2.png)"
-      [routerLink]="['/fase2']">
+      style="background-image: url(../../assets/botones/botones_router/fase2.png)" [routerLink]="['/fase2']">
       <span class="textoBtnCell">Ir a fase 2</span>
     </a>
     <a class="btn btn-outline-dark botoneCellFase mb-4"
-      style="background-image: url(../../assets/botones/botones_router/fase3.png)"
-      [routerLink]="['/fase3']">
+      style="background-image: url(../../assets/botones/botones_router/fase3.png)" [routerLink]="['/fase3']">
       <span class="textoBtnCell">Ir a fase 3</span>
     </a>
 
   </div>
 
   <div id="bolas">
-    <img  *ngFor="let bola of listaBolas; index as i" [id]="bola.id" [src]="'assets/bolas/' + (i+1) + '.png'"
-     alt="bola de dragon" class="bola" >
+    <img *ngFor="let bola of listaBolas; index as i" [id]="bola.id" [src]="'assets/bolas/' + (i+1) + '.png'"
+      alt="bola de dragon" class="bola">
+  </div>
+
+
+  <!-- modal -->
+  <div *ngIf="showModal">
+    <div class="modal  fade " [ngClass]="{'show': showModal}" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">¿Quién eres?</h5>
+          </div>
+          <div class="modal-body">
+            <h2>Ingrese su nombre:</h2>
+            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Nombre">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="guardarNombre()">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
