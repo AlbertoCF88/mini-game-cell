@@ -58,3 +58,16 @@
   color              : red;
   -webkit-text-stroke: 0.2vh black;
 }
+
+.video {
+  position : absolute;
+  width    : 100%;
+  height   : auto;
+  top      : 50%;
+  left     : 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation    : winAnimacion 3s
+  /*duracion*/
+  cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s forwards;
+}

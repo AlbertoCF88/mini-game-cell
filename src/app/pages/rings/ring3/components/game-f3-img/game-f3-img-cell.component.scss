@@ -379,6 +379,7 @@
         forwards;
 }
 
+//-----------------------kame----------------------------
 .efectoKiCarga {
     z-index  : 95;
     position : absolute;
@@ -386,7 +387,7 @@
     bottom   : 4vw;
     right    : 6vw;
     opacity  : 0;
-    animation: efectoki 4.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
+    animation: efectoki 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
 }
 
 .cellCargaKame {
@@ -396,37 +397,37 @@
     bottom   : 4vw;
     right    : 6vw;
     opacity  : 0;
-    animation: aparecer 3s
+    animation: aparecer 2s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
         /*retraso*/
-        forwards;
+        backwards;
 }
 
 .cellKame {
     z-index  : 94;
     position : absolute;
     width    : 19vw;
-    bottom   : 1.5vw;
+    bottom   : -0.5vw;
     right    : 0vw;
     opacity  : 0;
     animation: aparecer 3s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
         /*retraso*/
-        forwards;
+        2.1s forwards;
 }
 
 .kame {
-    position: absolute;
-    z-index: 99;
-    width: 36%;
-    bottom: 18vh;
-    right: 17vw;
-    height: 26vw;
-    opacity: 0.9;
+    position : absolute;
+    z-index  : 99;
+    width    : 0%;
+    bottom   : 18vh;
+    right    : 17vw;
+    height   : 26vw;
+    opacity  : 0.9;
     transform: rotate(180deg);
-    animation: animaKiKame 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 1.5s backwards;
+    animation: animaKiKame 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2.8s backwards;
 }
 
 @keyframes animaKiKame {
@@ -442,11 +443,7 @@
 
     100% {
         opacity: 1;
-        width  : 65%;
-        bottom : 13vh;
-        right  : 20.8vw;
-        height : 748%;
-
+        width  : 78%;
     }
 }
 

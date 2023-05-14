@@ -1,6 +1,7 @@
 <ng-container>
+
   <!-- botoner reintentar -->
-  <ng-container *ngIf="gohan.gohanPierdeCombate"> 
+  <ng-container *ngIf="gohan.gohanPierdeCombate">
     <div class="cajaPerder">
       <h1 class="pierdes">Tú pierdes</h1>
       <button class="boton" (click)="reintentar()">
@@ -16,8 +17,15 @@
 
   <!-- boton siguiente -->
   <ng-container *ngIf="btnActivo">
-    <app-btn-cell-next-fase  [texto]="texto" [ruta]="ruta">
+    <app-btn-cell-next-fase [texto]="texto" [ruta]="ruta">
     </app-btn-cell-next-fase>
   </ng-container>
+
+  <!-- video cunado gana Cell -->
+  <div *ngIf="gohan.pierde" class="winGif overflow-hidden">
+    <video autoplay class="video">
+      <source src="../../../../../../assets/cell/f3/mueres.mp4" type="video/mp4" start="30">
+    </video>
+  </div>
 
 </ng-container>

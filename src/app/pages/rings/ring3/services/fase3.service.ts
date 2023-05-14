@@ -345,30 +345,30 @@ export class Fase3Service {
   }
   //***********************cell responde cargar ki************** */
   private cellCargaki() {
-    this.gohan.carga = true;
-    this.cell.base = true;
-    this.cell.kame=true;
 
-    // if (this.gohan.acumularCargaGohan < 5 && this.cell.acumularCargaCell < 5) {
-    //   this.cell.carga = true;
-    //   this.cell.acumularCargaCell++;
-    //   this.joystick.texto = 'Los dos luchadores recuperan energia';
-    //   setTimeout(() => {
-    //     this.resetarAnimaciones();
-    //   }, 2100);
-    // } else {
-    //   this.cell.kame =true;
-    //   this.gohan.herida=true;
-    //   this.cell.acumularCargaCell =  this.cell.acumularCargaCell -3
-    //   this.joystick.texto = 'Gohan recibe un duro ataque!';
-    //   setTimeout(() => {
-    //     this.gohan.vidaGohan = this.gohan.vidaGohan - 100;
-    //     this.barraGohan();
-    //   }, 2000);
-    //   setTimeout(() => {
-    //     this.resetarAnimaciones();
-    //   }, 5900);
-    // }
+
+    if (this.gohan.acumularCargaGohan < 5 && this.cell.acumularCargaCell < 5) {
+      this.cell.carga = true;
+      this.cell.acumularCargaCell++;
+      this.joystick.texto = 'Los dos luchadores recuperan energia';
+      setTimeout(() => {
+        this.resetarAnimaciones();
+      }, 2100);
+    } else {
+      this.gohan.carga = true;
+      this.cell.base = false;
+      this.cell.kame = true;
+      this.cell.acumularCargaCell = this.cell.acumularCargaCell - 3
+      this.joystick.texto = 'Gohan recibe un duro ataque!';
+      setTimeout(() => {
+        this.joystick.texto = '';
+        this.gohan.vidaGohan = this.gohan.vidaGohan - 100;
+        this.barraGohan();
+        this.gohan.carga = false;
+        this.gohan.herida = true;
+        this.gohan.pierde = true;
+      }, 3500);
+    }
   }
   //******************************************************* */
   private resetarAnimaciones() {
