@@ -14,14 +14,12 @@ import { RingsModule } from './pages/rings/rings.module';
 import { Ring1Module } from './pages/rings/ring1/ring1.module';
 import { Ring2Module } from './pages/rings/ring2/ring2.module';
 import { Ring3Module } from './pages/rings/ring3/ring3.module';
-import { ModalNameComponent } from './pages/home-level-select-page/modal-name/modal-name.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeLevelSelectPageComponent,
     RulesPageComponent,
-    ModalNameComponent,
   ],
   imports: [
     CommonModule,

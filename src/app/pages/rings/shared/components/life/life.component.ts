@@ -14,9 +14,17 @@ export class LifeComponent implements OnInit {
   @Input() gohan!: Gohan;
   @Input() cell!: Cell;
 
-  constructor() { }
-  
-  ngOnInit(): void {
-  }
+  public userName="Gohan";
 
+  constructor() { }
+
+  ngOnInit(): void {
+    this.buscarNombre();
+  }
+  private buscarNombre() {
+    const nombreGuardado = localStorage.getItem('nombreMinigameCell');
+    if (nombreGuardado) {
+      this.userName = nombreGuardado;
+    }
+  }
 }

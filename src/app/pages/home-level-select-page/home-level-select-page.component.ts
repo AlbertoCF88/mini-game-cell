@@ -1,4 +1,3 @@
-import { ModalNameComponent } from './modal-name/modal-name.component';
 import { Component, ElementRef, AfterViewInit, Renderer2, ViewChild } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 
