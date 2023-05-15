@@ -1,0 +1,396 @@
+#marcoPersonajes {
+    margin  : auto;
+    position: absolute;
+    width   : 100vw;
+    height  : 2vw;
+}
+
+.gohanBase {
+    position : relative;
+    width    : 23vw;
+    bottom   : 26vw;
+    left     : 6vw;
+    animation: gohan3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes gohan3 {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.defensa {
+    z-index  : 93;
+    position : absolute;
+    width    : 13vw;
+    bottom   : 4vh;
+    right    : 75vw;
+    opacity  : 0;
+    animation: gohan3 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s forwards;
+}
+
+.carga {
+    z-index  : 95;
+    position : absolute;
+    width    : 11vw;
+    height   : auto;
+    bottom   : 5.3vw;
+    right    : 75vw;
+    opacity  : 0;
+    animation: gohan3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoCargaGohan {
+    z-index  : 95;
+    position : absolute;
+    width    : 26vw;
+    height   : 35vw;
+    bottom   : 3vw;
+    right    : 69vw;
+    opacity  : 0;
+    animation: efectoki 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
+}
+
+.baseSS2 {
+    position : absolute;
+    width    : 9vw;
+    bottom   : 4vw;
+    left     : 14vw;
+    opacity  : 0;
+    animation: gohan3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.cargaSS2 {
+    z-index  : 95;
+    position : absolute;
+    width    : 61vw;
+    height   : 61vw;
+    bottom   : -4vw;
+    right    : 50.5vw;
+    opacity  : 0;
+    animation: gohan3 4s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+/*cell--****************************cell*********************cell************************cell**********/
+
+.cellBase {
+    z-index  : 94;
+    position : absolute;
+    width    : 16vw;
+    height   : auto;
+    bottom   : 2vw;
+    right    : 11vw;
+    opacity  : 0;
+    animation: cell3 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+@keyframes cell3 {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.cellCarga {
+    position : absolute;
+    width    : 18vw;
+    bottom   : 4vh;
+    right    : 11vw;
+    opacity  : 0;
+    animation: cell3 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoKiCell {
+    position : absolute;
+    width    : 34vw;
+    bottom   : -10vw;
+    right    : 3.9vw;
+    animation: efectoki 4.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
+}
+
+.cellKi {
+    z-index  : 94;
+    position : absolute;
+    width    : 28vw;
+    height   : auto;
+    bottom   : 3vw;
+    right    : 4vw;
+    opacity  : 0;
+    animation: cell3 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.bolaKi {
+    width    : 9vw;
+    height   : auto;
+    position : absolute;
+    bottom   : 21vw;
+    left     : 65vw;
+    z-index  : 100;
+    opacity  : 0;
+    animation: animaBolaKi 3s cubic-bezier(0.65, 0.05, 0.36, 1) 2s forwards;
+}
+
+@keyframes animaBolaKi {
+    0% {
+        width  : 9vw;
+        opacity: 0;
+    }
+
+    40% {
+        width: 15vw;
+        left : 65vw;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        left   : 46vw;
+        opacity: 0;
+    }
+}
+
+.explosion {
+    position: absolute;
+    width   : 74vh;
+    bottom  : 3vw;
+    right   : 26vw;
+    z-index : 100;
+    opacity : 0;
+    animation: efectoki 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 5s backwards,
+}
+
+/**efectos*********************************efectos************efectos*********************************efectos************efectos*/
+
+@keyframes efectoki {
+    0% {
+        opacity: 0;
+        filter : brightness(1);
+    }
+
+    10% {
+        filter: brightness(100%);
+    }
+
+    15% {
+        opacity: 1;
+        filter : brightness(1);
+    }
+
+    20% {
+        filter: brightness(200%);
+    }
+
+    25% {
+        filter: brightness(1);
+    }
+
+    30% {
+        filter: brightness(300%);
+    }
+
+    35% {
+        filter: brightness(1);
+    }
+
+    40% {
+        filter: brightness(200%);
+    }
+
+    45% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(300%);
+    }
+
+    55% {
+        filter: brightness(1);
+    }
+
+    60% {
+        filter: brightness(200%);
+    }
+
+    65% {
+        filter: brightness(1);
+    }
+
+    70% {
+        filter: brightness(300%);
+    }
+
+    75% {
+        filter: brightness(1);
+    }
+
+    80% {
+        filter: brightness(200%);
+    }
+
+    85% {
+
+        filter: brightness(1);
+    }
+
+    90% {
+        opacity: 1;
+        filter : brightness(300%);
+    }
+
+    95% {
+        filter: brightness(1);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/*bocadillos*/
+/*en le global**/
+.ostias {
+    position : absolute;
+    width    : 100vw;
+    height   : 33vw;
+    bottom   : 2vw;
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+/*C-16*/
+.base-16 {
+    z-index  : 99;
+    position : absolute;
+    width    : 28vw;
+    height   : auto;
+    bottom   : 2vw;
+    right    : 54vw;
+    opacity  : 0;
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.ataque-16 {
+    z-index  : 99;
+    position : absolute;
+    width    : 23vw;
+    height   : auto;
+    bottom   : 4vw;
+    right    : 51vw;
+    opacity  : 0;
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards,
+        avanzar 3.8s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s
+        /*retraso*/
+        forwards;
+}
+
+@keyframes avanzar {
+    0% {
+        right: 51vw;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        right  : 39vw;
+    }
+}
+
+.cabeza {
+    z-index  : 99;
+    position : absolute;
+    width    : 8vw;
+    height   : auto;
+    bottom   : 5vw;
+    right    : 64vw;
+    opacity  : 0;
+    animation: cell3 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+.bocadilloC16 {
+    left: 36vw;
+}
+
+.parrafo16 {
+    color: #6f9028;
+}
+
+.bocadillo2C16 {
+    left  : 26vw;
+    bottom: 9vw;
+}
+
+.explosion2 {
+    position: absolute;
+    width   : 36vh;
+    bottom  : 0vw;
+    right   : 55vw;
+    z-index : 100;
+    opacity : 0;
+    animation: efectoki 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 12.5s backwards,
+}

@@ -1,3 +1,45 @@
-<p>
-  introduction-f3 works!
-</p>
+<div id="marcoPersonajes">
+  <!-- entrada gohan -->
+  <img *ngIf="gohan.baseSS1" class="gohanBase" src="assets/gohan/ss1/gohanBase.png" alt="Gohan">
+  <img *ngIf="gohan.defensaSS1" class="defensa" src="assets/gohan/ss1/gohanDefensa.png" alt="gohanDefensa">
+  <img *ngIf="gohan.cargaSS2" class="carga" src="assets/gohan/ss2/transformacion.png" alt="carga">
+  <img *ngIf="gohan.cargaSS2" class="efectoCargaGohan" src="assets/efectos/ki2.png" alt="efectoKi">
+  <img *ngIf="gohan.baseSS2" class="baseSS2" src="assets/gohan/ss2/base.png" alt="carga">
+  <img *ngIf="gohan.baseSS2" class="cargaSS2" src="assets/efectos/ss2.gif" alt="carga">
+  <!-- entrada cell-->
+  <img *ngIf="cell.base" class="cellBase" src="assets/cell/f3/base.png" alt="cellBase">
+  <img *ngIf="cell.carga" class="cellCarga" src="assets/cell/f3/carga.png" alt="cellBase">
+  <img *ngIf="cell.carga" class="efectoKiCell" src="assets/cell/f3/kiCell.png" alt="efectoKi">
+  <img *ngIf="cell.atacaMini" class="cellKi" src="assets/cell/f3/atacaMini.png" alt="ataca mini">
+
+  <img *ngIf="cell.atacaMini" class="bolaKi" src="assets/efectos/bolaKi.png" alt="efectoKi"> <!--ki cell -->
+  <img *ngIf="cell.atacaMini" src="assets/efectos/fuego1.png" alt="efectoKi" class="explosion">
+  <img *ngIf="cell.gifOstias" class="ostias" src="assets/cell/f3/ostias.gif" alt="efectoKi">
+  <!--Bocadilllos-->
+  <div *ngIf="cell.bocadillo1" class="bocadillo">
+    <p class="parrafo">Que niño tan insolente, tiene la intención de atacarme</p>
+  </div>
+  <div *ngIf="cell.bocadillo2" class="bocadillo">
+    <p class="parrafo">Esta vez no seré tan amable como antes</p>
+  </div>
+  <div *ngIf="cell.bocadillo3" class="bocadillo">
+    <p class="parrafo">Haré que sientas el verdadero horror cuando estés apunto de irte al infierno</p>
+  </div>
+  <div *ngIf="cell.bocadillo4" class="bocadillo">
+    <p class="parrafo">Quiero que me enseñes tus poderes escondidos, ¡ahora!!!</p>
+  </div>
+  <!-- c-16 -->
+  <img *ngIf="c16.base" class="base-16" src="assets/c-16/base.png" alt="c-16bse">
+  <div *ngIf="c16.bocadillo1" class="bocadillo bocadilloC16">
+    <p class="parrafo parrafo16">Yo acabaré con esto, tengo una bomba y la activaré para explotar junto a Cell</p>
+  </div>
+  <img *ngIf="c16.ataque" class="ataque-16" src="assets/c-16/ataque.png" alt="c-16bse">
+  <img *ngIf="c16.cabeza" class="cabeza" src="assets/c-16/cabeza.png" alt="c-16bse">
+  <div *ngIf="c16.bocadillo2" class="bocadillo bocadillo2C16">
+    <p class="parrafo parrafo16">Gohan, suelta la furia que se encuentra en tu interior</p>
+  </div>
+  <div *ngIf="c16.bocadillo3" class="bocadillo bocadillo2C16">
+    <p class="parrafo parrafo16">Lucha por la justicia y defiende los seres vivos de este planeta</p>
+  </div>
+  <img *ngIf="c16.bocadillo3" src="assets/efectos/fuego2.png" alt="efectoKi" class="explosion2">
+</div>

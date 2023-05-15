@@ -10,8 +10,8 @@ import { BooleanValueAccessor } from '@ionic/angular';
 })
 export class Fase3Service {
 
-  gohan: GohanF3 = new GohanF3(100, 1, 5, 5);
-  cell: CellF3 = new CellF3(100, 1, 5, 5);
+  gohan: GohanF3 = new GohanF3(100, 1, 3, 0);
+  cell: CellF3 = new CellF3(100, 1, 5, 0);
 
   joystick: Joystick;
 

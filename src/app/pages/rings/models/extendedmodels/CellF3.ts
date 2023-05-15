@@ -33,10 +33,10 @@ export default class CellF3 extends Cell {
     private _gana: boolean;
 
     constructor(
-        vidaGohan: number,
-        vidaBarraGohan: number,
-        maximaEnergiaGohan: number,
-        acumularCargaGohan: number,
+        vidaCell: number,
+        vidaBarraCell: number,
+        maximaEnergiaCell: number,
+        acumularCargaCell: number,
 
         poderCell: number = 40,
         base: boolean = false,
@@ -58,7 +58,7 @@ export default class CellF3 extends Cell {
         kame: boolean = false,
         gana: boolean = false,
     ) {
-        super(vidaGohan, vidaBarraGohan, maximaEnergiaGohan, acumularCargaGohan)
+        super(vidaCell, vidaBarraCell, maximaEnergiaCell, acumularCargaCell)
         this._poderCell = poderCell
         this._base = base
         this._raya = raya
