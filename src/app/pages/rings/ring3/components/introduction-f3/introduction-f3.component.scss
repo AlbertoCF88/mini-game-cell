@@ -295,13 +295,61 @@
 }
 
 /*bocadillos*/
-/*en le global**/
+.bocadillo {
+    width                  : 33vw;
+    height                 : 23vw;
+    background-image       : url('../../../../../../assets/efectos/bocadillo2.png');
+    position               : absolute;
+    bottom                 : 10vw;
+    left                   : 43vw;
+    z-index                : 98;
+    background-image       : no-repeat;
+    background-image       : fixed;
+    background-image       : center;
+    -webkit-background-size: cover;
+    -moz-background-size   : cover;
+    -o-background-size     : cover;
+    background-size        : cover;
+    justify-content        : center;
+    display                : flex;
+    align-items            : center;
+    opacity                : 0;
+    animation              : animaBocadillo 1s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
+@keyframes animaBocadillo {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.parrafo {
+    color      : black;
+    position   : relative;
+    z-index    : 99;
+    width      : 21vw;
+    font-family: comic sans-serif;
+    font-weight: bold;
+    font-size  : 2.2vw;
+    text-align : center;
+    opacity    : 0;
+    animation  : animaBocadillo 1s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
 .ostias {
-    position : absolute;
-    width    : 100vw;
-    height   : 33vw;
-    bottom   : 2vw;
-    animation: cell3 2s
+    position     : absolute;
+    width        : 100vw;
+    height       : 33vw;
+    bottom       : 2.2vw;
+    box-shadow   : 0px 0px 20px 2px #3e3b3b;
+    border-radius: 20%;
+    border       : 3px solid black;
+    opacity      : 0;
+    animation    : cell3 2s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
         /*retraso*/
@@ -392,5 +440,5 @@
     right   : 55vw;
     z-index : 100;
     opacity : 0;
-    animation: efectoki 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 12.5s backwards,
+    animation: efectoki 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2.8s backwards,
 }

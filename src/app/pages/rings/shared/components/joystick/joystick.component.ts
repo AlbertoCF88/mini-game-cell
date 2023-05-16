@@ -1,6 +1,7 @@
 import { Fase1Service } from '../../../ring1/services/fase1.service';
 import { Fase2Service } from '../../../ring2/services/fase2.service';
 import { Fase3Service } from '../../../ring3/services/fase3.service';
+import { IntroF3Service } from '../../../ring3/services/intro-f3.service';
 import { Joystick } from './Interface/Joystick';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -39,7 +40,13 @@ export class JoystickComponent implements OnInit {
     if (this.servicio instanceof Fase3Service) {
       this.servicio as Fase3Service;
     }
-    if (!(this.servicio instanceof Fase1Service) && !(this.servicio instanceof Fase2Service) && !(this.servicio instanceof Fase3Service)) {
+    if (this.servicio instanceof IntroF3Service) {
+      this.servicio as IntroF3Service;
+    }
+    if (!(this.servicio instanceof Fase1Service)
+      && !(this.servicio instanceof Fase2Service)
+      && !(this.servicio instanceof Fase3Service)
+      && !(this.servicio instanceof IntroF3Service)) {
       throw new Error('no es una instancia valida de servicio');
     }
   }
@@ -99,6 +106,6 @@ export class JoystickComponent implements OnInit {
   }
 
   btnContadorFase3() {
-    this.servicio.contadorBtnContra ++;
+    this.servicio.contadorBtnContra++;
   }
 }

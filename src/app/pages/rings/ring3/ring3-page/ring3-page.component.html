@@ -1,37 +1,44 @@
 <div class="p-0 container pantalla" style="height: 100vh;">
   <!-- barra vida y energia -->
+
   <!--presentacion vida distinta -->
-  <div>
+  <div *ngIf="ocultarPresentacion">
     <app-life [gohan]="introGohan" [cell]="introCell"></app-life>
     <app-energy [gohan]="introGohan" [cell]="introCell"></app-energy>
   </div>
 
   <!-- vida del juego -->
-  <!-- <div>
+  <div *ngIf="!ocultarPresentacion">
     <app-life [gohan]="gohan" [cell]="cell"></app-life>
     <app-energy [gohan]="gohan" [cell]="cell"></app-energy>
-  </div> -->
+  </div>
 
   <div id="juego-pantalla">
     <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
 
-    <!-- presentacion  *ngIf="ocultarPresentacion"-->
-    <ng-container>
-      <app-introduction-f3> </app-introduction-f3>
+    <!-- presentacion  "-->
+    <ng-container *ngIf="ocultarPresentacion">
+      <app-introduction-f3 [gohan]="introGohan" [cell]="introCell" [c16]="c16"> </app-introduction-f3>
     </ng-container>
 
     <!-- imagenes en pantalla -->
-    <!-- *ngIf="!ocultarPresentacion" -->
-    <!-- <ng-container>
+    <ng-container *ngIf="!ocultarPresentacion">
       <app-game-f3-img [gohan]="gohan" [cell]="cell">
       </app-game-f3-img>
-    </ng-container> -->
+    </ng-container>
+
+    <!-- JOYSTICK INTRO -->
+    <ng-container *ngIf="ocultarPresentacion">
+      <app-joystick [servicio]="introServicio">
+      </app-joystick>
+    </ng-container>
 
     <!--botonera -->
-    <ng-container>
+    <ng-container *ngIf="!ocultarPresentacion">
       <app-joystick [servicio]="servicioF3">
       </app-joystick>
     </ng-container>
+
   </div>
 
   <!-- animacion de perder o ganar -->
