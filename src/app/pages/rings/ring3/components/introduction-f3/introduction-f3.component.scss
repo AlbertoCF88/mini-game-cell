@@ -5,6 +5,53 @@
     height  : 2vw;
 }
 
+.raya {
+    z-index  : 89;
+    position : relative;
+    width    : 16vw;
+    height   : auto;
+    bottom   : 29vw;
+    left     : 2vw;
+    opacity  : 0;
+    animation: raya 1s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s
+        /*retraso*/
+        forwards;
+}
+
+@keyframes raya {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 .gohanBase {
     position : relative;
     width    : 23vw;

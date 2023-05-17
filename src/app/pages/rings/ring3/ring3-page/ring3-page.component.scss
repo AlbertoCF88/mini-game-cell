@@ -8,35 +8,6 @@
     border       : 3px solid black;
     margin-top: -7vh;
   }
-  .backgroundImg {
-    background-image: url('../../../../../assets/fondo/f2.jpg');
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: cover;
-    animation: slideBackground 10s linear infinite;
-  }
-  @keyframes slideBackground {
-    0% {
-        background-position: top left;
-        transform: scale(1);
-      }
-      25% {
-        background-position: top right;
-        transform: scale(1.2);
-      }
-      50% {
-        background-position: bottom right;
-        transform: scale(1.4);
-      }
-      75% {
-        background-position: bottom left;
-        transform: scale(1.6);
-      }
-      100% {
-        background-position: top left;
-        transform: scale(1);
-      }
-    }
   /***********************************GANA GOHAN**************************************
   **************************************GANA GOHAN************************************/
   .marcoBoton {

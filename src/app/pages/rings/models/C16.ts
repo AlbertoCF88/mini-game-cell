@@ -1,6 +1,7 @@
 export default class C16 {
 
-    private _base: boolean
+    private _raya: boolean;
+    private _base: boolean;
     private _bocadillo1: boolean;
     private _ataque: boolean;
     private _cabeza: boolean;
@@ -8,6 +9,7 @@ export default class C16 {
     private _bocadillo3: boolean;
 
     constructor(
+        raya: boolean = false,
         base: boolean = false,
         bocadillo1: boolean = false,
         ataque: boolean = false,
@@ -15,12 +17,20 @@ export default class C16 {
         bocadillo2: boolean = false,
         bocadillo3: boolean = false
     ) {
+        this._raya = raya;
         this._base = base;
         this._bocadillo1 = bocadillo1;
         this._ataque = ataque;
         this._cabeza = cabeza;
         this._bocadillo2 = bocadillo2;
         this._bocadillo3 = bocadillo3;
+    }
+    public get raya(): boolean {
+        return this._raya;
+    }
+
+    public set raya(raya: boolean) {
+        this._raya = raya;
     }
 
     public get base(): boolean {

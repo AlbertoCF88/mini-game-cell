@@ -3,7 +3,7 @@ import GohanF3 from '../../models/extendedmodels/GohanF3';
 import CellF3 from '../../models/extendedmodels/CellF3';
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject } from 'rxjs';
-import { BooleanValueAccessor } from '@ionic/angular';
+import { ActionSheetController, BooleanValueAccessor } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class Fase3Service {
   //turno, cell ataca cada 2 turnos
   private turno: number = 0;
 
-  constructor() {
+  constructor(  private actionSheetController: ActionSheetController,) {
     this.joystick = {
       ocultarBotones: false,
       ocultarBtnPulsar: false,
@@ -39,17 +39,17 @@ export class Fase3Service {
     this.descansoPjs(true);
   }
 
-  descansoPjs(descanso: boolean) {
+  private descansoPjs(descanso: boolean) {
     this.gohan.base = descanso;
     this.cell.base = descanso;
   }
 
-  barraCEll() {
+  private barraCEll() {
     //vida en la vista
     this.cell.vidaBarraCell = (this.cell.vidaCell * 1) / 100;
   }
 
-  barraGohan() {
+  private barraGohan() {
     //vida en la vista
     this.gohan.vidaBarraGohan = (this.gohan.vidaGohan * 1) / 100;
   }
@@ -106,7 +106,7 @@ export class Fase3Service {
 
   //*****acciones botones*************************
 
-  accionGolpe(golpe: string) {
+ public  accionGolpe(golpe: string) {
     if (this.joystick.ocultarTexto == false) {
       setTimeout(() => {
         this.joystick.ocultarBotones = true;
@@ -123,7 +123,7 @@ export class Fase3Service {
     }
   }
 
-  accionDefensa(defensa: string) {
+  public accionDefensa(defensa: string) {
     if (this.joystick.ocultarTexto == false) {
       setTimeout(() => {
         this.resetarAnimaciones();
@@ -140,7 +140,7 @@ export class Fase3Service {
     }
   }
 
-  accionCarga(carga: string) {
+ public  accionCarga(carga: string) {
     if (this.joystick.ocultarTexto == false) {
       setTimeout(() => {
         this.joystick.ocultarBotones = true;
@@ -161,7 +161,7 @@ export class Fase3Service {
     }
   }
 
-  accionKi(ki: string) {
+  public accionKi(ki: string) {
     if (this.joystick.ocultarTexto == false) {
       setTimeout(() => {
         this.joystick.ocultarBotones = true;
@@ -171,10 +171,46 @@ export class Fase3Service {
         //turno de cell
         return;
       }
-      this.descansoPjs(false);
+      // this.descansoPjs(false);
       this.joystick.ocultarTexto = true;
-      this.accionCell(ki);
+      this.seleccionKi();
+    //  this.accionCell(ki);
     }
+  }
+
+  public async seleccionKi(){
+    const actionSheet = await this.actionSheetController.create({
+      buttons: [
+        {
+          text: 'Ráfaga Ki -- 1 Energia',
+          icon: 'assets/botones/rafaga.svg',
+          handler: () => {
+            console.log('Share clicked');
+          },
+        },
+        {
+          text: 'Kamehameha -- 3 Energia ',
+          icon: 'assets/botones/kame.svg',
+          handler: () => {
+            console.log('Play clicked');
+          },
+        },
+        
+        {
+          cssClass: 'atras',
+          text: 'Cancelar',
+          icon: 'return-up-back-outline',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          },
+        },
+      ],
+    });
+    await actionSheet.present();
+
+    const { role } = await actionSheet.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 
   // *CEll*************************CEll*********************CEll*** */

@@ -15,8 +15,8 @@ export class IntroF3Service {
   c16: C16 = new C16();
 
   joystick: Joystick;
-
-  private _presentacion = new BehaviorSubject<boolean>(true);
+//TODO cambiar a true
+  private _presentacion = new BehaviorSubject<boolean>(false);
   presentacion$ = this._presentacion.asObservable();
 
   constructor() {
@@ -89,32 +89,36 @@ export class IntroF3Service {
   }
 
   private entradaC16() {
-    this.c16.base = true;
+    this.c16.raya = true;
     setTimeout(() => {
-      this.c16.bocadillo1 = true;
+      this.c16.raya = false;
+      this.c16.base = true;
       setTimeout(() => {
-        this.c16.bocadillo1 = false;
-        this.c16.base = false;
-        this.c16.ataque = true;
-        this.cell.base = false;
-        this.cell.atacaMini = true;
+        this.c16.bocadillo1 = true;
         setTimeout(() => {
-          this.cell.atacaMini = false;
-          this.cell.base = true;
-          this.c16.cabeza = true;
-          this.c16.bocadillo2 = true;
+          this.c16.bocadillo1 = false;
+          this.c16.base = false;
+          this.c16.ataque = true;
+          this.cell.base = false;
+          this.cell.atacaMini = true;
           setTimeout(() => {
-            this.c16.bocadillo2 = false;
-            this.c16.bocadillo3 = true;
+            this.cell.atacaMini = false;
+            this.cell.base = true;
+            this.c16.cabeza = true;
+            this.c16.bocadillo2 = true;
             setTimeout(() => {
-              this.c16.bocadillo3 = false;
-              this.c16.cabeza = false;
-              this.transformacionGohan();
-            }, 3600);
-          }, 3100);
-        }, 6500);
-      }, 3100);
-    }, 3000);
+              this.c16.bocadillo2 = false;
+              this.c16.bocadillo3 = true;
+              setTimeout(() => {
+                this.c16.bocadillo3 = false;
+                this.c16.cabeza = false;
+                this.transformacionGohan();
+              }, 3600);
+            }, 3100);
+          }, 6500);
+        }, 4000);
+      }, 3000);
+    }, 2100);
   }
 
   private transformacionGohan() {

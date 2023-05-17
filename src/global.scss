@@ -107,56 +107,19 @@ img {
   background-color: #2dd36f !important;
 }
 
-.action-sheet-wrapper.sc-ion-action-sheet-md {
+.action-sheet-wrapper {
   max-width : 100% !important;
   max-height: 40% !important;
 }
 
-.action-sheet-button-inner.sc-ion-action-sheet-md {
-  -ms-flex-pack  : start;
+.action-sheet-button-inner {
   justify-content: flex-start;
   font-size      : 3vw;
   font-family    : "Saiyan-Sans";
+  color          : var(--dragon);
 }
 
-.action-sheet-group.sc-ion-action-sheet-md {
-  background: rgba(252, 234, 186, 1);
-  background: -moz-linear-gradient(top,
-      rgba(252, 234, 186, 1) 0%,
-      rgba(252, 234, 186, 1) 12%,
-      rgba(255, 207, 87, 1) 45%,
-      rgba(250, 183, 0, 1) 70%,
-      rgba(251, 223, 147, 1) 99%,
-      rgba(251, 223, 147, 1) 100%);
-  background: -webkit-gradient(left top,
-      left bottom,
-      color-stop(0%, rgba(252, 234, 186, 1)),
-      color-stop(12%, rgba(252, 234, 186, 1)),
-      color-stop(45%, rgba(255, 207, 87, 1)),
-      color-stop(70%, rgba(250, 183, 0, 1)),
-      color-stop(99%, rgba(251, 223, 147, 1)),
-      color-stop(100%, rgba(251, 223, 147, 1)));
-  background: -webkit-linear-gradient(top,
-      rgba(252, 234, 186, 1) 0%,
-      rgba(252, 234, 186, 1) 12%,
-      rgba(255, 207, 87, 1) 45%,
-      rgba(250, 183, 0, 1) 70%,
-      rgba(251, 223, 147, 1) 99%,
-      rgba(251, 223, 147, 1) 100%);
-  background: -o-linear-gradient(top,
-      rgba(252, 234, 186, 1) 0%,
-      rgba(252, 234, 186, 1) 12%,
-      rgba(255, 207, 87, 1) 45%,
-      rgba(250, 183, 0, 1) 70%,
-      rgba(251, 223, 147, 1) 99%,
-      rgba(251, 223, 147, 1) 100%);
-  background: -ms-linear-gradient(top,
-      rgba(252, 234, 186, 1) 0%,
-      rgba(252, 234, 186, 1) 12%,
-      rgba(255, 207, 87, 1) 45%,
-      rgba(250, 183, 0, 1) 70%,
-      rgba(251, 223, 147, 1) 99%,
-      rgba(251, 223, 147, 1) 100%);
+.action-sheet-group {
   background: linear-gradient(to bottom,
       rgba(252, 234, 186, 1) 0%,
       rgba(252, 234, 186, 1) 12%,
@@ -164,19 +127,19 @@ img {
       rgba(250, 183, 0, 1) 70%,
       rgba(251, 223, 147, 1) 99%,
       rgba(251, 223, 147, 1) 100%);
-  filter            : progid:DXImageTransform.Microsoft.gradient(startColorstr='#fceaba', endColorstr='#fbdf93', GradientType=0);
-  -webkit-box-shadow: inset 0px 0px 81px 8px rgb(145 119 42);
+  box-shadow: inset 0px 0px 81px 8px rgb(145, 119, 42);
 }
 
-button:not(:disabled),
-[type="button"]:not(:disabled),
-[type="reset"]:not(:disabled),
-[type="submit"]:not(:disabled) {
+.button-class:not(:disabled),
+[type="button"].button-class:not(:disabled),
+[type="reset"].button-class:not(:disabled),
+[type="submit"].button-class:not(:disabled) {
   cursor             : pointer;
   border             : 1px 0px 1px 0px black solid;
   color              : var(--dragon);
   -webkit-text-stroke: 1px navy;
 }
+
 
 /*---FIN ----ionic--------actionSheetController------------------------------------*/
 
@@ -200,12 +163,12 @@ button:not(:disabled),
 //modal
 .modal-fullscreen .modal-wrapper {
   max-width: 100vw !important;
-  width: 100% !important;
-  margin: 0 !important;
+  width    : 100% !important;
+  margin   : 0 !important;
 }
 
 .modal-fullscreen .modal-content {
-  height: 100vh !important;
-  top: 0 !important;
+  height       : 100vh !important;
+  top          : 0 !important;
   border-radius: 0 !important;
 }
