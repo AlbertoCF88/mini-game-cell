@@ -18,6 +18,45 @@
         forwards;
 }
 
+.gohanRafaga {
+    position : absolute;
+    width    : 19vw;
+    bottom   : 4vw;
+    left     : 14vw;
+    opacity  : 0;
+    animation: aparecer 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.rafaga {
+    position : absolute;
+    width    : 16vw;
+    bottom   : 13vw;
+    left     : 19vw;
+    top: -25vw;
+    animation: lanzarBola 2.8s cubic-bezier(0.18, 0.89, 0.32, 1.28) backwards;
+}
+
+@keyframes lanzarBola {
+  0% {
+    left: 19vw;
+    top: -25vw;
+  }
+  60% {
+    left: 60vw;
+    top: -25vw;
+    width: 12vw;
+  }
+  100% {
+    top: -100vw;
+    left: 60vw;
+    top: -25vw;
+    width: 0vw;
+  }
+}
 @keyframes aparecer {
 
     /*inicio*/
@@ -71,7 +110,7 @@
     bottom   : 11vw;
     left     : 6vw;
     opacity  : 0;
-    animation:  animarGohanHerido1 2s
+    animation: animarGohanHerido1 2s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
         /*retraso*/
@@ -266,7 +305,7 @@
         forwards;
 }
 
-.gohanGancho{
+.gohanGancho {
     position : absolute;
     z-index  : 96;
     width    : 13vw;
@@ -299,7 +338,7 @@
     }
 }
 
-.gohanGanchoEfecto{
+.gohanGanchoEfecto {
     position : absolute;
     z-index  : 95;
     width    : 16vw;
@@ -311,25 +350,27 @@
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.3s backwards;
 }
+
 .gohanCargar {
-    position: absolute;
-    width: 13.6vw;
-    bottom: 2.4vw;
-    left: 12vw;
-    opacity: 0;
+    position : absolute;
+    width    : 13.6vw;
+    bottom   : 2.4vw;
+    left     : 12vw;
+    opacity  : 0;
     animation: aparecer 2s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
         /*retraso*/
         forwards;
 }
+
 .efectoCargaGohan {
-    z-index: 95;
-    position: absolute;
-    width: 24vw;
-    height: 38vw;
-    bottom: 3vw;
-    right: 71vw;
+    z-index  : 95;
+    position : absolute;
+    width    : 24vw;
+    height   : 38vw;
+    bottom   : 3vw;
+    right    : 71vw;
     opacity  : 1;
     animation: efectoki 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
 }
@@ -419,4 +460,3 @@
         opacity: 0;
     }
 }
-

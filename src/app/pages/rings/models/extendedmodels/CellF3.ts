@@ -117,8 +117,7 @@ export default class CellF3 extends Cell {
         return this._carga;
     }
 
-    public set carga(carga: boolean
-    ) {
+    public set carga(carga: boolean) {
         this._carga = carga;
     }
 
@@ -134,8 +133,7 @@ export default class CellF3 extends Cell {
         return this._desvioKi;
     }
 
-    public set desvioKi(desvioKi: boolean
-    ) {
+    public set desvioKi(desvioKi: boolean) {
         this._desvioKi = desvioKi;
     }
 
@@ -159,8 +157,7 @@ export default class CellF3 extends Cell {
         return this._heridaContra1;
     }
 
-    public set heridaContra1(heridaContra1: boolean
-    ) {
+    public set heridaContra1(heridaContra1: boolean ) {
         this._heridaContra1 = heridaContra1;
     }
 

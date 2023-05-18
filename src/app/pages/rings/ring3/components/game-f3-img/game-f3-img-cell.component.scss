@@ -20,6 +20,21 @@
         forwards;
 }
 
+.cellDesvio {
+    z-index  : 94;
+    position : absolute;
+    width    : 19.5vw;
+    height   : auto;
+    bottom   : 2vw;
+    right    : 11vw;
+    opacity  : 0;
+    animation: aparecer 1s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
 @keyframes aparecer {
 
     /*inicio*/

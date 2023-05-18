@@ -10,8 +10,8 @@ import { ActionSheetController, BooleanValueAccessor } from '@ionic/angular';
 })
 export class Fase3Service {
 
-  gohan: GohanF3 = new GohanF3(100, 1, 3, 0);
-  cell: CellF3 = new CellF3(100, 1, 5, 0);
+  gohan: GohanF3 = new GohanF3(100, 1, 5, 5);
+  cell: CellF3 = new CellF3(100, 1, 5, 5);
 
   joystick: Joystick;
 
@@ -27,8 +27,10 @@ export class Fase3Service {
 
   //turno, cell ataca cada 2 turnos
   private turno: number = 0;
+  //caundo este se active podras derrotar a cell
+  private activarDerrotarCell: boolean = false;
 
-  constructor(  private actionSheetController: ActionSheetController,) {
+  constructor(private actionSheetController: ActionSheetController,) {
     this.joystick = {
       ocultarBotones: false,
       ocultarBtnPulsar: false,
@@ -106,7 +108,7 @@ export class Fase3Service {
 
   //*****acciones botones*************************
 
- public  accionGolpe(golpe: string) {
+  public accionGolpe(golpe: string) {
     if (this.joystick.ocultarTexto == false) {
       setTimeout(() => {
         this.joystick.ocultarBotones = true;
@@ -140,7 +142,7 @@ export class Fase3Service {
     }
   }
 
- public  accionCarga(carga: string) {
+  public accionCarga(carga: string) {
     if (this.joystick.ocultarTexto == false) {
       setTimeout(() => {
         this.joystick.ocultarBotones = true;
@@ -171,46 +173,9 @@ export class Fase3Service {
         //turno de cell
         return;
       }
-      // this.descansoPjs(false);
       this.joystick.ocultarTexto = true;
-      this.seleccionKi();
-    //  this.accionCell(ki);
+      this.accionCell(ki);
     }
-  }
-
-  public async seleccionKi(){
-    const actionSheet = await this.actionSheetController.create({
-      buttons: [
-        {
-          text: 'Ráfaga Ki -- 1 Energia',
-          icon: 'assets/botones/rafaga.svg',
-          handler: () => {
-            console.log('Share clicked');
-          },
-        },
-        {
-          text: 'Kamehameha -- 3 Energia ',
-          icon: 'assets/botones/kame.svg',
-          handler: () => {
-            console.log('Play clicked');
-          },
-        },
-        
-        {
-          cssClass: 'atras',
-          text: 'Cancelar',
-          icon: 'return-up-back-outline',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          },
-        },
-      ],
-    });
-    await actionSheet.present();
-
-    const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
   // *CEll*************************CEll*********************CEll*** */
@@ -244,6 +209,25 @@ export class Fase3Service {
         //si tu cargas cell tambien si lo necesita
         //carga maxima 5
         this.cellCargaki();
+        break;
+      case 'ki':
+        console.log("kiiiiiiiiii",this.gohan.acumularCargaGohan)
+        if (this.gohan.acumularCargaGohan == 2) {
+          this.rafaga();
+        }
+        if (this.gohan.acumularCargaGohan == 3) {
+          console.log("kame")
+          this.resetarAnimaciones();
+        }
+        if (this.gohan.acumularCargaGohan == 5 ) {
+          console.log("kame")
+          setTimeout(() => {
+            this.resetarAnimaciones();
+          }, 1000);
+   
+        }else{
+          this.resetarAnimaciones();
+        }
         break;
       default:
 
@@ -381,8 +365,6 @@ export class Fase3Service {
   }
   //***********************cell responde cargar ki************** */
   private cellCargaki() {
-
-
     if (this.gohan.acumularCargaGohan < 5 && this.cell.acumularCargaCell < 5) {
       this.cell.carga = true;
       this.cell.acumularCargaCell++;
@@ -407,6 +389,22 @@ export class Fase3Service {
     }
   }
   //******************************************************* */
+
+  ///habilidades KI//////////////////////////////////////////////////
+  private rafaga() {
+    this.gohan.acumularCargaGohan - 2;
+    this.gohan.base = false;
+    this.gohan.rafaga = true;
+    setTimeout(() => {
+      this.joystick.texto = 'Cell desvia el ataque!';
+      this.cell.base = false;
+      this.cell.desvioKi = true;
+      setTimeout(() => {
+        this.resetarAnimaciones();
+      }, 1000);
+    }, 1000);
+  }
+  ////////////////////////////////////////
   private resetarAnimaciones() {
     this.joystick.ocultarBotones = false;
     this.joystick.ocultarBtnPulsar = false;
