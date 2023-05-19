@@ -29,7 +29,7 @@ export class JoystickComponent implements OnInit {
     this.activarBotonFase3()
   }
 
-  comprobarTipo() {
+  private comprobarTipo() {
     // servicios
     if (this.servicio instanceof Fase1Service) {
       this.servicio as Fase1Service;
@@ -51,7 +51,7 @@ export class JoystickComponent implements OnInit {
     }
   }
 
-  activarBotonFase2() {
+  private activarBotonFase2() {
     if (this.servicio instanceof Fase2Service) {
       this.servicio.btnActivar$.subscribe({
         next: (valor: boolean) => {
@@ -66,7 +66,7 @@ export class JoystickComponent implements OnInit {
     }
   }
 
-  activarBotonFase3() {
+  private activarBotonFase3() {
     if (this.servicio instanceof Fase3Service) {
       this.servicio.btnActivar$.subscribe({
         next: (valor: boolean) => {
@@ -81,31 +81,31 @@ export class JoystickComponent implements OnInit {
     }
   }
 
-  choqueKames() {
+ public choqueKames() {
     this.servicio.choqueKames();
   }
 
-  accionGolpe(accion: string) {
+  public accionGolpe(accion: string) {
     this.servicio.accionGolpe(accion);
   }
 
-  accionDefensa(accion: string) {
+ public accionDefensa(accion: string) {
     this.servicio.accionDefensa(accion);
   }
 
-  accionCarga(accion: string) {
+  public accionCarga(accion: string) {
     this.servicio.accionCarga(accion);
   }
 
-  accionKi(accion: string) {
+  public accionKi(accion: string) {
     this.servicio.accionKi(accion);
   }
 
-  btnContadorFase2() {
+public   btnContadorFase2() {
     this.servicio.contadorGolpeBoton++;
   }
 
-  btnContadorFase3() {
+  public btnContadorFase3() {
     this.servicio.contadorBtnContra++;
   }
 }

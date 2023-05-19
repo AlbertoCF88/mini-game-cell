@@ -433,7 +433,7 @@
         2.1s forwards;
 }
 
-.kame {
+.kameCell {
     position : absolute;
     z-index  : 99;
     width    : 0%;
@@ -443,6 +443,22 @@
     opacity  : 0.9;
     transform: rotate(180deg);
     animation: animaKiKame 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2.8s backwards;
+}
+
+.kameCellVsGohan {
+    position : absolute;
+    z-index  : 99;
+    width    : 35%;
+    bottom   : 18vh;
+    right    : 17vw;
+    height   : 26vw;
+    opacity  : 0.9;
+    transform: rotate(180deg);
+    animation: aparecer 2s
+    /*duracion*/
+    cubic-bezier(0.18, 0.89, 0.32, 1.28)
+    /*retraso*/ 2s
+    backwards;
 }
 
 @keyframes animaKiKame {

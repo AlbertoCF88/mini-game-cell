@@ -25,7 +25,7 @@ export class GameF2ImgComponent implements OnInit {
     this.cellmueveBola();
   }
 
-  activarBolaGigante() {
+  private activarBolaGigante() {
     this.f2.unionbola$.subscribe({
       next: (activar: boolean) => {
         this.unionbola = activar;
@@ -34,7 +34,7 @@ export class GameF2ImgComponent implements OnInit {
     });
   }
 
-  kameVsKame() {
+  private kameVsKame() {
     //detecta cada vez que aprietas el btn
     this.f2.kameVsStyle$.subscribe(
       (applyStyle: boolean) => {
@@ -46,7 +46,7 @@ export class GameF2ImgComponent implements OnInit {
       });
   }
 
-  cellmueveBola() {
+  private cellmueveBola() {
     this.f2.cellBola$.subscribe(
       (activar: boolean) => {
         const bolaUnion = this.bolaUnion?.nativeElement;

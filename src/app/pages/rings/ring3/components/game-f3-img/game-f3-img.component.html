@@ -20,10 +20,10 @@
   <img *ngIf="gohan.rafaga" class="gohanRafaga" src="assets/gohan/ss2/rafaga.png" alt="gohan rafaga">
   <img *ngIf="gohan.rafaga" class="rafaga" src="assets/efectos/bola2.gif" alt="efectoKi">
 
-  <img *ngIf="gohan.cargaKame" class="gohanCarga" src="assets/gohan/ss2/cargaKame.png" alt="gohan cargaKame">
-  <img *ngIf="gohan.cargaKame" class="efectoKameCarga" src="assets/gohan/ss2/cargaKameEfecto.png" alt="efectoKi">
-  <img *ngIf="gohan.kame" class="gohanKame" src="assets/gohan/ss2/kame.png" alt="efecto kame">
-  <img *ngIf="gohan.kame" class="efectoKameGohan" src="assets/efectos/kame.gif" alt="gohan kame efecto">
+  <img *ngIf="gohan.kame" class="gohanCarga" src="assets/gohan/ss2/cargaKame.png" alt="gohan cargaKame">
+  <img *ngIf="gohan.kame" class="efectoKameCarga" src="assets/gohan/ss2/cargaKameEfecto.png" alt="efectoKi">
+  <img *ngIf="gohan.kame" class="gohanKame" src="assets/gohan/ss2/kame.png" alt="gohan kame">
+  <img #kameGohan *ngIf="gohan.kame" class="kameGohan" src="assets/efectos/kame.gif" alt="gohan kame efecto">
 
   <img *ngIf="gohan.herida" class="heridaGohan" src="assets/gohan/ss2/herida.png" alt="gohan herida">
   <img *ngIf="gohan.heridaContra1" class="heridaContra1" src="assets/gohan/ss2/herida.png" alt="gohan herida">
@@ -63,7 +63,8 @@
   <img *ngIf="cell.kame" class="cellCargaKame" src="assets/cell/f3/kameCarga.png" alt="cell carga kame">
   <img *ngIf="cell.kame" class="efectoKiCarga" src="assets/cell/f3/efectoKame.png" alt="cell carga kame efecto">
   <img *ngIf="cell.kame" class="cellKame" src="assets/cell/f3/kame.png" alt="cell kame">
-  <img *ngIf="cell.kame" class="kame" src="assets/efectos/kame.gif" alt="cell kame efecto">
+  <img #kameCell *ngIf="cell.kame" [ngClass]="(cell.kame && gohan.kame) ? 'kameCellVsGohan' : 'kameCell'"
+    src="assets/efectos/kame.gif" alt="cell kame efecto">
 
   <img *ngIf="cell.herida" class="heridoCell" src="assets/cell/f3/herida.png" alt="heridoCell">
   <img *ngIf="cell.heridaContra1" class="heridoCell1" src="assets/cell/f3/herida.png" alt="heridoCell">

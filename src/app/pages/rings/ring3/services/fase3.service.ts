@@ -3,7 +3,6 @@ import GohanF3 from '../../models/extendedmodels/GohanF3';
 import CellF3 from '../../models/extendedmodels/CellF3';
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject } from 'rxjs';
-import { ActionSheetController, BooleanValueAccessor } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ import { ActionSheetController, BooleanValueAccessor } from '@ionic/angular';
 export class Fase3Service {
 
   gohan: GohanF3 = new GohanF3(100, 1, 5, 5);
-  cell: CellF3 = new CellF3(100, 1, 5, 5);
+  cell: CellF3 = new CellF3(100, 1, 6, 6);
 
   joystick: Joystick;
 
@@ -30,7 +29,11 @@ export class Fase3Service {
   //caundo este se active podras derrotar a cell
   private activarDerrotarCell: boolean = false;
 
-  constructor(private actionSheetController: ActionSheetController,) {
+  //unionbola activar img bola gigante choque de kames
+  private _kameVsStyle = new BehaviorSubject<boolean>(false);
+  kameVsStyle$ = this._kameVsStyle.asObservable();
+
+  constructor() {
     this.joystick = {
       ocultarBotones: false,
       ocultarBtnPulsar: false,
@@ -46,12 +49,12 @@ export class Fase3Service {
     this.cell.base = descanso;
   }
 
-  private barraCEll() {
+  public barraCEll() {
     //vida en la vista
     this.cell.vidaBarraCell = (this.cell.vidaCell * 1) / 100;
   }
 
-  private barraGohan() {
+  public barraGohan() {
     //vida en la vista
     this.gohan.vidaBarraGohan = (this.gohan.vidaGohan * 1) / 100;
   }
@@ -179,7 +182,7 @@ export class Fase3Service {
   }
 
   // *CEll*************************CEll*********************CEll*** */
-  accionCell(accion: string) {
+  private accionCell(accion: string) {
     switch (accion) {
       case 'golpe':
         let random = Math.floor(Math.random() * (5 - 1) + 1); //minimo 1 y maximo 4 (excluye el 6)
@@ -211,22 +214,23 @@ export class Fase3Service {
         this.cellCargaki();
         break;
       case 'ki':
-        console.log("kiiiiiiiiii",this.gohan.acumularCargaGohan)
-        if (this.gohan.acumularCargaGohan == 2) {
+        console.log("case ki")
+        if (this.gohan.acumularCargaGohan === 2) {
+          console.log("rafaga")
           this.rafaga();
+          return;
         }
-        if (this.gohan.acumularCargaGohan == 3) {
-          console.log("kame")
-          this.resetarAnimaciones();
+        if (this.gohan.acumularCargaGohan >= 3) {
+          console.log("kame 3")
+          this.kame();
+          return;
         }
-        if (this.gohan.acumularCargaGohan == 5 ) {
-          console.log("kame")
+        if (this.gohan.acumularCargaGohan == 5 && this.activarDerrotarCell === true) {
+          console.log("kame 5")
           setTimeout(() => {
             this.resetarAnimaciones();
+            return;
           }, 1000);
-   
-        }else{
-          this.resetarAnimaciones();
         }
         break;
       default:
@@ -403,6 +407,25 @@ export class Fase3Service {
         this.resetarAnimaciones();
       }, 1000);
     }, 1000);
+  }
+
+  private kame() {
+    console.log("enrta?")
+    this.descansoPjs(false);
+    this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 3;
+    this.cell.acumularCargaCell = this.cell.acumularCargaCell - 3;
+    this.gohan.kame = true;
+    this.gohan.base = true;
+    this.cell.kame = true;
+    setTimeout(() => {
+      this._kameVsStyle.next(true)
+      this.joystick.ocultarBtnPulsar = true;
+    }, 2000);
+  }
+
+  public choqueKames() {
+    //cada vez que es pulsado este btn mueve la bola gigante
+    this._kameVsStyle.next(true)
   }
   ////////////////////////////////////////
   private resetarAnimaciones() {

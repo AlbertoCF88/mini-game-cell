@@ -36,27 +36,30 @@
     width    : 16vw;
     bottom   : 13vw;
     left     : 19vw;
-    top: -25vw;
+    top      : -25vw;
     animation: lanzarBola 2.8s cubic-bezier(0.18, 0.89, 0.32, 1.28) backwards;
 }
 
 @keyframes lanzarBola {
-  0% {
-    left: 19vw;
-    top: -25vw;
-  }
-  60% {
-    left: 60vw;
-    top: -25vw;
-    width: 12vw;
-  }
-  100% {
-    top: -100vw;
-    left: 60vw;
-    top: -25vw;
-    width: 0vw;
-  }
+    0% {
+        left: 19vw;
+        top : -25vw;
+    }
+
+    60% {
+        left : 60vw;
+        top  : -25vw;
+        width: 12vw;
+    }
+
+    100% {
+        top  : -100vw;
+        left : 60vw;
+        top  : -25vw;
+        width: 0vw;
+    }
 }
+
 @keyframes aparecer {
 
     /*inicio*/
@@ -460,3 +463,56 @@
         opacity: 0;
     }
 }
+
+//kame
+.gohanCarga {
+    position : absolute;
+    width    : 24vw;
+    bottom   : 5vw;
+    left     : -1vw;
+    opacity  : 0;
+    animation: aparecer 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
+.efectoKameCarga {
+    position : absolute;
+    width    : 32vw;
+    bottom   : 3vw;
+    left     : -5vw;
+    opacity  : 0;
+    animation: efectoki 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
+}
+
+.gohanKame {
+    z-index  : 94;
+    position : absolute;
+    width    : 27vw;
+    bottom   : 9.5vw;
+    right    : 77vw;
+    opacity  : 0;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        2.1s forwards;
+}
+
+.kameGohan {
+    position: absolute;
+    z-index: 99;
+    bottom: 15vh;
+    height: 26vw;
+    opacity: 0;
+    width: 40%;
+    right: 43vw;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        2.1s forwards;
+}
+//gohan kame para avanzar tiene  que subir 1 en width y -1 right

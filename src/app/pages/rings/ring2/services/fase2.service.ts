@@ -79,23 +79,23 @@ export class Fase2Service {
     this.cell.baseCell = descanso;
   }
 
-  btncontador() {
+  private btncontador() {
     this.contadorGolpeBoton++;
   }
-  barraCEll() {
+  public barraCEll() {
     //vida en la vista
     this.cell.vidaBarraCell = (this.cell.vidaCell * 1) / 100;
   }
-  barraGohan() {
+  public barraGohan() {
     //vida en la vista
     this.gohan.vidaBarraGohan = (this.gohan.vidaGohan * 1) / 100;
   }
 
-  randomCadenas() {
+  private randomCadenas() {
     this.cadenas = Math.floor(Math.random() * 3) + 8;
   }
 
-  randomSwitch() {
+  public randomSwitch() {
     this.joystick.texto = '';
     this.vecesEntrasRandomSwitch++
     if (this.cadenas === this.vecesEntrasRandomSwitch) {
@@ -119,7 +119,7 @@ export class Fase2Service {
     }
   }
 
-  cadena1() {
+  private cadena1() {
     this.descansoPjs(false);
     this.gohan.rayaGohan = true;
     this.cell.rayaCell = true;
@@ -164,7 +164,7 @@ export class Fase2Service {
     return;
   }
 
-  cadena2() {
+  private cadena2() {
     this.descansoPjs(false);
     this.gohan.rayaGohan = true;
     this.cell.rayaCell = true;
@@ -209,7 +209,7 @@ export class Fase2Service {
     return;
   }
 
-  cadena3() {
+  private cadena3() {
     this.descansoPjs(false);
     this.gohan.rayaGohan = true;
     this.cell.rayaCell = true;
@@ -254,7 +254,7 @@ export class Fase2Service {
     return;
   }
 
-  cadena4() {
+  private cadena4() {
     this.descansoPjs(false);
     this.gohan.rayaGohan = true;
     this.cell.rayaCell = true;
@@ -299,7 +299,7 @@ export class Fase2Service {
     return;
   }
 
-  combateFinal() {
+  private combateFinal() {
     this.gohan.rayaGohan = true;
     this.cell.rayaCell = true;
     setTimeout(() => {
@@ -325,7 +325,7 @@ export class Fase2Service {
     this._kameVsStyle.next(true)
   }
 
-  resetarAnimaciones() {
+  private resetarAnimaciones() {
     this.descansoPjs(false)
     /**Gohan */
     this.gohan.rayaGohan = false;
