@@ -15,53 +15,73 @@ export class GameF3ImgComponent implements OnInit {
   @Input() gohan!: GohanF3;
   @Input() cell!: CellF3;
 
-  activarKames!: boolean
+  //para mover kames
+  private wG: number = 40;
+  private rG: number = 43;
+  private wC: number = 35;
 
-  private wG:number=40;
-  private rG:number=43;
-  private wC:number=35;
   constructor(private f3: Fase3Service, private render: Renderer2) { }
 
   ngOnInit() {
-    this.activarVSkame();
-
+    this.cellmoveKame();
+    this.gohanMoveKame();
   }
-  // el subcribe del boton y activar la batalla tiene que ser dos booleanos distintos
-  private activarVSkame() {
+
+
+  private gohanMoveKame() {
     //detecta cada vez que aprietas el btn
-    this.f3.kameVsStyle$.subscribe(
+    this.f3.activarGohanKame$.subscribe(
       (applyStyle: boolean) => {
         const kameGohan = this.kameGohan?.nativeElement;
         const kameCell = this.kameCell?.nativeElement;
         if (applyStyle) {
-          //empezar en 40% y 43vw
-         
-          this.render.setStyle(kameGohan, 'width', (this.wG ++) + '%');
-          this.render.setStyle(kameGohan, 'right', (this.rG --) + 'vw');
-      //cell mueve su kame
-      let stopInterval = setInterval(() => {
-      
-        this.render.setStyle(kameCell, 'width', (this.wC ++) + '%');
-        this.render.setStyle(kameGohan, 'width', (this.wG --) + '%');
-        this.render.setStyle(kameGohan, 'right', (this.rG ++) + 'vw');
-      }, 2000)
+          this.render.setStyle(kameGohan, 'width', (this.wG++) + '%');
+          this.render.setStyle(kameGohan, 'right', (this.rG--) + 'vw');
+          this.render.setStyle(kameCell, 'width', (this.wC--) + '%');
+          if (this.wG >= 60) {
+            this.render.setStyle(kameCell, 'opacity', 0.2);
+          }
         }
       });
   }
 
-
-  private cellmoveKame(){    //detecta cada vez que aprietas el btn
-    this.f3.kameVsStyle$.subscribe(
+  private cellmoveKame() {
+    this.f3.activarCellKame$.subscribe(
       (applyStyle: boolean) => {
         const kameGohan = this.kameGohan?.nativeElement;
         const kameCell = this.kameCell?.nativeElement;
         if (applyStyle) {
-      let stopInterval = setInterval(() => {
-        this.render.setStyle(kameCell, 'width', (this.wC ++) + '%');
-        this.render.setStyle(kameGohan, 'width', (this.wG --) + '%');
-        this.render.setStyle(kameGohan, 'right', (this.rG ++) + 'vw');
-      }, 2000)
+          let stopInterval = setInterval(() => {
+            this.render.setStyle(kameCell, 'width', (this.wC++) + '%');
+            this.render.setStyle(kameGohan, 'width', (this.wG--) + '%');
+            this.render.setStyle(kameGohan, 'right', (this.rG++) + 'vw');
+            if (this.wG <= 60) {
+              this.render.setStyle(kameCell, 'opacity', 0.9);
+            }
+            //ganadores
+            if (this.wG >= 66) {
+              //gana gohan
+              clearInterval(stopInterval);
+              this.f3.cambiarValorActivarCellKame(false);
+              this.f3.cambiarValorActivarGohanKame(false);
+              this.f3.joystick.ocultarBtnPulsar = false;
+              this.f3.cell.vidaCell = 1;
+              this.f3.barraCEll();
+              this.f3.primeraFaseActivada();
+            }
+            if (this.wG < 0) {
+              //gana cell
+              clearInterval(stopInterval);
+              this.f3.cambiarValorActivarCellKame(false);
+              this.f3.cambiarValorActivarGohanKame(false);
+              this.f3.joystick.ocultarBtnPulsar = false;
+              this.f3.gohan.vidaGohan = -100;
+              this.f3.barraGohan();
+              this.f3.gohan.pierde = true;
+            }
+          }, 158)
         }
       });
   }
+
 }

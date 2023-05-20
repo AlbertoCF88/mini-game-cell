@@ -1,9 +1,6 @@
 import Cell from "../Cell";
 
 export default class CellF3 extends Cell {
-    //para mover el kame de cell
-    private _poderCell: number;
-
     private _base: boolean;
 
     private _raya: boolean;
@@ -38,7 +35,6 @@ export default class CellF3 extends Cell {
         maximaEnergiaCell: number,
         acumularCargaCell: number,
 
-        poderCell: number = 40,
         base: boolean = false,
         raya: boolean = false,
         rayaContra: boolean = false,
@@ -59,7 +55,6 @@ export default class CellF3 extends Cell {
         gana: boolean = false,
     ) {
         super(vidaCell, vidaBarraCell, maximaEnergiaCell, acumularCargaCell)
-        this._poderCell = poderCell
         this._base = base
         this._raya = raya
         this._rayaContra = rayaContra
@@ -78,14 +73,6 @@ export default class CellF3 extends Cell {
         this._cellJunior = cellJunior
         this._kame = kame
         this._gana = gana
-    }
-
-    public get poderCell(): number {
-        return this._poderCell;
-    }
-
-    public set poderCell(poderCell: number) {
-        this._poderCell = poderCell;
     }
 
     public get base(): boolean {

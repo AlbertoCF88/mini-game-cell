@@ -20,6 +20,21 @@
         forwards;
 }
 
+.cellDestruido {
+    z-index: 94;
+    position: absolute;
+    width: 13vw;
+    height: auto;
+    bottom: 10vw;
+    right: 13vw;
+    opacity: 0;
+    animation: aparecer 3s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        forwards;
+}
+
 .cellDesvio {
     z-index  : 94;
     position : absolute;
@@ -455,10 +470,10 @@
     opacity  : 0.9;
     transform: rotate(180deg);
     animation: aparecer 2s
-    /*duracion*/
-    cubic-bezier(0.18, 0.89, 0.32, 1.28)
-    /*retraso*/ 2s
-    backwards;
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        2s backwards;
 }
 
 @keyframes animaKiKame {

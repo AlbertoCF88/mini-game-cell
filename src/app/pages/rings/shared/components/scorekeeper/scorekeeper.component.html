@@ -21,11 +21,17 @@
     </app-btn-cell-next-fase>
   </ng-container>
 
-  <!-- video cunado gana Cell -->
+  <!-- video fase3 gana Cell -->
   <div *ngIf="gohan.pierde" class="winGif overflow-hidden">
     <video autoplay class="video">
       <source src="../../../../../../assets/cell/f3/mueres.mp4" type="video/mp4" start="30">
     </video>
   </div>
 
+  <!-- video fase3 gana gohan parte 1 -->
+  <div *ngIf="gohan.activarVideo" class="winGif overflow-hidden" style=" transform: scaleX(-1)">
+    <video autoplay class="video">
+      <source src="../../../../../../assets/cell/f3/mueres.mp4" type="video/mp4" start="30">
+    </video>
+  </div>
 </ng-container>

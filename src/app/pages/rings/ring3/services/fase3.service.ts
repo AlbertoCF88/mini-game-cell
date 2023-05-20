@@ -9,10 +9,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class Fase3Service {
 
-  gohan: GohanF3 = new GohanF3(100, 1, 5, 5);
-  cell: CellF3 = new CellF3(100, 1, 6, 6);
+  public gohan: GohanF3 = new GohanF3(100, 1, 5, 5);
+  public cell: CellF3 = new CellF3(100, 1, 6, 6);
 
-  joystick: Joystick;
+  public joystick: Joystick;
 
   //_btnActivar para activar btn contra
   private _btnActivar = new BehaviorSubject<boolean>(false);
@@ -26,12 +26,16 @@ export class Fase3Service {
 
   //turno, cell ataca cada 2 turnos
   private turno: number = 0;
-  //caundo este se active podras derrotar a cell
+  //caundo este se active podras derrotar a cell(1 kame)
   private activarDerrotarCell: boolean = false;
 
-  //unionbola activar img bola gigante choque de kames
-  private _kameVsStyle = new BehaviorSubject<boolean>(false);
-  kameVsStyle$ = this._kameVsStyle.asObservable();
+  //activar cambios de estilos kame 
+  private _activarCellKame = new BehaviorSubject<boolean>(false);
+  activarCellKame$ = this._activarCellKame.asObservable();
+
+  //activar cambios de estilos kame 
+  private _activarGohanKame = new BehaviorSubject<boolean>(false);
+  activarGohanKame$ = this._activarGohanKame.asObservable();
 
   constructor() {
     this.joystick = {
@@ -42,6 +46,14 @@ export class Fase3Service {
     }
 
     this.descansoPjs(true);
+  }
+
+  public cambiarValorActivarCellKame(nuevoValor: boolean): void {
+    this._activarCellKame.next(nuevoValor);
+  }
+
+  public cambiarValorActivarGohanKame(nuevoValor: boolean): void {
+    this._activarGohanKame.next(nuevoValor);
   }
 
   private descansoPjs(descanso: boolean) {
@@ -410,22 +422,42 @@ export class Fase3Service {
   }
 
   private kame() {
-    console.log("enrta?")
     this.descansoPjs(false);
     this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 3;
     this.cell.acumularCargaCell = this.cell.acumularCargaCell - 3;
     this.gohan.kame = true;
-    this.gohan.base = true;
     this.cell.kame = true;
     setTimeout(() => {
-      this._kameVsStyle.next(true)
+      this._activarCellKame.next(true)
       this.joystick.ocultarBtnPulsar = true;
     }, 2000);
   }
 
   public choqueKames() {
-    //cada vez que es pulsado este btn mueve la bola gigante
-    this._kameVsStyle.next(true)
+    //cada vez que es pulsado este btn mueve kame gohan
+    this._activarGohanKame.next(true)
+  }
+
+  public primeraFaseActivada() {
+    this.gohan.activarVideo = true;
+    this.activarDerrotarCell = true;
+    setTimeout(() => {
+      this.resetarAnimaciones();
+      this.joystick.ocultarBotones = true;
+      this.joystick.texto = '¿Gohan ha ganado al fin?'
+      this.cell.base = false;
+      this.cell.muerto = true;
+      setTimeout(() => {
+        this.cell.muerto = false;
+        this.cell.base = true;
+        this.joystick.texto = '¡¡Cell se regenera!!'
+        this.cell.vidaCell = 100;
+        this.barraCEll();
+        setTimeout(() => {
+          this.resetarAnimaciones();
+        }, 3000);
+      }, 4000);
+    }, 7000);
   }
   ////////////////////////////////////////
   private resetarAnimaciones() {
@@ -433,7 +465,6 @@ export class Fase3Service {
     this.joystick.ocultarBtnPulsar = false;
     this.joystick.ocultarTexto = false;
     this.joystick.texto = '';
-    this.cell.poderCell = 40;
     this.contadorBtnContra = 0;
     this._btnActivar.next(false);
     this._btnStyle.next(0);
@@ -454,6 +485,7 @@ export class Fase3Service {
     this.gohan.herida = false;
     this.gohan.heridaContra1 = false;
     this.gohan.heridaContra2 = false;
+    this.gohan.activarVideo = false;
 
     this.cell.raya = false;
     this.cell.rayaContra = false;

@@ -26,6 +26,7 @@ export default class GohanF3 extends Gohan {
     private _heridaContra2: boolean;
 
     private _pierde: boolean;
+    private _activarVideo: boolean;
 
     constructor(
         vidaGohan: number,
@@ -50,6 +51,7 @@ export default class GohanF3 extends Gohan {
         heridaContra1: boolean = false,
         heridaContra2: boolean = false,
         pierde: boolean = false,
+        activarVideo: boolean = false,
     ) {
         super(vidaGohan, vidaBarraGohan, maximaEnergiaGohan, acumularCargaGohan)
 
@@ -70,6 +72,7 @@ export default class GohanF3 extends Gohan {
         this._heridaContra1 = heridaContra1
         this._heridaContra2 = heridaContra2;
         this._pierde = pierde;
+        this._activarVideo = activarVideo
     }
 
     public get base(): boolean {
@@ -209,6 +212,14 @@ export default class GohanF3 extends Gohan {
         this._pierde = pierde;
     }
 
+
+    public get activarVideo(): boolean {
+        return this._activarVideo;
+    }
+
+    public set activarVideo(activarVideo: boolean) {
+        this._activarVideo = activarVideo;
+    }
 
 
 }
