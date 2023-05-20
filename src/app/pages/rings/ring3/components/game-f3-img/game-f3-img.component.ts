@@ -25,6 +25,9 @@ export class GameF3ImgComponent implements OnInit {
   ngOnInit() {
     this.cellmoveKame();
     this.gohanMoveKame();
+
+    this.gohanMoveKameFinal();
+    this.cellmoveKameFinal();
   }
 
 
@@ -64,8 +67,9 @@ export class GameF3ImgComponent implements OnInit {
               clearInterval(stopInterval);
               this.f3.cambiarValorActivarCellKame(false);
               this.f3.cambiarValorActivarGohanKame(false);
+              this.resetarEstilos();
               this.f3.joystick.ocultarBtnPulsar = false;
-              this.f3.cell.vidaCell = 1;
+              this.f3.cell.vidaCell = 0;
               this.f3.barraCEll();
               this.f3.primeraFaseActivada();
             }
@@ -80,6 +84,60 @@ export class GameF3ImgComponent implements OnInit {
               this.f3.gohan.pierde = true;
             }
           }, 158)
+        }
+      });
+  }
+
+  private resetarEstilos() {
+    this.wG = 40;
+    this.rG = 43;
+    this.wC = 35;
+  }
+
+//fin del juego
+private gohanMoveKameFinal() {
+    //detecta cada vez que aprietas el btn
+    this.f3.activarGohanKameFinal$.subscribe(
+      (applyStyle: boolean) => {
+        const kameGohan = this.kameGohan?.nativeElement;
+        const kameCell = this.kameCell?.nativeElement;
+        if (applyStyle) {
+          this.render.setStyle(kameGohan, 'width', (this.wG++) + '%');
+          this.render.setStyle(kameGohan, 'right', (this.rG--) + 'vw');
+          this.render.setStyle(kameCell, 'width', (this.wC--) + '%');
+          if (this.wG >= 60) {
+            this.render.setStyle(kameCell, 'opacity', 0.2);
+          }
+        }
+      });
+  }
+
+  private cellmoveKameFinal() {
+    this.f3.activarCellKameFinal$.subscribe(
+      (applyStyle: boolean) => {
+        const kameGohan = this.kameGohan?.nativeElement;
+        const kameCell = this.kameCell?.nativeElement;
+        if (applyStyle) {
+          let stopInterval = setInterval(() => {
+            this.render.setStyle(kameCell, 'width', (this.wC++) + '%');
+            this.render.setStyle(kameGohan, 'width', (this.wG--) + '%');
+            this.render.setStyle(kameGohan, 'right', (this.rG++) + 'vw');
+            if (this.wG <= 60) {
+              this.render.setStyle(kameCell, 'opacity', 0.9);
+            }
+            //ganadores
+          
+            if (this.wG < 10) {
+              //entra goku
+              clearInterval(stopInterval);
+              let stopIntervalFinal = setInterval(() => {
+
+
+                
+              },200);   
+            }
+           //cell gana
+          }, 100)
         }
       });
   }

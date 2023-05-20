@@ -14,7 +14,13 @@
   </div>
 
   <div id="juego-pantalla">
-    <img src="assets/fondo/arenaCerca.png" class="fondoCerca" alt="fondo">
+    <div style="min-height: 29.6vw;">
+      <img *ngIf="!servicioF3.activarDerrotarCell ; else elseCondicion" src="assets/fondo/arenaCerca.png"
+        class="fondoCerca" alt="fondo">
+      <ng-template #elseCondicion>
+        <img src="assets/fondo/destroy.png" class="fondoCerca" alt="fondo">
+      </ng-template>
+    </div>
 
     <!-- presentacion  "-->
     <ng-container *ngIf="ocultarPresentacion">

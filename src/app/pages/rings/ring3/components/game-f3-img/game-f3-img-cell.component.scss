@@ -21,13 +21,13 @@
 }
 
 .cellDestruido {
-    z-index: 94;
-    position: absolute;
-    width: 13vw;
-    height: auto;
-    bottom: 10vw;
-    right: 13vw;
-    opacity: 0;
+    z-index  : 94;
+    position : absolute;
+    width    : 13vw;
+    height   : auto;
+    bottom   : 10vw;
+    right    : 13vw;
+    opacity  : 0;
     animation: aparecer 3s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
@@ -402,11 +402,19 @@
     bottom   : 4vh;
     right    : 11vw;
     opacity  : 0;
-    animation: cell3 3s
+    animation: aparecer 3s
         /*duracion*/
         cubic-bezier(0.18, 0.89, 0.32, 1.28)
         /*retraso*/
         forwards;
+}
+
+.efectoKiCell {
+    position : absolute;
+    width    : 34vw;
+    bottom   : -10vw;
+    right    : 3.9vw;
+    animation: efectoki 4.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s backwards;
 }
 
 //-----------------------kame----------------------------

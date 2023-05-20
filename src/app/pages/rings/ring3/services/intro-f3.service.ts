@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class IntroF3Service {
 
   gohan: IntroGohanF3 = new IntroGohanF3(100, 1, 3, 0);
-  cell: IntroCellF3 = new IntroCellF3(100, 1, 5, 0);
+  cell: IntroCellF3 = new IntroCellF3(100, 1, 6, 0);
   c16: C16 = new C16();
 
   joystick: Joystick;

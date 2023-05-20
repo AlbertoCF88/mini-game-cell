@@ -27,7 +27,7 @@ export class Fase3Service {
   //turno, cell ataca cada 2 turnos
   private turno: number = 0;
   //caundo este se active podras derrotar a cell(1 kame)
-  private activarDerrotarCell: boolean = false;
+  public activarDerrotarCell: boolean = false;
 
   //activar cambios de estilos kame 
   private _activarCellKame = new BehaviorSubject<boolean>(false);
@@ -36,6 +36,16 @@ export class Fase3Service {
   //activar cambios de estilos kame 
   private _activarGohanKame = new BehaviorSubject<boolean>(false);
   activarGohanKame$ = this._activarGohanKame.asObservable();
+
+  //activar combate final 
+  private _activarCellKameFinal = new BehaviorSubject<boolean>(false);
+  activarCellKameFinal$ = this._activarCellKameFinal.asObservable();
+
+  //activar combate final
+  private _activarGohanKameFinal = new BehaviorSubject<boolean>(false);
+  activarGohanKameFinal$ = this._activarGohanKameFinal.asObservable();
+
+  private activarBtnKameFinal: boolean = false;
 
   constructor() {
     this.joystick = {
@@ -169,11 +179,6 @@ export class Fase3Service {
       }
       this.descansoPjs(false);
       this.joystick.ocultarTexto = true;
-      this.gohan.carga = true;
-      this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan + 1;
-      if (this.gohan.acumularCargaGohan == 6) {
-        this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 1;
-      }
       this.accionCell(carga);
     }
   }
@@ -222,7 +227,7 @@ export class Fase3Service {
         break;
       case 'carga':
         //si tu cargas cell tambien si lo necesita
-        //carga maxima 5
+        //carga maxima 6
         this.cellCargaki();
         break;
       case 'ki':
@@ -232,17 +237,19 @@ export class Fase3Service {
           this.rafaga();
           return;
         }
-        if (this.gohan.acumularCargaGohan >= 3) {
-          console.log("kame 3")
-          this.kame();
-          return;
-        }
-        if (this.gohan.acumularCargaGohan == 5 && this.activarDerrotarCell === true) {
+        //condicion para ganar a cell
+        if (this.gohan.acumularCargaGohan === 5 &&
+          this.activarDerrotarCell === true &&
+          this.cell.vidaCell <= 50) {
           console.log("kame 5")
           setTimeout(() => {
             this.resetarAnimaciones();
             return;
           }, 1000);
+        } else if (this.gohan.acumularCargaGohan >= 3) {
+          console.log("kame 3")
+          this.kame();
+          return;
         }
         break;
       default:
@@ -381,14 +388,7 @@ export class Fase3Service {
   }
   //***********************cell responde cargar ki************** */
   private cellCargaki() {
-    if (this.gohan.acumularCargaGohan < 5 && this.cell.acumularCargaCell < 5) {
-      this.cell.carga = true;
-      this.cell.acumularCargaCell++;
-      this.joystick.texto = 'Los dos luchadores recuperan energia';
-      setTimeout(() => {
-        this.resetarAnimaciones();
-      }, 2100);
-    } else {
+    if (this.gohan.acumularCargaGohan < 5 && this.cell.acumularCargaCell >= 6) {
       this.gohan.carga = true;
       this.cell.base = false;
       this.cell.kame = true;
@@ -402,13 +402,24 @@ export class Fase3Service {
         this.gohan.herida = true;
         this.gohan.pierde = true;
       }, 3500);
+    } else {
+      this.gohan.carga = true;
+      this.gohan.acumularCargaGohan++;
+      this.cell.carga = true;
+      this.cell.acumularCargaCell++;
+      this.joystick.texto = 'Los dos luchadores recuperan energia';
+      setTimeout(() => {
+        this.resetarAnimaciones();
+      }, 2100);
     }
   }
+
+
   //******************************************************* */
 
   ///habilidades KI//////////////////////////////////////////////////
   private rafaga() {
-    this.gohan.acumularCargaGohan - 2;
+    this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 2;
     this.gohan.base = false;
     this.gohan.rafaga = true;
     setTimeout(() => {
@@ -416,8 +427,12 @@ export class Fase3Service {
       this.cell.base = false;
       this.cell.desvioKi = true;
       setTimeout(() => {
-        this.resetarAnimaciones();
+        this.gohan.rafaga = false;
+        this.gohan.base = true;
       }, 1000);
+      setTimeout(() => {
+        this.resetarAnimaciones();
+      }, 2500);
     }, 1000);
   }
 
@@ -435,7 +450,11 @@ export class Fase3Service {
 
   public choqueKames() {
     //cada vez que es pulsado este btn mueve kame gohan
-    this._activarGohanKame.next(true)
+    if (this.activarBtnKameFinal == true) {
+      this._activarGohanKameFinal.next(true)
+    } else {
+      this._activarGohanKame.next(true)
+    }
   }
 
   public primeraFaseActivada() {
@@ -458,6 +477,19 @@ export class Fase3Service {
         }, 3000);
       }, 4000);
     }, 7000);
+  }
+
+  private kamePadreHijo() {
+    this.descansoPjs(false);
+    this.gohan.acumularCargaGohan = this.gohan.acumularCargaGohan - 3;
+    this.cell.acumularCargaCell = this.cell.acumularCargaCell - 3;
+    this.gohan.kame = true;
+    this.cell.kame = true;
+    setTimeout(() => {
+      this.activarBtnKameFinal = true;
+      this._activarCellKameFinal.next(true)
+      this.joystick.ocultarBtnPulsar = true;
+    }, 2000);
   }
   ////////////////////////////////////////
   private resetarAnimaciones() {
@@ -503,6 +535,20 @@ export class Fase3Service {
     this.cell.atacaCellJunior = false;
     this.cell.cellJunior = false;
     this.cell.kame = false;
+    this.cellRegeneracion();
+  }
+
+  private cellRegeneracion() {
+    if (this.activarDerrotarCell === false &&
+      this.cell.vidaCell <= 1) {
+      this.joystick.texto = '¡¡Cell se regenera!!';
+      this.joystick.ocultarBotones = true;
+      setTimeout(() => {
+        this.cell.vidaCell = 100
+        this.barraCEll();
+        this.resetarAnimaciones();
+      }, 2000);
+    }
   }
 
 }
