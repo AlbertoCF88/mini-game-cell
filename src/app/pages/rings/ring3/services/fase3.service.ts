@@ -4,6 +4,7 @@ import CellF3 from '../../models/extendedmodels/CellF3';
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageGuard } from '../../models/localStorageInterface';
+import { setTimeout } from 'timers';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,7 @@ export class Fase3Service {
   private activarBtnKameFinal: boolean = false;
 
   localStorageGuard: LocalStorageGuard;
-  
+
   constructor() {
     this.localStorageGuard = {
       fase1: true,
@@ -169,15 +170,17 @@ export class Fase3Service {
   public accionDefensa(defensa: string) {
     if (this.joystick.ocultarTexto == false) {
       setTimeout(() => {
-        this.resetarAnimaciones();
-      }, 2100);
+        this.joystick.ocultarBotones = true;
+        // setTimeout(() => {
+        //   this.resetarAnimaciones();
+        // }, 2000);
+      }, 100);
       const turno = this.turnoCell(defensa);
       if (turno) {
         //turno de cell
         return;
       }
       this.gohan.base = false;
-      this.joystick.ocultarTexto = true;
       this.gohan.defensa = true;
       this.joystick.texto = 'Cell no hace nada';
     }
@@ -247,9 +250,7 @@ export class Fase3Service {
         this.cellCargaki();
         break;
       case 'ki':
-        console.log("case ki")
         if (this.gohan.acumularCargaGohan === 2) {
-          console.log("rafaga")
           this.rafaga();
           return;
         }
@@ -257,13 +258,11 @@ export class Fase3Service {
         if (this.gohan.acumularCargaGohan === 5 &&
           this.activarDerrotarCell === true &&
           this.cell.vidaCell <= 50) {
-          console.log("kame 5")
           setTimeout(() => {
             this.kamePadreHijo();
             return;
           }, 1000);
         } else if (this.gohan.acumularCargaGohan >= 3) {
-          console.log("kame 3")
           this.kame();
           return;
         }
@@ -416,7 +415,7 @@ export class Fase3Service {
         this.barraGohan();
         this.gohan.carga = false;
         this.gohan.herida = true;
-        this.gohan.gohanPierdeCombate = true;
+        this.gohan.pierde = true;
       }, 3500);
     } else {
       this.gohan.carga = true;
@@ -492,7 +491,7 @@ export class Fase3Service {
           this.resetarAnimaciones();
         }, 3000);
       }, 4000);
-    },4500);
+    }, 4500);
   }
 
   private kamePadreHijo() {
@@ -534,7 +533,7 @@ export class Fase3Service {
     this.gohan.heridaContra1 = false;
     this.gohan.heridaContra2 = false;
     this.gohan.activarVideo = false;
-    this.gohan.gohanPierdeCombate = false;
+    this.gohan.pierde = false;
 
     this.cell.raya = false;
     this.cell.rayaContra = false;
@@ -556,8 +555,8 @@ export class Fase3Service {
   }
 
   private cellRegeneracion() {
-    if (this.activarDerrotarCell === false &&
-      this.cell.vidaCell <= 1) {
+    if (this.gohan.videoFinal === false &&
+      this.cell.vidaCell <= 0) {
       this.joystick.texto = '¡¡Cell se regenera!!';
       this.joystick.ocultarBotones = true;
       setTimeout(() => {
@@ -581,12 +580,11 @@ export class Fase3Service {
     this.barraCEll();
   }
   public reintentar() {
-    console.log("entra???? reintentar")
     this.resetarAnimaciones();
     this.resetearFase()
   }
 
-  
+
   public localStorage() {
     this.localStorageGuard.fase3 = true;
     localStorage.setItem("localStorageGuard", JSON.stringify(this.localStorageGuard));

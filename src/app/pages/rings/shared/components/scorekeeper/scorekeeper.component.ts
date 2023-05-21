@@ -26,8 +26,10 @@ export class ScorekeeperComponent implements OnInit {
   @Input() ruta!: string;
   @Input() texto!: string;
 
-  activarGifWin: boolean = false;
-  btnActivo: boolean = false;
+
+
+  public activarGifWin: boolean = false;
+  public btnActivo: boolean = false;
 
   constructor() { }
 
@@ -104,7 +106,7 @@ export class ScorekeeperComponent implements OnInit {
   }
 
   mostrarGifWin() {
-    if (!Fase3Service) {
+    if (this.servicio instanceof Fase1Service || this.servicio instanceof Fase2Service) {
       this.servicio.winGif$.subscribe(
         (winGif: boolean) => {
           if (winGif) {

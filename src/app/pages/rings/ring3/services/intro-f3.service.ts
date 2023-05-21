@@ -15,7 +15,7 @@ export class IntroF3Service {
   c16: C16 = new C16();
 
   joystick: Joystick;
-//TODO cambiar a true
+
   private _presentacion = new BehaviorSubject<boolean>(false);
   presentacion$ = this._presentacion.asObservable();
 
@@ -41,7 +41,7 @@ export class IntroF3Service {
       this.cell.carga = true;
       let tiempo: any = setInterval(() => {
         this.cell.acumularCargaCell = this.cell.acumularCargaCell + 1;
-        if (this.cell.acumularCargaCell == 5) {
+        if (this.cell.acumularCargaCell == 6) {
           clearInterval(tiempo);
           this.cell.carga = false;
           this.cell.base = true;
@@ -86,6 +86,10 @@ export class IntroF3Service {
         }, 2800);
       }
     }, 700);
+  }
+
+  public choqueKames() {
+    //no hace nada
   }
 
   private entradaC16() {

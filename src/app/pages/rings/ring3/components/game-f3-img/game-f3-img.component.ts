@@ -82,7 +82,7 @@ export class GameF3ImgComponent implements OnInit {
               this.f3.joystick.ocultarBtnPulsar = false;
               this.f3.gohan.vidaGohan = -100;
               this.f3.barraGohan();
-              this.f3.gohan.gohanPierdeCombate = true;
+              this.f3.gohan.pierde = true;
               this.resetarEstilos();
             }
           }, 158)
@@ -173,7 +173,7 @@ export class GameF3ImgComponent implements OnInit {
                     this.f3.joystick.ocultarBtnPulsar = false;
                     this.f3.gohan.vidaGohan = -100;
                     this.f3.barraGohan();
-                    this.f3.gohan.gohanPierdeCombate = true;
+                    this.f3.gohan.pierde = true;
                     this.resetarEstilos();
                   }
 

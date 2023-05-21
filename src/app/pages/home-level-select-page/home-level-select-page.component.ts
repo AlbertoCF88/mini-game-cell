@@ -2,6 +2,7 @@ import { Component, ElementRef, AfterViewInit, Renderer2, ViewChild } from '@ang
 import { AlertController, ModalController } from '@ionic/angular';
 import GohanF3 from '../rings/models/extendedmodels/GohanF3';
 import { Fase3Service } from '../rings/ring3/services/fase3.service';
+import { LocalStorageGuard } from '../rings/models/localStorageInterface';
 
 @Component({
   selector: 'app-home-level-select-page',
@@ -15,10 +16,12 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
   public showModal: boolean = false;
   public nombre: string = '';
 
-  public localF3 : boolean=false;
+  private localStorage: Storage | null = null;
+  private localStorageGuard: LocalStorageGuard;
+  public localF3: boolean = false;
 
   //solo para el html
-  listaBolas: Array<any> = [
+  public listaBolas: Array<any> = [
     { id: 'bola1' },
     { id: 'bola2' },
     { id: 'bola3' },
@@ -32,7 +35,9 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
     private ren: Renderer2,
     private el: ElementRef,
     private alertController: AlertController,
-  ) { }
+  ) {
+    this.localStorageGuard = { fase1: true, fase2: false, fase3: false };
+  }
 
 
   //  ngAfterViewInit ejecuta despues de pintar el html y asi coger los id de las bolas
@@ -41,6 +46,7 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
     this.randomNumero();
     setInterval(() => { this.randomNumero() }, 5000);
     //Se repite cada 5s igual que la animacion en CSS, 5s infinito
+
     this.creditos();
   }
 
@@ -65,12 +71,15 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
 
   //Modal
   private buscarNombre() {
-    this.showModal = true;
-    const nombreGuardado = localStorage.getItem('nombreMinigameCell');
-    if (nombreGuardado) {
-      this.nombre = nombreGuardado;
-    }
+    setTimeout(() => {
+      this.showModal = true;
+      const nombreGuardado = localStorage.getItem('nombreMinigameCell');
+      if (nombreGuardado) {
+        this.nombre = nombreGuardado;
+      }
+    });
   }
+
 
   async guardarNombre() {
     if (this.nombre !== '') {
@@ -87,30 +96,21 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
     }
   }
 
- public cerrarModal() {
+  public cerrarModal() {
     this.showModal = false;
   }
 
   //modal
-  private buscarF3() {
-    this.localStorage = localStorage;
-    const localString = this.localStorage.getItem('localStorageGuard');
-    
-    if (localString) {
-      this.localStorageGuard = JSON.parse(localString);
-      if ( this.localStorageGuard &&  this.localStorageGuard.fase2 == true) {
-        return true;
-      } else {
-        this.presentAlert();
-        return false;
+  private creditos() {
+    setTimeout(() => {
+      this.localStorage = localStorage;
+      const local = localStorage.getItem('localStorageGuard');
+      if (local) {
+        this.localStorageGuard = JSON.parse(local);
+        if (this.localStorageGuard.fase3 == true) {
+          this.localF3 = true;
+        }
       }
-    } else {
-      this.presentAlert();
-      return false;
-    }
+    });
   }
- public creditos(){
-   this.gohan = this.servicio.gohan;
-  this.showModal = true;
- }
 }
