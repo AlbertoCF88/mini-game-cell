@@ -1,0 +1,155 @@
+#marcoPersonajes {
+    margin  : auto;
+    position: absolute;
+    width   : 100vw;
+    height  : 2vw;
+}
+
+.gokuAparece {
+    position : absolute;
+    width    : 11vw;
+    bottom   : 5vw;
+    left     : 0vw;
+    height   : auto;
+    opacity  : 0;
+    animation: aparecer 2s
+        /*duracion*/
+        cubic-bezier(0.18, 0.89, 0.32, 1.28)
+        /*retraso*/
+        backwards;
+}
+
+.gokuCarga {
+    position    : absolute;
+    width       : 15vw;
+    bottom      : 13vw;
+    left        : -1vw;
+    height      : auto;
+    opacity     : 0;
+     animation: aparecer 2s
+    /*duracion*/
+           cubic-bezier(0.18, 0.89, 0.32, 1.28)
+    /*retraso*/ 2s
+    backwards;
+}
+
+.efectoKameCargaGoku {
+    position      : absolute;
+    width         : 24vw;
+    bottom        : 15vw;
+    left          : -6vw;
+    opacity       : 0;
+       animation: efectoki 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s backwards;
+}
+
+.gohanKamePadre {
+    z-index    : 94;
+    position   : absolute;
+    width      : 36vw;
+    bottom     : 4vw;
+    right      : 68.7vw;
+    opacity    : 0;
+    animation: aparecer 2s
+    /*duracion*/
+       cubic-bezier(0.18, 0.89, 0.32, 1.28)
+    /*retraso*/
+         4s forwards;
+}
+
+@keyframes aparecer {
+
+    /*inicio*/
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes efectoki {
+    0% {
+        opacity: 0;
+        filter : brightness(1);
+    }
+
+    10% {
+        filter: brightness(100%);
+    }
+
+    15% {
+        opacity: 1;
+        filter : brightness(1);
+    }
+
+    20% {
+        filter: brightness(200%);
+    }
+
+    25% {
+        filter: brightness(1);
+    }
+
+    30% {
+        filter: brightness(300%);
+    }
+
+    35% {
+        filter: brightness(1);
+    }
+
+    40% {
+        filter: brightness(200%);
+    }
+
+    45% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(300%);
+    }
+
+    55% {
+        filter: brightness(1);
+    }
+
+    60% {
+        filter: brightness(200%);
+    }
+
+    65% {
+        filter: brightness(1);
+    }
+
+    70% {
+        filter: brightness(300%);
+    }
+
+    75% {
+        filter: brightness(1);
+    }
+
+    80% {
+        filter: brightness(200%);
+    }
+
+    85% {
+
+        filter: brightness(1);
+    }
+
+    90% {
+        opacity: 1;
+        filter : brightness(300%);
+    }
+
+    95% {
+        filter: brightness(1);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

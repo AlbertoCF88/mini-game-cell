@@ -3,6 +3,7 @@ import GohanF3 from '../../models/extendedmodels/GohanF3';
 import CellF3 from '../../models/extendedmodels/CellF3';
 import { Joystick } from '../../shared/components/joystick/Interface/Joystick';
 import { BehaviorSubject } from 'rxjs';
+import { LocalStorageGuard } from '../../models/localStorageInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,15 @@ export class Fase3Service {
 
   private activarBtnKameFinal: boolean = false;
 
+  localStorageGuard: LocalStorageGuard;
+  
   constructor() {
+    this.localStorageGuard = {
+      fase1: true,
+      fase2: true,
+      fase3: false,
+    }
+
     this.joystick = {
       ocultarBotones: false,
       ocultarBtnPulsar: false,
@@ -66,6 +75,13 @@ export class Fase3Service {
     this._activarGohanKame.next(nuevoValor);
   }
 
+  public cambiarValorActivarCellKameFinal(nuevoValor: boolean): void {
+    this._activarCellKameFinal.next(nuevoValor);
+  }
+
+  public cambiarValorActivarGohanKameFinal(nuevoValor: boolean): void {
+    this._activarGohanKameFinal.next(nuevoValor);
+  }
   private descansoPjs(descanso: boolean) {
     this.gohan.base = descanso;
     this.cell.base = descanso;
@@ -243,7 +259,7 @@ export class Fase3Service {
           this.cell.vidaCell <= 50) {
           console.log("kame 5")
           setTimeout(() => {
-            this.resetarAnimaciones();
+            this.kamePadreHijo();
             return;
           }, 1000);
         } else if (this.gohan.acumularCargaGohan >= 3) {
@@ -400,7 +416,7 @@ export class Fase3Service {
         this.barraGohan();
         this.gohan.carga = false;
         this.gohan.herida = true;
-        this.gohan.pierde = true;
+        this.gohan.gohanPierdeCombate = true;
       }, 3500);
     } else {
       this.gohan.carga = true;
@@ -476,7 +492,7 @@ export class Fase3Service {
           this.resetarAnimaciones();
         }, 3000);
       }, 4000);
-    }, 7000);
+    },4500);
   }
 
   private kamePadreHijo() {
@@ -518,6 +534,7 @@ export class Fase3Service {
     this.gohan.heridaContra1 = false;
     this.gohan.heridaContra2 = false;
     this.gohan.activarVideo = false;
+    this.gohan.gohanPierdeCombate = false;
 
     this.cell.raya = false;
     this.cell.rayaContra = false;
@@ -549,6 +566,30 @@ export class Fase3Service {
         this.resetarAnimaciones();
       }, 2000);
     }
+  }
+  private resetearFase() {
+    this.activarBtnKameFinal = false;
+    this.activarDerrotarCell = false;
+    this.contadorBtnContra = 0;
+    this.gohan.vidaGohan = 100;
+    this.cell.vidaCell = 100;
+    this.gohan.acumularCargaGohan = 5;
+    this.cell.acumularCargaCell = 6;
+    this.gohan.maximaEnergiaGohan = 5;
+    this.cell.maximaEnergiaCell = 6;
+    this.barraGohan();
+    this.barraCEll();
+  }
+  public reintentar() {
+    console.log("entra???? reintentar")
+    this.resetarAnimaciones();
+    this.resetearFase()
+  }
+
+  
+  public localStorage() {
+    this.localStorageGuard.fase3 = true;
+    localStorage.setItem("localStorageGuard", JSON.stringify(this.localStorageGuard));
   }
 
 }

@@ -16,22 +16,42 @@
   </ng-container>
 
   <!-- boton siguiente -->
-  <ng-container *ngIf="btnActivo">
+  <ng-container *ngIf="btnActivo || gohan.videoWin">
     <app-btn-cell-next-fase [texto]="texto" [ruta]="ruta">
     </app-btn-cell-next-fase>
   </ng-container>
-
+<!-- ****************************FASE 3*********************************************************** -->
   <!-- video fase3 gana Cell -->
-  <div *ngIf="gohan.pierde" class="winGif overflow-hidden">
+  <div *ngIf="gohan.gohanPierdeCombate" class="winGif overflow-hidden">
     <video autoplay class="video">
-      <source src="../../../../../../assets/cell/f3/mueres.mp4" type="video/mp4" start="30">
+      <source src="../../../../../../assets/cell/f3/mueres.mp4" type="video/mp4">
     </video>
   </div>
 
   <!-- video fase3 gana gohan parte 1 -->
   <div *ngIf="gohan.activarVideo" class="winGif overflow-hidden" style=" transform: scaleX(-1)">
     <video autoplay class="video">
-      <source src="../../../../../../assets/cell/f3/mueres.mp4" type="video/mp4" start="30">
+      <source src="../../../../../../assets/cell/f3/mueres.mp4" type="video/mp4">
     </video>
   </div>
+
+  <!-- video fase3 gohan derrota a cell -->
+  <div *ngIf="gohan.videoFinal" class="winGif overflow-hidden">
+    <video autoplay class="video">
+      <source src="../../../../../../assets/gohan/ss2/final.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- video fase3 gohan video win -->
+  <div *ngIf="gohan.videoWin" class="winGif overflow-hidden">
+    <video autoplay class="video">
+      <source src="../../../../../../assets/gohan/ss2/win.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <ng-container *ngIf="gohan.videoWin">
+    <div class="cajaPerder">
+      <h1 class="pierdes">¡Has vencido a Cell! Eres el verdadero guerrero.</h1>
+    </div>
+  </ng-container>
 </ng-container>

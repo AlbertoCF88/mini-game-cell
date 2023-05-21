@@ -23,7 +23,7 @@ export class GuardFase3Guard implements CanActivate {
     
     if (localString) {
       this.localStorageGuard = JSON.parse(localString);
-      if ( this.localStorageGuard &&  this.localStorageGuard.fase3 == true) {
+      if ( this.localStorageGuard &&  this.localStorageGuard.fase2 == true) {
         return true;
       } else {
         this.presentAlert();

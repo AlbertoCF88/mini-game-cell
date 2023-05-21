@@ -1,5 +1,7 @@
 import { Component, ElementRef, AfterViewInit, Renderer2, ViewChild } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
+import GohanF3 from '../rings/models/extendedmodels/GohanF3';
+import { Fase3Service } from '../rings/ring3/services/fase3.service';
 
 @Component({
   selector: 'app-home-level-select-page',
@@ -12,6 +14,8 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
 
   public showModal: boolean = false;
   public nombre: string = '';
+
+  public localF3 : boolean=false;
 
   //solo para el html
   listaBolas: Array<any> = [
@@ -27,7 +31,7 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
   constructor(
     private ren: Renderer2,
     private el: ElementRef,
-    private alertController: AlertController
+    private alertController: AlertController,
   ) { }
 
 
@@ -37,6 +41,7 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
     this.randomNumero();
     setInterval(() => { this.randomNumero() }, 5000);
     //Se repite cada 5s igual que la animacion en CSS, 5s infinito
+    this.creditos();
   }
 
   //genera numeros aleatorios para darler posicion a las bolas
@@ -82,7 +87,30 @@ export class HomeLevelSelectPageComponent implements AfterViewInit {
     }
   }
 
-  cerrarModal() {
+ public cerrarModal() {
     this.showModal = false;
   }
+
+  //modal
+  private buscarF3() {
+    this.localStorage = localStorage;
+    const localString = this.localStorage.getItem('localStorageGuard');
+    
+    if (localString) {
+      this.localStorageGuard = JSON.parse(localString);
+      if ( this.localStorageGuard &&  this.localStorageGuard.fase2 == true) {
+        return true;
+      } else {
+        this.presentAlert();
+        return false;
+      }
+    } else {
+      this.presentAlert();
+      return false;
+    }
+  }
+ public creditos(){
+   this.gohan = this.servicio.gohan;
+  this.showModal = true;
+ }
 }

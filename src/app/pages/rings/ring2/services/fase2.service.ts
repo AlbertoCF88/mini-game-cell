@@ -57,7 +57,7 @@ export class Fase2Service {
   constructor() {
     this.localStorageGuard = {
       fase1: true,
-      fase2: true,
+      fase2: false,
       fase3: false,
     }
 
@@ -349,7 +349,7 @@ export class Fase2Service {
     this.cell.heridoCell4 = false;
   }
 
-  resetearFase() {
+ private resetearFase() {
     this.cell.poderCell = 43;
     this.gohan.vidaGohan = 100;
     this.cell.vidaCell = 100;
@@ -378,12 +378,12 @@ export class Fase2Service {
 
   // ganador() lo compureba game fase2
 
-  localStorage() {
-    this.localStorageGuard.fase3 = true;
+  public localStorage() {
+    this.localStorageGuard.fase2 = true;
     localStorage.setItem("localStorageGuard", JSON.stringify(this.localStorageGuard));
   }
 
-  reintentar() {
+  public reintentar() {
     this.resetarAnimaciones();
     this.resetearFase()
   }

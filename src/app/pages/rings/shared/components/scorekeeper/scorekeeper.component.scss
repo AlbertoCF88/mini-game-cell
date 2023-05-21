@@ -10,10 +10,11 @@
   border-radius: 20%;
   border       : 3px solid black;
   opacity      : 0;
-  animation    : winAnimacion 3s
+  animation    : winAnimacion 0.1s
     /*duracion*/
     cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
 }
+
 
 @keyframes winAnimacion {
 
@@ -38,7 +39,7 @@
   width          : 100%;
   top            : 43vh;
   position       : absolute;
-  z-index        : 99;
+  z-index        : 99999;
 
   .pierdes {
     text-align         : center;
@@ -66,8 +67,8 @@
   top      : 50%;
   left     : 50%;
   transform: translate(-50%, -50%);
-  opacity: 0;
-  animation    : winAnimacion 3s
-  /*duracion*/
-  cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s forwards;
+  opacity  : 0;
+  animation: winAnimacion 3s
+    /*duracion*/
+    cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s forwards;
 }

@@ -97,6 +97,10 @@ export class ScorekeeperComponent implements OnInit {
     if (this.servicio instanceof Fase2Service) {
       this.servicio.reintentar();
     }
+
+    if (this.servicio instanceof Fase3Service) {
+      this.servicio.reintentar();
+    }
   }
 
   mostrarGifWin() {
