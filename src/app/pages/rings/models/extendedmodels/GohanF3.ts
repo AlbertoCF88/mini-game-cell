@@ -25,7 +25,7 @@ export default class GohanF3 extends Gohan {
     private _heridaContra1: boolean;
     private _heridaContra2: boolean;
 
-    private _gohanPierdeCombate: boolean;
+    private _pierde: boolean;
     private _activarVideo: boolean;
 
     private _videoFinal: boolean;
@@ -53,7 +53,7 @@ export default class GohanF3 extends Gohan {
         herida: boolean = false,
         heridaContra1: boolean = false,
         heridaContra2: boolean = false,
-        gohanPierdeCombate: boolean = false,
+        pierde: boolean = false,
         activarVideo: boolean = false,
         videoFinal: boolean = false,
         videoWin: boolean = false,
@@ -76,7 +76,7 @@ export default class GohanF3 extends Gohan {
         this._herida = herida;
         this._heridaContra1 = heridaContra1
         this._heridaContra2 = heridaContra2;
-        this._gohanPierdeCombate = gohanPierdeCombate;
+        this._pierde = pierde;
         this._activarVideo = activarVideo;
         this._videoFinal = videoFinal;
         this._videoWin = videoWin;
@@ -211,12 +211,12 @@ export default class GohanF3 extends Gohan {
     public set heridaContra2(heridaContra2: boolean) {
         this._heridaContra2 = heridaContra2;
     }
-    public get gohanPierdeCombate(): boolean {
-        return this._gohanPierdeCombate;
+    public get pierde(): boolean {
+        return this._pierde;
     }
 
-    public set gohanPierdeCombate(gohanPierdeCombate: boolean) {
-        this._gohanPierdeCombate = gohanPierdeCombate;
+    public set pierde(pierde: boolean) {
+        this._pierde = pierde;
     }
 
 

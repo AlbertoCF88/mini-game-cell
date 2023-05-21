@@ -14,7 +14,7 @@ export class GuardFase2Guard implements CanActivate {
   private localStorageGuard: LocalStorageGuard;
 
   constructor(private alertIon: AlertController) {
-    this.localStorageGuard = { fase1: true, fase2: false, fase3: false };
+    this.localStorageGuard = { fase1: false, fase2: false, fase3: false };
   }
 
   canActivate(): boolean {
@@ -23,7 +23,7 @@ export class GuardFase2Guard implements CanActivate {
     
     if (localString) {
       this.localStorageGuard = JSON.parse(localString);
-      if ( this.localStorageGuard &&  this.localStorageGuard.fase2 == true) {
+      if ( this.localStorageGuard &&  this.localStorageGuard.fase1 == true) {
         return true;
       } else {
         this.presentAlert();

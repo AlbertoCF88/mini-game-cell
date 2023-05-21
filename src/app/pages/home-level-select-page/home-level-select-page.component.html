@@ -50,10 +50,10 @@
 
 
   <!-- modal -->
-  <div *ngIf="showModal">
+  <div *ngIf="localF3" >
     <div class="modal  fade " [ngClass]="{'show': showModal}" tabindex="-1">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="background-color: rgb(229 133 58) !important;">
           <div class="modal-header">
             <h1 class="modal-title">Gracias por jugar</h1>
           </div>
@@ -62,7 +62,7 @@
             <p>Alberto Carrasco Fernández</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="cerrarModal()">Cerrar</button>
+            <button type="button" class="btn btn-danger" (click)="cerrarModalCredito()">Cerrar</button>
           </div>
         </div>
       </div>

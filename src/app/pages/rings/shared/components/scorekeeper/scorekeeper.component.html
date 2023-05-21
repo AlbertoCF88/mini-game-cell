@@ -1,7 +1,6 @@
 <ng-container>
-
   <!-- botoner reintentar -->
-  <ng-container *ngIf="gohan.gohanPierdeCombate">
+  <ng-container *ngIf="gohan.gohanPierdeCombate || gohan.pierde">
     <div class="cajaPerder">
       <h1 class="pierdes">Tú pierdes</h1>
       <button class="boton" (click)="reintentar()">
@@ -20,9 +19,9 @@
     <app-btn-cell-next-fase [texto]="texto" [ruta]="ruta">
     </app-btn-cell-next-fase>
   </ng-container>
-<!-- ****************************FASE 3*********************************************************** -->
+  <!-- ****************************FASE 3*********************************************************** -->
   <!-- video fase3 gana Cell -->
-  <div *ngIf="gohan.gohanPierdeCombate" class="winGif overflow-hidden">
+  <div *ngIf="gohan.pierde" class="winGif overflow-hidden">
     <video autoplay class="video">
       <source src="../../../../../../assets/cell/f3/mueres.mp4" type="video/mp4">
     </video>
@@ -51,7 +50,7 @@
 
   <ng-container *ngIf="gohan.videoWin">
     <div class="cajaPerder">
-      <h1 class="pierdes">¡Has vencido a Cell! Eres el verdadero guerrero.</h1>
+      <h1 class="pierdes">¡Has vencido a Cell!</h1>
     </div>
   </ng-container>
 </ng-container>

@@ -169,8 +169,12 @@ export class Fase3Service {
   public accionDefensa(defensa: string) {
     if (this.joystick.ocultarTexto == false) {
       setTimeout(() => {
-        this.resetarAnimaciones();
-      }, 2100);
+        this.joystick.ocultarBotones = true;
+        setTimeout(() => {
+          this.resetarAnimaciones();
+         }, 2000);
+     
+      }, 100);
       const turno = this.turnoCell(defensa);
       if (turno) {
         //turno de cell
@@ -416,7 +420,7 @@ export class Fase3Service {
         this.barraGohan();
         this.gohan.carga = false;
         this.gohan.herida = true;
-        this.gohan.gohanPierdeCombate = true;
+        this.gohan.pierde = true;
       }, 3500);
     } else {
       this.gohan.carga = true;
@@ -534,7 +538,7 @@ export class Fase3Service {
     this.gohan.heridaContra1 = false;
     this.gohan.heridaContra2 = false;
     this.gohan.activarVideo = false;
-    this.gohan.gohanPierdeCombate = false;
+    this.gohan.pierde = false;
 
     this.cell.raya = false;
     this.cell.rayaContra = false;
@@ -556,8 +560,8 @@ export class Fase3Service {
   }
 
   private cellRegeneracion() {
-    if (this.activarDerrotarCell === false &&
-      this.cell.vidaCell <= 1) {
+    if (this.gohan.videoFinal === false &&
+      this.cell.vidaCell <= 0) {
       this.joystick.texto = '¡¡Cell se regenera!!';
       this.joystick.ocultarBotones = true;
       setTimeout(() => {
@@ -581,7 +585,6 @@ export class Fase3Service {
     this.barraCEll();
   }
   public reintentar() {
-    console.log("entra???? reintentar")
     this.resetarAnimaciones();
     this.resetearFase()
   }

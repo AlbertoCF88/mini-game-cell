@@ -113,7 +113,7 @@ export class Fase1Service {
     }, 3500);
   }
 
-  choqueKames() {
+  public choqueKames() {
     //cada vez que es pulsado este btn mueve el kame
     this._kameVsStyle.next(true)
   }
@@ -483,7 +483,7 @@ export class Fase1Service {
   }
 
   localStorage() {
-    this.localStorageGuard.fase2 = true;
+    this.localStorageGuard.fase1 = true;
     localStorage.setItem("localStorageGuard", JSON.stringify(this.localStorageGuard));
   }
 
@@ -498,4 +498,3 @@ export class Fase1Service {
     this.barraCEll();
   }
 } //final
-
