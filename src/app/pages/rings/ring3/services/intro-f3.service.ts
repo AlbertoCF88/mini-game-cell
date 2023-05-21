@@ -16,7 +16,7 @@ export class IntroF3Service {
 
   joystick: Joystick;
 
-  private _presentacion = new BehaviorSubject<boolean>(false);
+  private _presentacion = new BehaviorSubject<boolean>(true);
   presentacion$ = this._presentacion.asObservable();
 
   constructor() {
