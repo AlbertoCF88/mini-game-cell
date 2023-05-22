@@ -51,11 +51,9 @@ export class GameF2ImgComponent implements OnInit {
       (activar: boolean) => {
         const bolaUnion = this.bolaUnion?.nativeElement;
         if (activar) {
-          console.log("bolaUnion", bolaUnion)
           let stopInterval = setInterval(() => {
             this.render.setStyle(bolaUnion, 'right', this.f2.cell.poderCell + 'vw');
             this.f2.cell.poderCell = this.f2.cell.poderCell + 0.5;
-            console.log("poder cell", this.f2.cell.poderCell)
             //comprobar ganador del combate
             if (this.cell.poderCell <= 10 || this.cell.poderCell >= 72) {
               clearInterval(stopInterval);

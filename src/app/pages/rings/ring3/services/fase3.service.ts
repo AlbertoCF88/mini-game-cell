@@ -251,9 +251,7 @@ export class Fase3Service {
         this.cellCargaki();
         break;
       case 'ki':
-        console.log("case ki")
         if (this.gohan.acumularCargaGohan === 2) {
-          console.log("rafaga")
           this.rafaga();
           return;
         }
@@ -261,13 +259,11 @@ export class Fase3Service {
         if (this.gohan.acumularCargaGohan === 5 &&
           this.activarDerrotarCell === true &&
           this.cell.vidaCell <= 50) {
-          console.log("kame 5")
           setTimeout(() => {
             this.kamePadreHijo();
             return;
           }, 1000);
         } else if (this.gohan.acumularCargaGohan >= 3) {
-          console.log("kame 3")
           this.kame();
           return;
         }
